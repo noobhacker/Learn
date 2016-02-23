@@ -1,0 +1,171 @@
+﻿<Page
+    x:Class="Learn.ResultFrame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Learn"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".4*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="12" >
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Average sec" Margin="0,0,12,0"/>
+            <TextBlock Name="averagesecTB" Grid.Column="1" Text=" 5.000" Margin="12,0"/>
+            <TextBlock  Grid.Column="2" Text="x8" FontSize="12"
+                        VerticalAlignment="Top" Margin="24,4,23.8,0" FontWeight="Thin" 
+                        Visibility="Collapsed"/>
+
+            <TextBlock Grid.Row="1" Text="Max. Combo" Margin="0,12,0,0"/>
+            <TextBlock Name="maxcomboTB" Grid.Row="1" Grid.Column="1" Text="0" Margin="12,12,12,0"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,12,0,0">
+                <TextBlock  Grid.Row="1" Grid.Column="2" Text="MAX" FontSize="12"
+                        VerticalAlignment="Bottom" Margin="24,0" FontWeight="Thin" />
+                <TextBlock  Grid.Row="1" Grid.Column="2" Text="+2000" FontSize="12"
+                        VerticalAlignment="Bottom" Margin="24,0" FontWeight="Thin"/>
+            </StackPanel>
+
+            <TextBlock Text="Errors" Grid.Row="2" Margin="0,0,12,0"/>
+            <TextBlock Name="errorTB" Grid.Column="1" Grid.Row="2" Text="0" Margin="12,0"/>
+            <TextBlock  Grid.Column="2"  Grid.Row="2" Text="" FontSize="12"
+                        VerticalAlignment="Bottom" Margin="24,0" FontWeight="Thin" />
+
+            <TextBlock Name="pointsTB" Grid.Column="0" Grid.Row="3" Text="0" 
+                       Grid.ColumnSpan="2" FontSize="24"
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                       TextAlignment="Center" Margin="12"/>
+            <TextBlock  Grid.Row="3" Grid.Column="2" Text="+3%" FontSize="12"
+                        VerticalAlignment="Bottom" Margin="24,0" FontWeight="Thin"
+                        Visibility="Collapsed"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Margin="12">
+
+                <TextBlock Name="gradeTB" Text="" FontSize="52" HorizontalAlignment="Center" Margin="24" />
+
+                <StackPanel Name="itemPanel" Visibility="Collapsed">
+                    <TextBlock Text="Item gained" HorizontalAlignment="Center" Margin="12" />
+                    <Grid Background="#FFDCEFFA" Padding="6" Margin="6">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" 
+                                   Text="&#xE8B7;" Margin="6" FontSize="30"/>
+
+                        <Grid Grid.Column="1" Margin="3">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock FontSize="18"
+                                   VerticalAlignment="Center" Text="Scroll of EXP"
+                                   TextTrimming="CharacterEllipsis"  />
+
+                            <TextBlock Grid.Row="1" FontSize="12" FontWeight="Thin" 
+                                   VerticalAlignment="Center" Text="Common"
+                                   TextTrimming="CharacterEllipsis"  />
+
+
+                        </Grid>
+
+                    </Grid>
+                </StackPanel>
+
+                <Grid Name="pointsrewardedGrid" Visibility="Collapsed" >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text=" $   +    " Margin="12" FontSize="24" FontWeight="Thin"/>
+                    <TextBlock Name="cashgainedTB" Grid.Column="1" Text="3.22" Margin="12" FontSize="24" FontWeight="Thin"/>
+                    <TextBlock  Grid.Column="2" Text="+5%" FontSize="12"
+                        VerticalAlignment="Bottom" Margin="12,0" FontWeight="Thin" />
+
+                    <TextBlock Grid.Row="1" Text=" G   +    " Margin="12" FontSize="24" FontWeight="Thin"/>
+                    <TextBlock Name="goldgainedTB" Grid.Row="1" Grid.Column="1" Text="322" Margin="12" FontSize="24" FontWeight="Thin"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="+5%" FontSize="12"
+                        VerticalAlignment="Bottom" Margin="12,0" FontWeight="Thin" />
+                </Grid>
+
+            </StackPanel>
+            <Button Name="backBtn" Grid.Row="1" HorizontalAlignment="Stretch" Margin="12" Content="Back"
+                    Click="backBtn_Click" />
+        </Grid>
+
+        <GridView Name="resultGV" SelectionMode="Single" Margin="12,12"
+                  Grid.Column="1" Grid.RowSpan="2">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="12,0">
+                        <StackPanel Orientation="Horizontal" >
+
+                            <TextBlock Grid.Column="0" FontSize="18" FontWeight="Thin" 
+                                   VerticalAlignment="Center" Text="{Binding QuestionString}" Margin="6,0"
+                                   TextTrimming="CharacterEllipsis" />
+
+                            <Image Name="bindingImage" Height="40" Source="{Binding QuestionImagePath}" Margin="6,0" 
+                               Visibility="{Binding QuestionImageVisibility}"/>
+
+                            <TextBlock Grid.Column="1" FontSize="18" FontWeight="Thin" 
+                                   VerticalAlignment="Center" Text="{Binding ErrorCount}" Margin="6,0"
+                                   TextTrimming="CharacterEllipsis" />
+
+                            <TextBlock Grid.Column="2" FontSize="18" FontWeight="Thin" 
+                                   VerticalAlignment="Center" Text="{Binding AnswerSpeed}" Margin="6,0"
+                                   TextTrimming="CharacterEllipsis" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+
+        </GridView>
+
+    </Grid>
+</Page>

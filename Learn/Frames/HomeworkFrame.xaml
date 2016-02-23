@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="Learn.HomeworkFrame"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Learn"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- 3rd for add items-->
+        </Grid.RowDefinitions>
+
+
+        <ListView Name="homeworksLV" SelectionMode="Single" HorizontalContentAlignment="Stretch">
+
+            <!-- this is very important for horizontalalignment stretch the items -->
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.HeaderTemplate>
+
+                <DataTemplate >
+
+                    <Grid  Name="listviewheaders" Margin="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Homework Name" Margin="6"/>
+                        <TextBlock Text="Due Date" Grid.Column="1" Margin="6"/>
+                        <TextBlock Text="Points" Grid.Column="2" Margin="6"/>
+
+                    </Grid>
+
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+
+                    <Grid Name="listviewitemsGrid" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding HomeworkName}" Margin="6" 
+                                   TextTrimming="CharacterEllipsis" FontWeight="Light"/>
+
+                        <TextBlock Text="{Binding DueDate}" Grid.Column="1" Margin="6" FontWeight="Light"/>
+
+                        <TextBlock Text="{Binding Points}" Grid.Column="2" Margin="6" FontWeight="Light"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Name="buttons" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="doneBtn" Content="Done"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    Background="Green" Margin="6" Click="doneBtn_Click"/>
+
+            <Button Name="forfeitBtn" Content="Forfeit" Grid.Column="1"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    Background="Red" Margin="6" Click="forfeitBtn_Click"/>
+
+            <Button Name="addBtn" Content="Add" Grid.Column="2"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                    Background="SkyBlue" Margin="6" Click="addBtn_Click"/>
+
+        </Grid>
+
+        <!-- change to stack panel so become 3 row in mobile mode -->
+        <StackPanel Name="addnewhomework" Grid.Row="2">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="342*"/>
+                    <ColumnDefinition Width="206*"/>
+                    <ColumnDefinition Width="136*"/>
+                    <ColumnDefinition Width="341*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Name="homeworknameTB" PlaceholderText="Homework Name"  Margin="6,6,5.6,6"/>
+                <DatePicker Name="duedateDP" Margin="6.4,6,5.2,6" Grid.Column="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"/>
+                <TextBox Name="pointsTB" Margin="5.8,6,6,6" Grid.Column="3" 
+                     PlaceholderText="Points gain upon completion"/>
+            </Grid>
+
+            <TextBlock Margin="6" Text="Just think how much money you should reward yourself, then multiply for 100 for points"
+                       TextAlignment="Center" FontWeight="Thin"/>
+
+
+
+        </StackPanel>
+
+    </Grid>
+</Page>
