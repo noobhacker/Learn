@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learn.Backend
+namespace Learn.Items
 {
-    class Scroll
+    class ScrollItem
     {
 
         public enum ScrollDuration { OneRound, Hour, Permanant}

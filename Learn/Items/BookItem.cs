@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
-namespace Learn.Backend
+namespace Learn.Items
 {
-    public class Book
+    public class BookItem
     {
 
         public enum QuestionTypes { MCQ, StringQuestion, ImageQuestion, VoiceQuestion}

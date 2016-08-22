@@ -7,9 +7,9 @@ using Windows.Foundation;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 
-namespace Learn.Backend
+namespace Learn.Items
 {
-    class Skin
+    class SkinItem
     {
         public string SkinName { get; set; }
         public int Price { get; set; }

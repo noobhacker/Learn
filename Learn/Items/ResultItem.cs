@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Learn.Backend
+namespace Learn.Items
 {
-    public class Result
+    public class ResultItem
     {
 
         public string QuestionString { get; set; }

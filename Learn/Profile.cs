@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learn.Backend
+namespace Learn.Items
 {
     class Profile : INotifyPropertyChanged
     {

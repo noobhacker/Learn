@@ -107,58 +107,50 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Backend\Activity.cs" />
-    <Compile Include="Frames\ActivityFrame.xaml.cs">
-      <DependentUpon>ActivityFrame.xaml</DependentUpon>
+    <Compile Include="Items\ActivityItem.cs" />
+    <Compile Include="Pages\ActivityPage.xaml.cs">
+      <DependentUpon>ActivityPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Frames\AddBookFrame.xaml.cs">
-      <DependentUpon>AddBookFrame.xaml</DependentUpon>
+    <Compile Include="Pages\AddBookPage.xaml.cs">
+      <DependentUpon>AddBookPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Backend\Devices.cs" />
-    <Compile Include="Backend\Ext.cs" />
-    <Compile Include="Backend\Food.cs" />
-    <Compile Include="Backend\Homework.cs" />
-    <Compile Include="Backend\Profile.cs" />
-    <Compile Include="Backend\Question.cs" />
-    <Compile Include="Backend\Book.cs" />
-    <Compile Include="Backend\Scroll.cs" />
-    <Compile Include="Backend\Skin.cs" />
-    <Compile Include="Backend\Result.cs" />
-    <Compile Include="Backend\Upgrades.cs" />
-    <Compile Include="Backend\Voice.cs" />
-    <Compile Include="Frames\EquipmentFrame.xaml.cs">
-      <DependentUpon>EquipmentFrame.xaml</DependentUpon>
+    <Compile Include="Ext.cs" />
+    <Compile Include="Items\HomeworkItem.cs" />
+    <Compile Include="Profile.cs" />
+    <Compile Include="Items\QuestionItem.cs" />
+    <Compile Include="Items\BookItem.cs" />
+    <Compile Include="Items\ScrollItem.cs" />
+    <Compile Include="Items\SkinItem.cs" />
+    <Compile Include="Items\ResultItem.cs" />
+    <Compile Include="Upgrades.cs" />
+    <Compile Include="Pages\EquipmentPage.xaml.cs">
+      <DependentUpon>EquipmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Frames\HomeworkFrame.xaml.cs">
-      <DependentUpon>HomeworkFrame.xaml</DependentUpon>
+    <Compile Include="Pages\HomeworkPage.xaml.cs">
+      <DependentUpon>HomeworkPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Frames\InventoryFrame.xaml.cs">
-      <DependentUpon>InventoryFrame.xaml</DependentUpon>
+    <Compile Include="Pages\LibraryPage.xaml.cs">
+      <DependentUpon>LibraryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Frames\LibraryFrame.xaml.cs">
-      <DependentUpon>LibraryFrame.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\ResultFrame.xaml.cs">
-      <DependentUpon>ResultFrame.xaml</DependentUpon>
+    <Compile Include="Pages\ResultPage.xaml.cs">
+      <DependentUpon>ResultPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="IOClass.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Frames\ProfileFrame.xaml.cs">
-      <DependentUpon>ProfileFrame.xaml</DependentUpon>
+    <Compile Include="Pages\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Frames\StoreFrame.xaml.cs">
-      <DependentUpon>StoreFrame.xaml</DependentUpon>
+    <Compile Include="Pages\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Frames\TestFrame.xaml.cs">
-      <DependentUpon>TestFrame.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Frames\UpgradeFrame.xaml.cs">
-      <DependentUpon>UpgradeFrame.xaml</DependentUpon>
+    <Compile Include="Pages\UpgradePage.xaml.cs">
+      <DependentUpon>UpgradePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PublicVariables.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -182,31 +174,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Frames\ActivityFrame.xaml">
+    <Page Include="Pages\ActivityPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Frames\AddBookFrame.xaml">
+    <Page Include="Pages\AddBookPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Frames\EquipmentFrame.xaml">
+    <Page Include="Pages\EquipmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Frames\HomeworkFrame.xaml">
+    <Page Include="Pages\HomeworkPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Frames\InventoryFrame.xaml">
+    <Page Include="Pages\LibraryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Frames\LibraryFrame.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Frames\ResultFrame.xaml">
+    <Page Include="Pages\ResultPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,19 +202,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Frames\ProfileFrame.xaml">
+    <Page Include="Pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Frames\StoreFrame.xaml">
+    <Page Include="Pages\TestPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Frames\TestFrame.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Frames\UpgradeFrame.xaml">
+    <Page Include="Pages\UpgradePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

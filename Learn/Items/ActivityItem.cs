@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learn.Backend
+namespace Learn.Items
 {
-    class Activity
+    class ActivityItem
     {
 
         public DateTime ActionDate { get; set; }

@@ -9,9 +9,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace Learn.Backend
+namespace Learn.Items
 {
-    public class Question
+    public class QuestionItem
     {
         // public object QuestionObject { get; set; } //use object is dangerous because cannot get the type at all
         public string[] MCQStrings { get; set; }
