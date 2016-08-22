@@ -36,14 +36,12 @@
                     Click="hamburgerBtn_Click"
                     Margin="6"
                     Background="Transparent" />
-
             <TextBlock Name="titleTB"
                        Grid.Column="1"
                        Text="Library"
                        FontSize="27"
                        VerticalAlignment="Center"
                        Margin="6,0,0,0" />
-
             <Grid Name="profileSP"
                   Grid.Column="3"
                   Margin="12,3"
@@ -81,7 +79,6 @@
                              Maximum="{Binding LevelUpExp}" />
 
             </Grid>
-
             <StackPanel Name="searchboxSP"
                         Orientation="Horizontal"
                         Grid.Column="4"
@@ -98,11 +95,9 @@
                         Height="30"
                         Margin="0,0,12,0" />
             </StackPanel>
-
         </Grid>
 
         <Grid Grid.Row="1">
-
             <SplitView Name="menuSP"
                        DisplayMode="CompactInline"
                        Grid.Column="0"
@@ -118,7 +113,17 @@
                     <ListView Name="splitpanelLV"
                               SelectedIndex="0"
                               SelectionChanged="splitpanelLV_SelectionChanged">
-
+                        
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="0,6,0,0">
+                            <TextBlock FontFamily="Segoe MDL2 Assets"
+                                       Text=""
+                                       Margin="12,20,24,12" />
+                            <TextBlock Text="Online"
+                                       VerticalAlignment="Center"
+                                       FontSize="20" />
+                        </StackPanel>
+                        
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,6,0,0">
                             <TextBlock FontFamily="Segoe MDL2 Assets"

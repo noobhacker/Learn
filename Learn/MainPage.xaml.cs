@@ -69,27 +69,31 @@ namespace Learn
                 switch (splitpanelLV.SelectedIndex)
                 {
                     case 0:
+                        titleTB.Text = "Internet";
+
+                        break;
+                    case 1:
                         titleTB.Text = "Library";
                         SplitViewFrame.Navigate(typeof(LibraryFrame));
                         break;
 
-                    case 1:
+                    case 2:
                         titleTB.Text = "Tasks";
                         SplitViewFrame.Navigate(typeof(HomeworkFrame));
                         break;
-                    case 2:
+                    case 3:
                         titleTB.Text = "Equipment";
                         SplitViewFrame.Navigate(typeof(EquipmentFrame));
                         break;
-                    case 3:
+                    case 4:
                         titleTB.Text = "Upgrades";
                         SplitViewFrame.Navigate(typeof(UpgradeFrame));
                         break;
-                    case 4:
+                    case 5:
                         titleTB.Text = "Profile";
                         SplitViewFrame.Navigate(typeof(ProfileFrame));
                         break;
-                    case 5:                       
+                    case 6:                       
                         titleTB.Text = "Activity";
                         SplitViewFrame.Navigate(typeof(ActivityFrame));
                         break;

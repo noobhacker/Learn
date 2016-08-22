@@ -1,4 +1,4 @@
-﻿using Learn.Categories;
+﻿using Learn.Items;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,11 +12,26 @@ namespace Learn.ViewModels
 {
     class LibraryViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<BookCategory> Books { get; set; }
+        private string bookTitle;
+        public ObservableCollection<BookItem> Books { get; set; }
+
+        public string BookTitle
+        {
+            get
+            {
+                return bookTitle;
+            }
+
+            set
+            {
+                bookTitle = value;
+                OnPropertyChanged();
+            }
+        }
 
         public LibraryViewModel()
         {
-            Books = new ObservableCollection<BookCategory>();
+            Books = new ObservableCollection<BookItem>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

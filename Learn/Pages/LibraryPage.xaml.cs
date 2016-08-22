@@ -1,4 +1,6 @@
-﻿using Learn.ViewModels;
+﻿using Learn.Items;
+using Learn.Models;
+using Learn.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,18 +31,18 @@ namespace Learn
         {
             this.InitializeComponent();
         }
-
-        //ObservableCollection<Backend.Book> BookList = new ObservableCollection<Backend.Book>();
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            var db = new DatabaseContext();
+            foreach (var book in db.Books)
+            {
+                vm.Books.Add(new BookItem()
+                {
+                    BookId = book.Id,
+                    BookTitle = book.Title
+                });
+            }
 
-
-            //    if (await IOClass.LoadBooks()) // to make sure loadbooks is done before load to local binding
-            //    {
-            //        booksGV.ItemsSource = GlobalViewModel.Books;
-            //        await IOClass.LoadStaticBooks();
-            //    }
         }
 
         private void testBtn_Click(object sender, RoutedEventArgs e)
@@ -48,29 +50,25 @@ namespace Learn
             //    this.Frame.Navigate(typeof(TestFrame),GlobalViewModel.Books[booksGV.SelectedIndex]);
         }
 
-    private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        //    try
-        //    {
-        //        booktitleTB.Text = GlobalViewModel.Books[booksGV.SelectedIndex].BookTitle;
-        //        bookdescriptionTB.Text = GlobalViewModel.Books[booksGV.SelectedIndex].Description;
-        //    }
-        //    catch { } //prevent null exception
-    }
+        private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = booksGV.SelectedIndex;
+            vm.BookTitle = vm.Books[index].BookTitle;
+        }
 
-    private void addBtn_Click(object sender, RoutedEventArgs e)
-    {
-        //    this.Frame.Navigate(typeof(AddBookFrame));
-    }
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AddBookFrame));
+        }
 
-    private async void deleteBtn_Click(object sender, RoutedEventArgs e)
-    {
-        //    if(booksGV.SelectedItems.Count != 0)
-        //    {
-        //        GlobalViewModel.Books.RemoveAt(booksGV.SelectedIndex);
-        //        await IOClass.SaveBooks();
-        //    }
+        private async void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //    if(booksGV.SelectedItems.Count != 0)
+            //    {
+            //        GlobalViewModel.Books.RemoveAt(booksGV.SelectedIndex);
+            //        await IOClass.SaveBooks();
+            //    }
+        }
     }
-}  
 
 }

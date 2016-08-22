@@ -8,14 +8,15 @@
 
     <Grid Background="Transparent">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
+            </Grid.ColumnDefinitions>
 
             <GridView Name="booksGV"
                       SelectionMode="Single"
                       Margin="24,12"
+                      ItemsSource="{Binding Books}"
                       SelectionChanged="booksGV_SelectionChanged">
                 <GridView.ItemTemplate>
                     <DataTemplate>
@@ -43,87 +44,61 @@
                 </GridView.ItemTemplate>
             </GridView>
 
-            <Grid Grid.Row="1"
+            <Grid Grid.Column="1"
                   BorderThickness="1"
                   BorderBrush="Black">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center"
-                           FontFamily="Segoe MDL2 Assets"
-                           Text="&#xE8B7;"
-                           Margin="12"
-                           FontSize="48"
-                           Grid.RowSpan="2" />
-                <TextBlock Name="booktitleTB"
-                           Text="Book Title"
-                           Grid.Column="1"
-                           FontWeight="Bold"
-                           Margin="3" />
-                <TextBlock Name="bookdescriptionTB"
-                           Text="A book description will be displayed here"
-                           Grid.Column="1"
-                           Grid.Row="1"
-                           FontWeight="Thin"
-                           Margin="3"
-                           TextWrapping="Wrap" />
-
-                <Grid Name="buttonsGrid"
-                      Grid.Row="2"
-                      Grid.Column="2">
-
-                    <!-- Hide first column when mobile mode-->
-
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width=".3*" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-
-                    <Grid Grid.Column="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Button Name="addBtn"
-                                Content="Add"
-                                Margin="6"
-                                HorizontalAlignment="Stretch"
-                                Click="addBtn_Click" />
-                        <Button Name="modifyBtn"
-                                Content="Modify"
-                                Margin="6"
-                                HorizontalAlignment="Stretch"
-                                Grid.Column="1" />
-                        <Button Name="deleteBtn"
-                                Content="Delete"
-                                Margin="6"
-                                HorizontalAlignment="Stretch"
-                                Grid.Column="2"
-                                Click="deleteBtn_Click" />
-                        <Button Name="readBtn"
-                                Content="Read"
-                                Margin="6"
-                                HorizontalAlignment="Stretch"
-                                Grid.Column="3" />
-                        <Button Name="testBtn"
-                                Content="Test"
-                                Margin="6"
-                                HorizontalAlignment="Stretch"
-                                Grid.Column="4"
-                                Click="testBtn_Click" />
-
-                    </Grid>
-
+                    <TextBlock VerticalAlignment="Center"
+                               FontFamily="Segoe MDL2 Assets"
+                               Text="&#xE8B7;"
+                               Margin="12"
+                               FontSize="48"
+                               Grid.RowSpan="2" />
+                    <TextBlock                            Text="{Binding BookTitle}"
+                                                          Grid.Column="1"
+                                                          FontWeight="Bold"
+                                                          Margin="4"
+                                                          VerticalAlignment="Center" />
                 </Grid>
+                <StackPanel Grid.Row="1"
+                            Margin="0,8,0,0">
+                    <Button Name="addBtn"
+                            Content="Add"
+                            Margin="6"
+                            HorizontalAlignment="Stretch"
+                            Click="addBtn_Click" />
+                    <Button Name="modifyBtn"
+                            Content="Modify"
+                            Margin="6"
+                            HorizontalAlignment="Stretch"
+                            Grid.Column="1" />
+                    <Button Name="deleteBtn"
+                            Content="Delete"
+                            Margin="6"
+                            HorizontalAlignment="Stretch"
+                            Grid.Column="2"
+                            Click="deleteBtn_Click" />
+                    <Button Name="readBtn"
+                            Content="Read"
+                            Margin="6"
+                            HorizontalAlignment="Stretch"
+                            Grid.Column="3" />
+                    <Button Name="testBtn"
+                            Content="Test"
+                            Margin="6"
+                            HorizontalAlignment="Stretch"
+                            Grid.Column="4"
+                            Click="testBtn_Click" />
+
+                </StackPanel>
             </Grid>
 
 
