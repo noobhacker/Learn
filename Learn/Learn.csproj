@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
+    <Compile Include="Models\AddBookViewModel.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Question.cs" />

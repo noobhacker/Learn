@@ -21,7 +21,7 @@ namespace Learn.Items
         // this will provide file name for everytime the local settings folder changes path
         public int QuestionImageID { get; set; }
         public Visibility QuestionImageVisibility { get; set; }
-        public string[] AnswerString { get; set; }
+        public string AnswerString { get; set; }
 
     }
 

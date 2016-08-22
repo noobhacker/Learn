@@ -1,22 +1,12 @@
 ﻿using Learn.Items;
+using Learn.Models;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,19 +17,18 @@ namespace Learn
     /// </summary>
     public sealed partial class AddBookFrame : Page
     {
+        AddBookViewModel vm = new AddBookViewModel();
         public AddBookFrame()
         {
             this.InitializeComponent();
-            questionListLV.ItemsSource = QuestionsList;
         }
 
-        ObservableCollection<QuestionItem> QuestionsList = new ObservableCollection<QuestionItem>();
-
+     
         private void easyModeAddBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            string str = easyModeTB.Text;
-            easyModeTB.Text = "";
+
+            string str = vm.TextQuestions;
+            vm.TextQuestions = "";
 
             string[] lines = str.Split(new string[] { Environment.NewLine },StringSplitOptions.None);
            
@@ -59,12 +48,12 @@ namespace Learn
 
                     //add to local binding which will save to local file later
 
-                    //QuestionsList.Add(new Backend.Question()
-                    //{
-                    //    QuestionString = strs[0],
-                    //    QuestionImageVisibility = Visibility.Collapsed,
-                    //    AnswerString = new string[] { strs[1] }
-                    //});
+                    vm.QuestionsList.Add(new QuestionItem()
+                    {
+                        QuestionString = strs[0],
+                        QuestionImageVisibility = Visibility.Collapsed,
+                        AnswerString = strs[1]
+                    });
                 }
             }
         }
@@ -80,8 +69,28 @@ namespace Learn
             //    QuestionList = QuestionsList
             //});
             //await IOClass.SaveBooks();
-            ClearEverything();
+            var db = new DatabaseContext();
+            var result = db.Books.Add(new Book()
+            {
+                Title = vm.BookTitle
+            });
 
+            await db.SaveChangesAsync();
+
+            foreach (var item in vm.QuestionsList)
+            {
+                db.Questions.Add(new Question()
+                {
+                    BookId = result.Entity.Id,
+                    QuestionString = item.QuestionString,
+                    AnswerString = item.AnswerString,
+                    QuestionImageId = item.QuestionImageID,
+                });
+            }
+
+            await db.SaveChangesAsync();
+
+            ClearEverything();
             this.Frame.Navigate(typeof(LibraryFrame));
         }
 
@@ -89,21 +98,19 @@ namespace Learn
         {
             ClearAddImage();
             ClearAddString();
-            booktitleTB.Text = "";
-            categoryTB.Text = "";
-            descriptionTB.Text = "";
+            vm.BookTitle = "";
         }
 
         private void ClearAddImage()
         {
-            questionImageTB.Text = "";
-            answerTB.Text = "";
+            vm.ImagePath = "";
+            vm.ImageAnswer = "";
             previewImage.Source = new BitmapImage();
         }
 
         private void ClearAddString()
         {
-
+            vm.TextQuestions = "";
         }
 
         private async void browseBtn_Click(object sender, RoutedEventArgs e)
@@ -141,7 +148,7 @@ namespace Learn
                 }
 
 
-                questionImageTB.Text = file.Path;
+                vm.ImagePath = file.Path;
                 
                     previewImage.Source = new BitmapImage(new Uri(folder.Path + "\\" + imageid));
                 currentimageid = imageid;
@@ -153,30 +160,16 @@ namespace Learn
         int currentimageid; // used to pass the id calculated from browse (copy image to local) to binding
         private void guidedModeAddBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(questionImageTB.Text != "" && answerTB.Text != "")
+            if(vm.ImagePath != "" && vm.ImageAnswer != "")
             {
-
-                // qt = Backend.Book.QuestionTypes.ImageQuestion;
-                
-                string[] answers;
-                if(answerTB.Text.Contains(";"))
+                vm.QuestionsList.Add(new QuestionItem()
                 {
-                    answers = answerTB.Text.Split(';');
-                }
-                else
-                {
-                    answers = new string[] { answerTB.Text };
-                }
+                    QuestionImagePath = ApplicationData.Current.LocalFolder.Path + "\\Images\\" + currentimageid,
+                    QuestionImageID = currentimageid,
+                    QuestionImageVisibility = Visibility.Visible,
+                    AnswerString = vm.ImageAnswer
 
-                //QuestionsList.Add(new Backend.Question()
-                //{
-                //    // QuestionObject = previewImage.Source,
-                //    QuestionImagePath = ApplicationData.Current.LocalFolder.Path + "\\Images\\" + currentimageid,
-                //    QuestionImageID = currentimageid,
-                //    QuestionImageVisibility = Visibility.Visible,
-                //    AnswerString = answers
-                    
-                //});
+                });
                 ClearAddImage();
             }
         }
