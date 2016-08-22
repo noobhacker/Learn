@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learn.Items;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -47,8 +48,8 @@ namespace Learn
             AnswerSpeed = dblAnswerSpeed.ToString("0.000");
         }
 
-        Backend.Book QuestioningBook;
-        Backend.FullResult AnsweredResult = new Backend.FullResult();
+        BookItem QuestioningBook;
+        FullResult AnsweredResult = new FullResult();
 
         #region bindings
         int totalQuestions;
@@ -103,7 +104,7 @@ namespace Learn
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            QuestioningBook = (Backend.Book)e.Parameter;
+            QuestioningBook = (BookItem)e.Parameter;
             
 
             // add them in before randomize so it will maintain
@@ -122,11 +123,11 @@ namespace Learn
                 QuestioningBook.QuestionList[i].QuestionImagePath = folder.Path + "\\" +
                     QuestioningBook.QuestionList[i].QuestionImageID;
 
-                AnsweredResult.ResultList.Add(new Backend.Result()
-                {
-                    QuestionImagePath = QuestioningBook.QuestionList[i].QuestionImagePath ,
-                    QuestionString = Convert.ToString(QuestioningBook.QuestionList[i].QuestionString )
-                });
+                //AnsweredResult.ResultList.Add(new ResultItem()
+                //{
+                //    QuestionImagePath = QuestioningBook.QuestionList[i].QuestionImagePath ,
+                //    QuestionString = Convert.ToString(QuestioningBook.QuestionList[i].QuestionString )
+                //});
             }
 
             QuestioningBook.Randomize();

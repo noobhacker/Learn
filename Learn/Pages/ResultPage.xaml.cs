@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learn.Items;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -150,11 +151,11 @@ namespace Learn
             }
         }
 
-        Backend.FullResult report = new Backend.FullResult();
+        FullResult report = new FullResult();
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            report = (Backend.FullResult)e.Parameter;
+            report = (FullResult)e.Parameter;
             
             resultGV.ItemsSource = report.ResultList;
 
@@ -198,27 +199,27 @@ namespace Learn
             // end of calculating points
 
             // record into file
-            GlobalViewModel.UserProfile.Cash += Convert.ToDouble(temppoints) / 10000;
-            GlobalViewModel.UserProfile.Gold += temppoints / 100;
+            //GlobalViewModel.UserProfile.Cash += Convert.ToDouble(temppoints) / 10000;
+            //GlobalViewModel.UserProfile.Gold += temppoints / 100;
 
-            GlobalViewModel.UserProfile.CurrentExp += Convert.ToInt32(((temppoints / 100)* (1+
-                Convert.ToDouble(GlobalViewModel.UserProfile.Level)/100)));
-            // 1 level + 0.01%, higher level earns more exp makes sense
+            //GlobalViewModel.UserProfile.CurrentExp += Convert.ToInt32(((temppoints / 100)* (1+
+            //    Convert.ToDouble(GlobalViewModel.UserProfile.Level)/100)));
+            //// 1 level + 0.01%, higher level earns more exp makes sense
 
-            // dont forget this!!!
-            GlobalViewModel.UserProfile.TestEXP += temppoints / 100;
+            //// dont forget this!!!
+            //GlobalViewModel.UserProfile.TestEXP += temppoints / 100;
 
-            GlobalViewModel.UserProfile.CheckIfLevelUp();
-            await IOClass.SaveProfile();
+            //GlobalViewModel.UserProfile.CheckIfLevelUp();
+            //await IOClass.SaveProfile();
 
-            GlobalViewModel.UserActivity.Add(new Backend.Activity()
-            {
-                ActionDate = DateTime.Now,
-                ActionDescription = "Test (" + report.ResultList.Count + " questions)",
-                ActionName = "Test",
-                ActionPoints = temppoints.ToString()
-            });
-            await IOClass.SaveActivity();
+            //GlobalViewModel.UserActivity.Add(new Backend.Activity()
+            //{
+            //    ActionDate = DateTime.Now,
+            //    ActionDescription = "Test (" + report.ResultList.Count + " questions)",
+            //    ActionName = "Test",
+            //    ActionPoints = temppoints.ToString()
+            //});
+            //await IOClass.SaveActivity();
 
             await Task.Delay(500);
             animationDT.Start();

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learn.Backend
+namespace Learn.Helpers
 {
-
-    public static class Ext
+    public static class ListHelper
     {
         private static Random rng = new Random();
         public static void Shuffle<T>(this IList<T> list)
@@ -22,5 +21,5 @@ namespace Learn.Backend
                 list[n] = value;
             }
         }
-    }    
+    }
 }

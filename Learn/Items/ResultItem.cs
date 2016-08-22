@@ -16,7 +16,7 @@ namespace Learn.Items
 
     public class FullResult
     {
-        public ObservableCollection<Result> ResultList = new ObservableCollection<Result>();
+        public ObservableCollection<ResultItem> ResultList = new ObservableCollection<ResultItem>();
 
         // based on list dunno player max combo
         public int MaxCombo { get; set; }

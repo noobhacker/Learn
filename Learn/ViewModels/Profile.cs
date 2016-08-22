@@ -12,21 +12,11 @@ namespace Learn.Items
     {
 
         public string ProfileName { get; set; }
-
-        public ObservableCollection<Skin> PurchasedSkin { get; set;}
-        public ObservableCollection<Voice> PurchasedVoice { get; set; }
-        // these ONLY USED TO DO GRAPH
-        // dont mix with level system, very very confuse
-
         public int ReadingEXP { get; set; }
         public int TestEXP { get; set; }
         public int HomeworkEXP { get; set; }
-
-        public double Cash { get; set; }
+        
         public double Gold { get; set; }
-
-        public double PermanantEXPMultiplier { get; set; }
-        public double PermanantGoldMultiplier { get; set; }
 
         // this two variables are mean at current level
         // the above mean total

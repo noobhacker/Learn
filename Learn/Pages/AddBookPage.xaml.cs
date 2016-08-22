@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learn.Items;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -32,7 +33,7 @@ namespace Learn
             questionListLV.ItemsSource = QuestionsList;
         }
 
-        ObservableCollection<Backend.Question> QuestionsList = new ObservableCollection<Backend.Question>();
+        ObservableCollection<QuestionItem> QuestionsList = new ObservableCollection<QuestionItem>();
 
         private void easyModeAddBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -57,27 +58,28 @@ namespace Learn
                     string[] strs = lines[i].Split(';');
 
                     //add to local binding which will save to local file later
-                    QuestionsList.Add(new Backend.Question()
-                    {
-                        QuestionString = strs[0],
-                        QuestionImageVisibility = Visibility.Collapsed,
-                        AnswerString = new string[] { strs[1] }
-                    });
+
+                    //QuestionsList.Add(new Backend.Question()
+                    //{
+                    //    QuestionString = strs[0],
+                    //    QuestionImageVisibility = Visibility.Collapsed,
+                    //    AnswerString = new string[] { strs[1] }
+                    //});
                 }
             }
         }
         
         private async void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-            GlobalViewModel.Books.Add( new Backend.Book()
-            {
-                BookTitle = booktitleTB.Text,
-                Category = categoryTB.Text,
-                Description = descriptionTB.Text,
-                QuestionType  = Backend.Book.QuestionTypes.StringQuestion,
-                QuestionList = QuestionsList
-            });
-            await IOClass.SaveBooks();
+            //GlobalViewModel.Books.Add( new Backend.Book()
+            //{
+            //    BookTitle = booktitleTB.Text,
+            //    Category = categoryTB.Text,
+            //    Description = descriptionTB.Text,
+            //    QuestionType  = Backend.Book.QuestionTypes.StringQuestion,
+            //    QuestionList = QuestionsList
+            //});
+            //await IOClass.SaveBooks();
             ClearEverything();
 
             this.Frame.Navigate(typeof(LibraryFrame));
@@ -166,15 +168,15 @@ namespace Learn
                     answers = new string[] { answerTB.Text };
                 }
 
-                QuestionsList.Add(new Backend.Question()
-                {
-                    // QuestionObject = previewImage.Source,
-                    QuestionImagePath = ApplicationData.Current.LocalFolder.Path + "\\Images\\" + currentimageid,
-                    QuestionImageID = currentimageid,
-                    QuestionImageVisibility = Visibility.Visible,
-                    AnswerString = answers
+                //QuestionsList.Add(new Backend.Question()
+                //{
+                //    // QuestionObject = previewImage.Source,
+                //    QuestionImagePath = ApplicationData.Current.LocalFolder.Path + "\\Images\\" + currentimageid,
+                //    QuestionImageID = currentimageid,
+                //    QuestionImageVisibility = Visibility.Visible,
+                //    AnswerString = answers
                     
-                });
+                //});
                 ClearAddImage();
             }
         }

@@ -29,8 +29,8 @@ namespace Learn
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            await IOClass.LoadActivity();
-            activityLV.ItemsSource = GlobalViewModel.UserActivity;
+            //await IOClass.LoadActivity();
+            //activityLV.ItemsSource = GlobalViewModel.UserActivity;
         }
     }
 }

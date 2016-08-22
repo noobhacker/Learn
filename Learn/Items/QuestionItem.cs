@@ -13,8 +13,6 @@ namespace Learn.Items
 {
     public class QuestionItem
     {
-        // public object QuestionObject { get; set; } //use object is dangerous because cannot get the type at all
-        public string[] MCQStrings { get; set; }
         public string QuestionString { get; set; }
         
         // this is for binding and display image

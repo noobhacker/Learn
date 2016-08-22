@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learn.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -19,7 +20,7 @@ namespace Learn.Items
         public string Category { get; set; }
         public string Description { get; set; }
 
-        public ObservableCollection<Question> QuestionList = new ObservableCollection<Question>() ;
+        public ObservableCollection<QuestionItem> QuestionList = new ObservableCollection<QuestionItem>() ;
         public bool CheckAnswer(string answer)
         { 
             bool result = true;
