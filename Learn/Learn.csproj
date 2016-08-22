@@ -110,6 +110,8 @@
     <Compile Include="Categories\BookCategory.cs" />
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Question.cs" />
     <Compile Include="Pages\ActivityPage.xaml.cs">
       <DependentUpon>ActivityPage.xaml</DependentUpon>
     </Compile>
@@ -117,6 +119,7 @@
       <DependentUpon>AddBookPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\HomeworkItem.cs" />
+    <Compile Include="ViewModels\LibraryViewModel.cs" />
     <Compile Include="ViewModels\Profile.cs" />
     <Compile Include="Items\QuestionItem.cs" />
     <Compile Include="Items\BookItem.cs" />
@@ -216,6 +219,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

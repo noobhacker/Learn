@@ -1,4 +1,4 @@
-﻿using Learn.Items;
+﻿using Learn.Categories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,12 +8,16 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Learn.Categories
+namespace Learn.ViewModels
 {
-    public class BookCategory : INotifyPropertyChanged
+    class LibraryViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<BookItem> Local { get; set; }
-        public ObservableCollection<BookItem> Internet { get; set; }
+        public ObservableCollection<BookCategory> Books { get; set; }
+
+        public LibraryViewModel()
+        {
+            Books = new ObservableCollection<BookCategory>();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -21,5 +25,6 @@ namespace Learn.Categories
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

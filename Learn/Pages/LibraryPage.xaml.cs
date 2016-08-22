@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Learn.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -23,6 +24,7 @@ namespace Learn
     /// </summary>
     public sealed partial class LibraryFrame : Page
     {
+        LibraryViewModel vm = new LibraryViewModel();
         public LibraryFrame()
         {
             this.InitializeComponent();

@@ -1,88 +1,133 @@
-﻿<Page
-    x:Class="Learn.LibraryFrame"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Learn"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+﻿<Page x:Class="Learn.LibraryFrame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:Learn"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
 
     <Grid Background="Transparent">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            
-        <GridView Name="booksGV" SelectionMode="Single" Margin="24,12" SelectionChanged="booksGV_SelectionChanged">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Width="250">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+            <GridView Name="booksGV"
+                      SelectionMode="Single"
+                      Margin="24,12"
+                      SelectionChanged="booksGV_SelectionChanged">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="250">
 
-                        <TextBlock VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" 
-                                   Text="&#xE8B7;" Margin="6"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="1" FontSize="18" FontWeight="Thin" 
-                                   VerticalAlignment="Center" Text="{Binding BookTitle}"
-                                   TextTrimming="CharacterEllipsis"  />
+                            <TextBlock VerticalAlignment="Center"
+                                       FontFamily="Segoe MDL2 Assets"
+                                       Text="&#xE8B7;"
+                                       Margin="6" />
 
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+                            <TextBlock Grid.Column="1"
+                                       FontSize="18"
+                                       FontWeight="Thin"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding BookTitle}"
+                                       TextTrimming="CharacterEllipsis" />
 
-            <Grid Grid.Row="1" BorderThickness="1" BorderBrush="Black" >
+                        </Grid>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
+            <Grid Grid.Row="1"
+                  BorderThickness="1"
+                  BorderBrush="Black">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets"
-                       Text="&#xE8B7;" Margin="12" FontSize="48" Grid.RowSpan="2"/>
-                <TextBlock Name="booktitleTB" Text="Book Title" Grid.Column="1" FontWeight="Bold" Margin="3"/>
-                <TextBlock Name="bookdescriptionTB" Text="A book description will be displayed here"
-                           Grid.Column="1" Grid.Row="1" FontWeight="Thin" Margin="3" TextWrapping="Wrap"/>
+                <TextBlock VerticalAlignment="Center"
+                           FontFamily="Segoe MDL2 Assets"
+                           Text="&#xE8B7;"
+                           Margin="12"
+                           FontSize="48"
+                           Grid.RowSpan="2" />
+                <TextBlock Name="booktitleTB"
+                           Text="Book Title"
+                           Grid.Column="1"
+                           FontWeight="Bold"
+                           Margin="3" />
+                <TextBlock Name="bookdescriptionTB"
+                           Text="A book description will be displayed here"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           FontWeight="Thin"
+                           Margin="3"
+                           TextWrapping="Wrap" />
 
-                <Grid Name="buttonsGrid" Grid.Row="2" Grid.Column="2">
-                    
+                <Grid Name="buttonsGrid"
+                      Grid.Row="2"
+                      Grid.Column="2">
+
                     <!-- Hide first column when mobile mode-->
-                    
+
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width=".3*"/>
-                        <ColumnDefinition Width="*"/>                        
+                        <ColumnDefinition Width=".3*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button Name="addBtn" Content="Add" Margin="6" HorizontalAlignment="Stretch" Click="addBtn_Click" />
-                        <Button Name="modifyBtn" Content="Modify" Margin="6" HorizontalAlignment="Stretch" Grid.Column="1"/>
-                        <Button Name="deleteBtn" Content="Delete" Margin="6" HorizontalAlignment="Stretch" Grid.Column="2" Click="deleteBtn_Click"/>
-                        <Button Name="readBtn" Content="Read" Margin="6" HorizontalAlignment="Stretch"  Grid.Column="3"/>
-                        <Button Name="testBtn" Content="Test" Margin="6" HorizontalAlignment="Stretch" Grid.Column="4"
+                        <Button Name="addBtn"
+                                Content="Add"
+                                Margin="6"
+                                HorizontalAlignment="Stretch"
+                                Click="addBtn_Click" />
+                        <Button Name="modifyBtn"
+                                Content="Modify"
+                                Margin="6"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="1" />
+                        <Button Name="deleteBtn"
+                                Content="Delete"
+                                Margin="6"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="2"
+                                Click="deleteBtn_Click" />
+                        <Button Name="readBtn"
+                                Content="Read"
+                                Margin="6"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="3" />
+                        <Button Name="testBtn"
+                                Content="Test"
+                                Margin="6"
+                                HorizontalAlignment="Stretch"
+                                Grid.Column="4"
                                 Click="testBtn_Click" />
-                        
+
                     </Grid>
-                    
+
                 </Grid>
             </Grid>
-            
-            
-            
-    </Grid>
+
+
+
+        </Grid>
     </Grid>
 </Page>
