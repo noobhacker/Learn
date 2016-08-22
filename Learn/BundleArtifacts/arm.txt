@@ -1,0 +1,2 @@
+MainPackage=E:\Projects\Learn\Learn\bin\ARM\Release\Learn_0.2.3.0_ARM.appx
+SymbolPackage=E:\Projects\Learn\Learn\AppPackages\Learn_0.2.3.0_Test\Learn_0.2.3.0_ARM.appxsym
