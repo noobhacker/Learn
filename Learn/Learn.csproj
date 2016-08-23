@@ -117,6 +117,7 @@
     <Compile Include="Models\Homework.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Objects\FullResult.cs" />
     <Compile Include="Pages\ActivityPage.xaml.cs">
       <DependentUpon>ActivityPage.xaml</DependentUpon>
     </Compile>
@@ -124,12 +125,12 @@
       <DependentUpon>AddBookPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Items\HomeworkItem.cs" />
+    <Compile Include="ViewModels\ActivityViewModel.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
     <Compile Include="Items\QuestionItem.cs" />
     <Compile Include="Items\BookItem.cs" />
     <Compile Include="Items\SkinItem.cs" />
     <Compile Include="Items\ResultItem.cs" />
-    <Compile Include="Upgrades.cs" />
     <Compile Include="Pages\EquipmentPage.xaml.cs">
       <DependentUpon>EquipmentPage.xaml</DependentUpon>
     </Compile>

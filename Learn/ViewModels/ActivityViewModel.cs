@@ -10,28 +10,13 @@ using System.Threading.Tasks;
 
 namespace Learn.ViewModels
 {
-    public class LibraryViewModel : INotifyPropertyChanged
+    public class ActivityViewModel : INotifyPropertyChanged
     {
-        private string bookTitle;
-        public ObservableCollection<BookItem> Books { get; set; }
+        public ObservableCollection<ActivityItem> Activities { get; set; }
 
-        public string BookTitle
+        public ActivityViewModel()
         {
-            get
-            {
-                return bookTitle;
-            }
-
-            set
-            {
-                bookTitle = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public LibraryViewModel()
-        {
-            Books = new ObservableCollection<BookItem>();
+            Activities = new ObservableCollection<ActivityItem>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,6 +25,5 @@ namespace Learn.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

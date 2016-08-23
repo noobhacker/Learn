@@ -67,27 +67,27 @@
 
             <StackPanel Grid.RowSpan="2" Orientation="Horizontal">
                 <TextBlock Name="combocountTB" 
-                           Text="{x:Bind ComboCount, Mode=OneWay }" 
+                           Text="{Binding ComboCount, Mode=OneWay }" 
                            FontSize="72" Margin="48,24,12,24"/>
                 <TextBlock Text="combo! " FontSize="72" Margin="12,24,48,24"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Name="answerspeedTB" 
-                           Text="{x:Bind AnswerSpeed, Mode=OneWay }" 
+                <TextBlock Name="answerspeedTB"
+                           Text="{Binding AnswerSpeed, Mode=OneWay }" 
                            FontSize="52" FontWeight="Thin"/>
                 <TextBlock Text=" seconds" FontSize="52" FontWeight="Thin"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" 
                         Orientation="Horizontal" >
-                <TextBlock Name="answeredQuestionsTB" 
-                           Text="{x:Bind AnsweredQuestions, Mode=OneWay}" 
+                <TextBlock Name="answeredQuestionsTB"
+                           Text="{Binding AnsweredQuestions, Mode=OneWay}" 
                            FontSize="52" FontWeight="Thin" />
                 
                 <TextBlock Text="/" FontSize="52" FontWeight="Thin" Margin="12,0"/>
                 <TextBlock Name="totalQuestionsTB" 
-                           Text="{x:Bind TotalQuestions, Mode=OneWay }" 
+                           Text="{Binding TotalQuestions, Mode=OneWay }" 
                            FontSize="52" FontWeight="Thin" 
                            />
                 <TextBlock Text=" questions" FontSize="52" FontWeight="Thin" />

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Learn.Items
 {
-    class SkinItem : INotifyPropertyChanged
+    public class SkinItem : INotifyPropertyChanged
     {
         private string name;
         private string price;

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Learn.Items
 {
-    class ActivityItem : INotifyPropertyChanged
+    public class ActivityItem : INotifyPropertyChanged
     {
         private DateTime date;
         private string name;
