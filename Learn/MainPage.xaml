@@ -4,190 +4,126 @@
       xmlns:local="using:Learn"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converters="using:Learn.Converters"
       mc:Ignorable="d">
 
-    <Grid Background="#FC70C4FF">
+    <Page.Resources>
+        <converters:HexToColorConverter x:Key="HexToColorConverter" />
+        <converters:StringToTitleConverter x:Key="StringToTitleConverter" />
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <SplitView Name="splitView"
+                   CompactPaneLength="48"
+                   OpenPaneLength="240"
+                   DisplayMode="CompactOverlay"
+                   PaneBackground="Transparent">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+                    <Button Content="&#xE700;"
+                            Background="#0063B1"
+                            Height="48"
+                            Width="48"
+                            BorderThickness="0"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="16"
+                            Name="hamburgerBtn"
+                            Click="hambugerBtn_Click" />
 
-        <Grid Name="TopBar">
-            <Grid.Background>
-                <SolidColorBrush Color="LightGray"
-                                 Opacity="0.35" />
-            </Grid.Background>
+                    <Grid Grid.Row="1"
+                          Grid.RowSpan="2"
+                          Background="{Binding Skin}">
+                        <Grid Background="Black"
+                              Opacity="0.1" />
+                    </Grid>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Button Name="hamburgerBtn"
-                    Content="&#xE700;"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    FontFamily="Segoe MDL2 Assets"
-                    Width="50"
-                    Click="hamburgerBtn_Click"
-                    Margin="6"
-                    Background="Transparent" />
-            <TextBlock Name="titleTB"
-                       Grid.Column="1"
-                       Text="Library"
-                       FontSize="27"
-                       VerticalAlignment="Center"
-                       Margin="6,0,0,0" />
-            <Grid Name="profileSP"
-                  Grid.Column="3"
-                  Margin="12,3"
-                  Padding="3">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock                           Text="{Binding ProfileName}"
-                                                     FontSize="20" />
-                <StackPanel Orientation="Horizontal"
-                            Grid.Column="1">
-                    <TextBlock Text="Lv."
-                               FontSize="20"
-                               HorizontalAlignment="Right"
-                               Margin="24,0,0,0" />
-                    <TextBlock Text="{Binding Level}"
-                               FontSize="20"
-                               HorizontalAlignment="Right"
-                               Margin="6,0,0,0" />
-                </StackPanel>
-
-                <ProgressBar Name="expPB"
-                             HorizontalAlignment="Stretch"
+                    <ListBox Name="listBox"
                              Grid.Row="1"
-                             Grid.ColumnSpan="2"
-                             Margin="0,6"
-                             Value="{Binding Exp}"
-                             Maximum="{Binding LevelUpExp}" />
+                             ItemsSource="{Binding HamburgerMenuItems}"
+                             SelectionChanged="listBox_SelectionChanged"
+                             Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Icon}"
+                                               Margin="4,6,0,0"
+                                               FontSize="16"
+                                               FontFamily="Segoe MDL2 Assets" />
+                                    <TextBlock Text="{Binding Text}"
+                                               Margin="20,4,0,0"
+                                               HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
 
-            </Grid>
-            <StackPanel Name="searchboxSP"
-                        Orientation="Horizontal"
-                        Grid.Column="4"
-                        Visibility="Collapsed">
-                <TextBox Name="searchbarTB"
-                         PlaceholderText="Search"
-                         VerticalAlignment="Center"
-                         HorizontalAlignment="Center"
-                         Margin="12,0,0,0"
-                         Width="225" />
-                <Button Name="searchBtn"
-                        FontFamily="Segoe MDL2 Assets"
-                        Content="&#xE11A;"
-                        Height="30"
-                        Margin="0,0,12,0" />
-            </StackPanel>
+                    <StackPanel Grid.Row="2" Background="Transparent">
+                        <Grid Margin="0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Text=""
+                                       Margin="16,0,8,0"
+                                       FontSize="16"
+                                       FontFamily="Segoe MDL2 Assets" 
+                                       VerticalAlignment="Center" />
+                            
+                            <Grid Grid.Column="1" Margin="8,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                             
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock  Text="{Binding ProfileName}"
+                                                FontSize="16" />
+                                    <StackPanel Orientation="Horizontal"
+                                                Grid.Column="1">
+                                        <TextBlock Text="Lv."
+                                                   FontSize="16"
+                                                   Margin="24,0,0,0" />
+                                        <TextBlock Text="{Binding Level}"
+                                                   FontSize="16"
+                                                   Margin="8,0" />
+                                    </StackPanel>
+                                </Grid>
+
+                                <ProgressBar Name="expPB"
+                                             HorizontalAlignment="Stretch"
+                                             Grid.Row="1"
+                                             Margin="4"
+                                             Value="{Binding Exp}"
+                                             Maximum="{Binding LevelUpExp}" />
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Grid>             
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Frame Name="frame" />
+            </SplitView.Content>
+        </SplitView>
+
+        <Grid Height="48"
+              VerticalAlignment="Top"
+              Background="{Binding Skin, Converter={StaticResource HexToColorConverter}}"
+              Margin="48,0,0,0">
+            <TextBlock Text="{Binding Title, Converter={StaticResource StringToTitleConverter}}"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontWeight="Bold"
+                       Margin="20,0" />
         </Grid>
-
-        <Grid Grid.Row="1">
-            <SplitView Name="menuSP"
-                       DisplayMode="CompactInline"
-                       Grid.Column="0"
-                       IsPaneOpen="True"
-                       CompactPaneLength="60">
-                <SplitView.PaneBackground>
-                    <SolidColorBrush Color="Black"
-                                     Opacity="0.15" />
-                </SplitView.PaneBackground>
-
-                <SplitView.Pane>
-
-                    <ListView Name="splitpanelLV"
-                              SelectedIndex="0"
-                              SelectionChanged="splitpanelLV_SelectionChanged">
-                        
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="0,6,0,0">
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text=""
-                                       Margin="12,20,24,12" />
-                            <TextBlock Text="Online"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-                        
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="0,6,0,0">
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE8F1;"
-                                       Margin="12,20,24,12" />
-                            <TextBlock Text="Library"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE0A2;"
-                                       Margin="12,20,24,12" />
-                            <TextBlock Text="Tasks"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  FontFamily="Segoe MDL2 Assets"
-                                        Text="&#xE74A;"
-                                        Margin="12,20,24,12" />
-                            <TextBlock Text="Upgrades"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  FontFamily="Segoe MDL2 Assets"
-                                        Text="&#xE77B;"
-                                        Margin="12,20,24,12" />
-                            <TextBlock Text="Profile"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE8D1;"
-                                       Margin="12,20,24,12" />
-                            <TextBlock Text="Activity"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-
-                    </ListView>
-
-                </SplitView.Pane>
-
-                <SplitView.Content>
-                    <Frame Name="SplitViewFrame">
-                        <Frame.Background>
-                            <SolidColorBrush Color="White"
-                                             Opacity="0.8" />
-                        </Frame.Background>
-
-                    </Frame>
-                </SplitView.Content>
-
-
-            </SplitView>
-
-        </Grid>
-
     </Grid>
 </Page>

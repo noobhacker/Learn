@@ -108,9 +108,15 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\HexToColorConverter.cs" />
+    <Compile Include="Converters\StringToTitleConverter.cs" />
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
+    <Compile Include="Items\HamburgerMenuItem.cs" />
     <Compile Include="Models\Activity.cs" />
+    <Compile Include="Models\Skin.cs" />
+    <Compile Include="Pages\OnlinePage.xaml.cs">
+      <DependentUpon>OnlinePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\AddBookViewModel.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
@@ -194,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\LibraryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OnlinePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

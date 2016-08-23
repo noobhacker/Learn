@@ -71,7 +71,7 @@
                 <StackPanel Grid.Row="1"
                             Margin="0,8,0,0">
                     <Button Name="addBtn"
-                            Content="Add"
+                            Content="New"
                             Margin="6"
                             HorizontalAlignment="Stretch"
                             Click="addBtn_Click" />

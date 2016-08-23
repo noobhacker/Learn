@@ -1,6 +1,9 @@
-﻿using Learn.Models;
+﻿using Learn.Items;
+using Learn.Models;
+using Learn.Pages;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -12,11 +15,34 @@ namespace Learn.ViewModels
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
+        public ObservableCollection<HamburgerMenuItem> HamburgerMenuItems { get; set; }
+
+        private string[] icons = { "", "", "", "", "", "" }; //http://modernicons.io/segoe-mdl2/cheatsheet/
+        private string[] texts = { "Online", "Library", "Tasks", "Upgrades", "Profile", "Activity" };
+
+        private Type[] frames = { typeof(OnlinePage), typeof(LibraryPage), typeof(HomeworkPage), typeof(UpgradePage),
+                                  typeof(ProfilePage), typeof(ActivityPage) }; // insert page here typeof(Page)
+
+        private string title;
         private string profileName;
         private int level;
         private int exp;
         private int levelUpExp;
-        private string skinColor;
+        private string skin;
+
+        public string Title
+        {
+            get
+            {
+                return title;
+            }
+
+            set
+            {
+                title = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string ProfileName
         {
@@ -62,7 +88,7 @@ namespace Learn.ViewModels
             {
                 exp = value;
                 CheckIfLevelUp();
-                
+
                 var db = new DatabaseContext();
                 db.Users.First().CurrentExp = Exp;
                 db.SaveChangesAsync();
@@ -81,7 +107,7 @@ namespace Learn.ViewModels
             set
             {
                 levelUpExp = value;
-                
+
                 var db = new DatabaseContext();
                 db.Users.First().NextLevelExp = LevelUpExp;
                 db.SaveChangesAsync();
@@ -90,24 +116,24 @@ namespace Learn.ViewModels
             }
         }
 
-        public string SkinColor
+        public string Skin
         {
             get
             {
-                return skinColor;
+                return skin;
             }
 
             set
             {
-                skinColor = value;
+                skin = value;
 
                 var db = new DatabaseContext();
-                db.Users.First().SkinColor = SkinColor;
+                db.Users.First().SkinColor = Skin;
                 db.SaveChangesAsync();
 
                 OnPropertyChanged();
             }
-        }
+        }     
 
         public void CheckIfLevelUp()
         {
@@ -124,6 +150,20 @@ namespace Learn.ViewModels
 
                 //level up after multiplications
                 Level++;
+            }
+        }
+
+        public MainPageViewModel()
+        {
+            HamburgerMenuItems = new ObservableCollection<HamburgerMenuItem>();
+            for (int i = 0; i < icons.Length; i++)
+            {
+                HamburgerMenuItems.Add(new HamburgerMenuItem()
+                {
+                    Icon = icons[i],
+                    Text = texts[i],
+                    TargetFrame = frames[i]
+                });
             }
         }
 

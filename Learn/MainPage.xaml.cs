@@ -25,78 +25,34 @@ namespace Learn
     public sealed partial class MainPage : Page
     {
         public static MainPageViewModel vm = new MainPageViewModel();
+
         public MainPage()
         {
-            this.InitializeComponent();         
+            this.InitializeComponent();      
+            this.DataContext = vm;   
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SplitViewFrame.Navigate(typeof(LibraryPage));
+            //listBox.SelectedIndex = 0;
         }
 
-        private void hamburgerBtn_Click(object sender, RoutedEventArgs e)
+        private void hambugerBtn_Click(object sender, RoutedEventArgs e)
         {
-            reverseSplitPanel();
+            splitView.IsPaneOpen = !splitView.IsPaneOpen;
         }
 
-        private void reverseSplitPanel()
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            menuSP.IsPaneOpen = !menuSP.IsPaneOpen;
+            var index = (sender as ListBox).SelectedIndex;
+            var item = vm.HamburgerMenuItems[index];
+
+            frame.Navigate(item.TargetFrame);
+            vm.Title = item.Text.ToUpper();
+
+            splitView.IsPaneOpen = false;
         }
 
-        private void closeSplitPanel()
-        {
-            menuSP.IsPaneOpen = false;
-        }
-                
-        private void splitpanelLV_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-            closeSplitPanel();
 
-            if (splitpanelLV.SelectedIndex == 0)
-            {
-                searchboxSP.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                searchboxSP.Visibility = Visibility.Collapsed;
-            }
-
-            try
-            {
-                switch (splitpanelLV.SelectedIndex)
-                {
-                    case 0:
-                        titleTB.Text = "Internet";
-
-                        break;
-                    case 1:
-                        titleTB.Text = "Library";
-                        SplitViewFrame.Navigate(typeof(LibraryPage));
-                        break;
-
-                    case 2:
-                        titleTB.Text = "Tasks";
-                        SplitViewFrame.Navigate(typeof(HomeworkPage));
-                        break;
-                    case 3:
-                        titleTB.Text = "Upgrades";
-                        SplitViewFrame.Navigate(typeof(UpgradePage));
-                        break;
-                    case 4:
-                        titleTB.Text = "Profile";
-                        SplitViewFrame.Navigate(typeof(ProfilePage));
-                        break;
-                    case 5:                       
-                        titleTB.Text = "Activity";
-                        SplitViewFrame.Navigate(typeof(ActivityPage));
-                        break;
-                }
-            }
-            catch { } //prevent same page switch to same page
-            
-        }
     }
 }
