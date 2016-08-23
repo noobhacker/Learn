@@ -9,7 +9,7 @@ namespace Learn.Helpers
     public static class ListHelper
     {
         private static Random rng = new Random();
-        public static void Shuffle<T>(this IList<T> list)
+        public static void Randomize<T>(this IList<T> list)
         {
             int n = list.Count;
             while (n > 1)
@@ -20,6 +20,11 @@ namespace Learn.Helpers
                 list[k] = list[n];
                 list[n] = value;
             }
+        }
+
+        public static void RemoveFirstQuestion<T>(this IList<T> list)
+        {
+            list.RemoveAt(0);
         }
     }
 }

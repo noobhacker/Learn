@@ -1,6 +1,10 @@
-﻿using Learn.Items;
+﻿using Learn.Helpers;
+using Learn.Items;
+using Learn.Models;
+using Learn.ViewModels;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml;
@@ -17,20 +21,9 @@ namespace Learn
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class TestFrame : Page, INotifyPropertyChanged
+    public sealed partial class TestFrame : Page
     {
-
-        //INotifyPropertyChanged members
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this,
-                    new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
+        TestViewModel vm = new TestViewModel();
         DispatcherTimer answerspeedDT = new DispatcherTimer();
 
         public TestFrame()
@@ -42,213 +35,170 @@ namespace Learn
 
         }
 
+        private bool checkAnswer(string answer)
+        {
+            if (vm.QuestionList.Count != 0)
+            {
+                if (vm.QuestionList[0].AnswerString == answer)
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
+
         private void answerspeedDT_Tick(object sender, object e)
         {
-            dblAnswerSpeed += 0.031;
-            AnswerSpeed = dblAnswerSpeed.ToString("0.000");
+            vm.AnswerSpeed += 0.031;
         }
-
-        BookItem QuestioningBook;
-        FullResult AnsweredResult = new FullResult();
-
-        #region bindings
-        int totalQuestions;
-        int TotalQuestions
-        {
-            get { return totalQuestions; }
-            set
-            {
-                totalQuestions = value;
-                NotifyPropertyChanged("TotalQuestions");
-            }
-        }
-
-
-        int answeredQuestions;
-        int AnsweredQuestions
-        {
-            get { return answeredQuestions; }
-            set
-            {
-                answeredQuestions = value;
-                NotifyPropertyChanged("AnsweredQuestions");
-            }
-        }
-
-        int comboCount;
-        int ComboCount
-        {
-            get { return comboCount; }
-            set
-            {
-                comboCount = value;
-                NotifyPropertyChanged("ComboCount");
-            }
-
-        }
-
-        //directly bind double AnswerSpeed will become 0.00000000001 inaccuracy
-        double dblAnswerSpeed = 0;
-        string answerSpeed;
-        string AnswerSpeed
-        {
-            get { return answerSpeed; }
-            set
-            {
-                answerSpeed = value;
-                NotifyPropertyChanged("AnswerSpeed");
-            }
-        }
-
-        #endregion
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            //QuestioningBook = (BookItem)e.Parameter;
-
+            if (e.SourcePageType == typeof(LibraryFrame))
+            {
+                var db = new DatabaseContext();
+                var id = Convert.ToInt32(e.Parameter);
+                foreach (var question in db.Questions.Where(x => x.BookId == id))
+                {
+                    vm.QuestionList.Add(new QuestionItem()
+                    {
+                        AnswerString = question.AnswerString,
+                        QuestionImageID = question.QuestionImageId,
+                        QuestionString = question.QuestionString
+                    });
+                }
+            }
+            // else from internet
 
             //// add them in before randomize so it will maintain
             //// sequence in result screen
-            //for (int i = 0; i < QuestioningBook.QuestionList.Count; i++)
-            //{
+            for (int i = 0; i < vm.QuestionList.Count; i++)
+            {
 
-            //    try
-            //    {
-            //        await ApplicationData.Current.LocalFolder.CreateFolderAsync("Images");
-            //    }
-            //    catch { }
+                try
+                {
+                    await ApplicationData.Current.LocalFolder.CreateFolderAsync("Images");
+                }
+                catch { }
 
-            //    var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("Images");
+                var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("Images");
 
-            //    QuestioningBook.QuestionList[i].QuestionImagePath = folder.Path + "\\" +
-            //        QuestioningBook.QuestionList[i].QuestionImageID;
+                vm.QuestionList[i].QuestionImagePath = folder.Path + "\\" +
+                    vm.QuestionList[i].QuestionImageID;
 
-            //    //AnsweredResult.ResultList.Add(new ResultItem()
-            //    //{
-            //    //    QuestionImagePath = QuestioningBook.QuestionList[i].QuestionImagePath ,
-            //    //    QuestionString = Convert.ToString(QuestioningBook.QuestionList[i].QuestionString )
-            //    //});
-            //}
+                AnsweredResult.ResultList.Add(new ResultItem()
+                {
+                    QuestionImagePath = vm.QuestionList[i].QuestionImagePath,
+                    QuestionString = Convert.ToString(vm.QuestionList[i].QuestionString)
+                });
+            }
 
-            //QuestioningBook.Randomize();
-
-            //QuestionsGV.ItemsSource = QuestioningBook.QuestionList;
-
-            //TotalQuestions = QuestioningBook.QuestionList.Count;
-            //answeredQuestions = 0;
-            //comboCount = 0;
-            //answerspeedDT.Start();
-
-
-
-            //answerTextBox.Focus(FocusState.Keyboard );
+            vm.QuestionList.Randomize();
+            answerspeedDT.Start();
+            answerTextBox.Focus(FocusState.Keyboard);
         }
 
+        FullResult AnsweredResult = new FullResult();
 
         private async void answerTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
-            //if (e.Key == Windows.System.VirtualKey.Enter && answerTextBox.Text != "")
-            //{
+            if (e.Key == Windows.System.VirtualKey.Enter && answerTextBox.Text != "")
+            {
+                // I put for loop then check for answer is because
+                // answer is right or wrong also need to loop through to find the position
+                // in result list
 
-            //    // I put for loop then check for answer is because
-            //    // answer is right or wrong also need to loop through to find the position
-            //    // in result list
+                // wrong need to add error count, right need to key in answertime
 
-            //    // wrong need to add error count, right need to key in answertime
+                // loop through result list to find the same questionstring in resultlist with 
+                // the first questionstring in QuestioningBooks
+                for (int i = 0; i < AnsweredResult.ResultList.Count; i++)
+                {
+                    // if the questionstring in resultlist equals to first questionstring in UI
+                    if ((AnsweredResult.ResultList[i].QuestionString ==
+                        vm.QuestionList[0].QuestionString &&
 
-            //    // loop through result list to find the same questionstring in resultlist with 
-            //    // the first questionstring in QuestioningBooks
-            //    for (int i = 0; i < AnsweredResult.ResultList.Count; i++)
-            //    {
+                        vm.QuestionList[0].QuestionString != null) || //else this will always trigger
+                        (AnsweredResult.ResultList[i].QuestionImagePath ==
+                        vm.QuestionList[0].QuestionImagePath &&
 
-            //        // if the questionstring in resultlist equals to first questionstring in UI
-            //        if (
-            //            (AnsweredResult.ResultList[i].QuestionString ==
-            //            QuestioningBook.QuestionList[0].QuestionString &&
+                        vm.QuestionList[0].QuestionImagePath != null) &&
+                        vm.QuestionList[0].QuestionImageID != 0
+                        //&&
+                        //AnsweredResult.ResultList[i].AnswerSpeed == null //to prevent re-insert speed to answered question
+                        )
+                    {
+                        // if correct answer will remove the first item
+                        if (checkAnswer(vm.Answer))
+                        {
 
-            //            QuestioningBook.QuestionList[0].QuestionString != null ) //else this will always trigger
-            //            ||
-            //            (AnsweredResult.ResultList[i].QuestionImagePath == 
-            //            QuestioningBook.QuestionList[0].QuestionImagePath && 
+                            // adds the combo count
+                            vm.ComboCount++;
+                            vm.AnsweredQuestions++;
 
-            //            QuestioningBook.QuestionList[0].QuestionImagePath != null) &&
-            //            QuestioningBook.QuestionList[0].QuestionImageID != 0
-            //            &&
-            //            AnsweredResult.ResultList[i].AnswerSpeed == null //to prevent re-insert speed to answered question
-            //            )
-            //        {
-            //            // if correct answer will remove the first item
-            //            if (QuestioningBook.CheckAnswer(answerTextBox.Text))
-            //            {
+                            // equal to AnswerSpeed so no need deal with 0.000000001 problem
 
-            //                // adds the combo count
-            //                ComboCount++;
-            //                AnsweredQuestions++;
-
-            //                // equal to AnswerSpeed so no need deal with 0.000000001 problem
-
-            //                if (answerTextBox.Text.Contains(" "))
-            //                {
-            //                    AnsweredResult.ResultList[i].AnswerSpeed = Convert.ToString(
-            //                    Math.Round((Convert.ToDouble(AnswerSpeed) / answerTextBox.Text.Length), 2));
-            //                }
-            //                else
-            //                {
-            //                    AnsweredResult.ResultList[i].AnswerSpeed = AnswerSpeed;
-            //                }
+                            if (answerTextBox.Text.Contains(" "))
+                            {
+                                AnsweredResult.ResultList[i].AnswerSpeed =
+                                Math.Round(vm.AnswerSpeed / answerTextBox.Text.Length, 2);
+                            }
+                            else
+                            {
+                                AnsweredResult.ResultList[i].AnswerSpeed = vm.AnswerSpeed;
+                            }
 
 
-            //                // remove here , if remove in Book class will exception
-            //                QuestioningBook.RemoveFirstQuestion();
+                            // remove here , if remove in Book class will exception
+                            vm.QuestionList.RemoveFirstQuestion();
 
-            //                // end of game
-            //                if (QuestioningBook.QuestionList.Count == 0)
-            //                {
-            //                    answerspeedDT.Stop();
-            //                    AnsweredResult.MaxCombo = ComboCount;
-            //                    this.Frame.Navigate(typeof(ResultFrame), AnsweredResult);
-            //                }
+                            // end of game
+                            if (vm.QuestionList.Count == 0)
+                            {
+                                answerspeedDT.Stop();
+                                AnsweredResult.MaxCombo = vm.ComboCount;
+                                this.Frame.Navigate(typeof(ResultFrame), AnsweredResult);
+                            }
 
+                        }
+                        // here goes if the answer is wrong
+                        else
+                        {
+                            errorGrid.Visibility = Visibility.Visible;
+                            errorImage.Source =
+                                new BitmapImage(new Uri(vm.QuestionList[0].QuestionImagePath));
+                            errorTB.Text =
+                                Convert.ToString(vm.QuestionList[0].QuestionString) + " " +
+                                vm.QuestionList[0].AnswerString[0];
 
-            //            }
-            //            // here goes if the answer is wrong
-            //            else
-            //            {
-            //                errorGrid.Visibility = Visibility.Visible;
-            //                errorImage.Source = 
-            //                    new BitmapImage(new Uri(QuestioningBook.QuestionList[0].QuestionImagePath));
-            //                errorTB.Text =
-            //                    Convert.ToString(QuestioningBook.QuestionList[0].QuestionString) + " " +
-            //                    QuestioningBook.QuestionList[0].AnswerString[0];
+                            // stop timer before wait async
+                            answerspeedDT.Stop();
 
-            //                // stop timer before wait async
-            //                answerspeedDT.Stop();
+                            // wait for 1 second async
+                            // async will cause questionlist randomize and timer keep running
+                            await Task.Delay(TimeSpan.FromSeconds(1));
 
-            //                // wait for 1 second async
-            //                // async will cause questionlist randomize and timer keep running
-            //                await Task.Delay(TimeSpan.FromSeconds(1));
+                            // start after stopped the timer just now
+                            answerspeedDT.Start();
 
-            //                // start after stopped the timer just now
-            //                answerspeedDT.Start();
+                            errorGrid.Visibility = Visibility.Collapsed;
 
-            //                errorGrid.Visibility = Visibility.Collapsed;
+                            AnsweredResult.ResultList[i].ErrorCount++;
+                            vm.ComboCount = 0;
+                            vm.QuestionList.Randomize();
+                        }
 
-            //                AnsweredResult.ResultList[i].ErrorCount++;
-            //                comboCount = 0;
-            //                QuestioningBook.Randomize();
+                        // if no break will continue for loop even only enter answer once
+                        // break after found the same questionstring in result list
+                        break;
+                    }
+                }
 
-            //            }
+                // no matter correct or wrong will reset timer
+                vm.AnswerSpeed = 0;
+                answerTextBox.Text = "";
 
-            //            // if no break will continue for loop even only enter answer once
-            //            // break after found the same questionstring in result list
-            //            break;
-            //        }
-            //    }
-
-            //    // no matter correct or wrong will reset timer
-            //    dblAnswerSpeed = 0;
-            //    answerTextBox.Text = "";
-
+            }
         }
     }
 }

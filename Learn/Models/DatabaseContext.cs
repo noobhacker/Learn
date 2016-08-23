@@ -10,6 +10,7 @@ namespace Learn.Models
 {
     public class DatabaseContext : DbContext
     {
+        public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Question> Questions { get; set; }
 

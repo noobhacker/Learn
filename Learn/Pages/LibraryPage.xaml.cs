@@ -47,7 +47,7 @@ namespace Learn
 
         private void testBtn_Click(object sender, RoutedEventArgs e)
         {
-            //    this.Frame.Navigate(typeof(TestFrame),GlobalViewModel.Books[booksGV.SelectedIndex]);
+          this.Frame.Navigate(typeof(TestFrame),vm.Books[booksGV.SelectedIndex].BookId);
         }
 
         private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,6 +68,10 @@ namespace Learn
             //        GlobalViewModel.Books.RemoveAt(booksGV.SelectedIndex);
             //        await IOClass.SaveBooks();
             //    }
+
+            var db = new DatabaseContext();
+
+            await db.SaveChangesAsync();
         }
     }
 

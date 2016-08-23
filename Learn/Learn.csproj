@@ -114,6 +114,7 @@
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Pages\ActivityPage.xaml.cs">
       <DependentUpon>ActivityPage.xaml</DependentUpon>
     </Compile>
@@ -122,7 +123,6 @@
     </Compile>
     <Compile Include="Items\HomeworkItem.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
-    <Compile Include="ViewModels\Profile.cs" />
     <Compile Include="Items\QuestionItem.cs" />
     <Compile Include="Items\BookItem.cs" />
     <Compile Include="Items\ScrollItem.cs" />
@@ -157,6 +157,7 @@
     </Compile>
     <Compile Include="PublicVariables.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\TestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
