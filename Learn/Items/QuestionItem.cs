@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
@@ -11,18 +13,90 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace Learn.Items
 {
-    public class QuestionItem
+    public class QuestionItem : INotifyPropertyChanged
     {
-        public string QuestionString { get; set; }
-        
-        // this is for binding and display image
-        public string QuestionImagePath { get; set; }
-        
-        // this will provide file name for everytime the local settings folder changes path
-        public int QuestionImageID { get; set; }
-        public Visibility QuestionImageVisibility { get; set; }
-        public string AnswerString { get; set; }
+        private string questionString;
+        private string questionImagePath;
+        private int questionImageId;
+        private Visibility questionImageVisibility;
+        private string answerString;
 
+        public string QuestionString
+        {
+            get
+            {
+                return questionString;
+            }
+
+            set
+            {
+                questionString = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string QuestionImagePath
+        {
+            get
+            {
+                return questionImagePath;
+            }
+
+            set
+            {
+                questionImagePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int QuestionImageId
+        {
+            get
+            {
+                return questionImageId;
+            }
+
+            set
+            {
+                questionImageId = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Visibility QuestionImageVisibility
+        {
+            get
+            {
+                return questionImageVisibility;
+            }
+
+            set
+            {
+                questionImageVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string AnswerString
+        {
+            get
+            {
+                return answerString;
+            }
+
+            set
+            {
+                answerString = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
    

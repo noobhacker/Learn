@@ -107,12 +107,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\HexToColorConverter.cs" />
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\AddBookViewModel.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
+    <Compile Include="Models\Homework.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Pages\ActivityPage.xaml.cs">
@@ -125,7 +127,6 @@
     <Compile Include="ViewModels\LibraryViewModel.cs" />
     <Compile Include="Items\QuestionItem.cs" />
     <Compile Include="Items\BookItem.cs" />
-    <Compile Include="Items\ScrollItem.cs" />
     <Compile Include="Items\SkinItem.cs" />
     <Compile Include="Items\ResultItem.cs" />
     <Compile Include="Upgrades.cs" />

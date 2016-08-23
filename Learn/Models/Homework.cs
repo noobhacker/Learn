@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Learn.Models
 {
-    public class Activity
+    public class Homework
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string HomeworkName { get; set; }
+        public DateTime DueDate { get; set; }
         public int Points { get; set; }
     }
 }

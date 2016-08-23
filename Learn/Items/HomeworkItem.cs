@@ -1,22 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Learn.Items
 {
-    class HomeworkItem
+    public class HomeworkItem : INotifyPropertyChanged
     {
-        // homework category add later, make program work first
+        private string homeworkName;
+        private DateTime dueDate;
+        private int points;
 
-        public string HomeworkName { get; set; }
+        public string HomeworkName
+        {
+            get
+            {
+                return homeworkName;
+            }
 
-        // no Date class, so use DateTime with Time 00:00:00
-        public DateTime DueDate { get; set; }
+            set
+            {
+                homeworkName = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public int Points { get; set; }
+        public DateTime DueDate
+        {
+            get
+            {
+                return dueDate;
+            }
 
+            set
+            {
+                dueDate = value;
+                OnPropertyChanged();
+            }
+        }
 
+        public int Points
+        {
+            get
+            {
+                return points;
+            }
+
+            set
+            {
+                points = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

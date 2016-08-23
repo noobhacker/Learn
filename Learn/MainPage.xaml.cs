@@ -24,7 +24,7 @@ namespace Learn
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        public MainPageViewModel vm = new MainPageViewModel();
+        public static MainPageViewModel vm = new MainPageViewModel();
         public MainPage()
         {
             this.InitializeComponent();         
