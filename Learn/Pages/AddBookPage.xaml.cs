@@ -1,5 +1,6 @@
 ﻿using Learn.Items;
 using Learn.Models;
+using Learn.ViewModels;
 using System;
 using System.Linq;
 using Windows.Storage;

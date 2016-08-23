@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Learn.Models
+namespace Learn.ViewModels
 {
     public class AddBookViewModel : INotifyPropertyChanged
     {

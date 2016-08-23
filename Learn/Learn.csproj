@@ -111,7 +111,7 @@
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
     <Compile Include="Models\Activity.cs" />
-    <Compile Include="Models\AddBookViewModel.cs" />
+    <Compile Include="ViewModels\AddBookViewModel.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Homework.cs" />
@@ -140,6 +140,7 @@
     <Compile Include="Pages\ResultPage.xaml.cs">
       <DependentUpon>ResultPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\UpgradeViewModel.cs" />
     <None Include="IOClass.cs_" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -155,6 +156,7 @@
       <DependentUpon>UpgradePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\ResultViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
