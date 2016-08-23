@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Learn.Items;
+using Learn.Models;
+using Learn.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,15 +25,25 @@ namespace Learn
     /// </summary>
     public sealed partial class ActivityPage : Page
     {
+        ActivityViewModel vm = new ActivityViewModel();
         public ActivityPage()
         {
             this.InitializeComponent();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //await IOClass.LoadActivity();
-            //activityLV.ItemsSource = GlobalViewModel.UserActivity;
+            var db = new DatabaseContext();
+            foreach(var activity in db.Activities.OrderByDescending(x=>x.Date))
+            {
+                vm.Activities.Add(new ActivityItem()
+                {
+                    Date = activity.Date,
+                    Description = activity.Description,
+                    Name = activity.Name,
+                    Points = activity.Points
+                });
+            }          
         }
     }
 }

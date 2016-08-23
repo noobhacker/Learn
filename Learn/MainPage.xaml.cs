@@ -82,18 +82,14 @@ namespace Learn
                         SplitViewFrame.Navigate(typeof(HomeworkPage));
                         break;
                     case 3:
-                        titleTB.Text = "Equipment";
-                        SplitViewFrame.Navigate(typeof(EquipmentPage));
-                        break;
-                    case 4:
                         titleTB.Text = "Upgrades";
                         SplitViewFrame.Navigate(typeof(UpgradePage));
                         break;
-                    case 5:
+                    case 4:
                         titleTB.Text = "Profile";
                         SplitViewFrame.Navigate(typeof(ProfilePage));
                         break;
-                    case 6:                       
+                    case 5:                       
                         titleTB.Text = "Activity";
                         SplitViewFrame.Navigate(typeof(ActivityPage));
                         break;

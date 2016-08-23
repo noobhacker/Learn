@@ -145,15 +145,6 @@
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontFamily="Segoe MDL2 Assets"
-                                        Text="&#xE7EF;"
-                                        Margin="12,20,24,12" />
-                            <TextBlock Text="Equipment"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock  FontFamily="Segoe MDL2 Assets"
                                         Text="&#xE74A;"
                                         Margin="12,20,24,12" />
                             <TextBlock Text="Upgrades"
@@ -175,15 +166,6 @@
                                        Text="&#xE8D1;"
                                        Margin="12,20,24,12" />
                             <TextBlock Text="Activity"
-                                       VerticalAlignment="Center"
-                                       FontSize="20" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE713;"
-                                       Margin="12,20,24,12" />
-                            <TextBlock Text="Settings"
                                        VerticalAlignment="Center"
                                        FontSize="20" />
                         </StackPanel>

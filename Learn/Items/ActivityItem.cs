@@ -13,7 +13,7 @@ namespace Learn.Items
         private DateTime date;
         private string name;
         private string description;
-        private string points;
+        private int points;
 
         public DateTime Date
         {
@@ -57,7 +57,7 @@ namespace Learn.Items
             }
         }
 
-        public string Points
+        public int Points
         {
             get
             {

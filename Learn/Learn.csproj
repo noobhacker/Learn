@@ -131,9 +131,6 @@
     <Compile Include="Items\BookItem.cs" />
     <Compile Include="Items\SkinItem.cs" />
     <Compile Include="Items\ResultItem.cs" />
-    <Compile Include="Pages\EquipmentPage.xaml.cs">
-      <DependentUpon>EquipmentPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\HomeworkPage.xaml.cs">
       <DependentUpon>HomeworkPage.xaml</DependentUpon>
     </Compile>
@@ -143,7 +140,7 @@
     <Compile Include="Pages\ResultPage.xaml.cs">
       <DependentUpon>ResultPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IOClass.cs" />
+    <None Include="IOClass.cs_" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -157,7 +154,6 @@
     <Compile Include="Pages\UpgradePage.xaml.cs">
       <DependentUpon>UpgradePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PublicVariables.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
   </ItemGroup>
@@ -188,10 +184,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AddBookPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\EquipmentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
