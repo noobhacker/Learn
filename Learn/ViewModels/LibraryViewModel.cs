@@ -12,22 +12,7 @@ namespace Learn.ViewModels
 {
     public class LibraryViewModel : INotifyPropertyChanged
     {
-        private string bookTitle;
-        public ObservableCollection<BookItem> Books { get; set; }
-
-        public string BookTitle
-        {
-            get
-            {
-                return bookTitle;
-            }
-
-            set
-            {
-                bookTitle = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<BookItem> Books { get; set; }        
 
         public LibraryViewModel()
         {

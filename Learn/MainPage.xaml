@@ -37,9 +37,7 @@
 
                     <Grid Grid.Row="1"
                           Grid.RowSpan="2"
-                          Background="{Binding Skin}">
-                        <Grid Background="Black"
-                              Opacity="0.1" />
+                          Background="{ThemeResource ToolTipBackground}">
                     </Grid>
 
                     <ListBox Name="listBox"

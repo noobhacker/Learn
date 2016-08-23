@@ -7,102 +7,52 @@
       mc:Ignorable="d">
 
     <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="300" />
-            </Grid.ColumnDefinitions>
-
-            <GridView Name="booksGV"
-                      SelectionMode="Single"
-                      Margin="24,12"
-                      ItemsSource="{Binding Books}"
-                      SelectionChanged="booksGV_SelectionChanged">
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Width="250">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock VerticalAlignment="Center"
-                                       FontFamily="Segoe MDL2 Assets"
-                                       Text="&#xE8B7;"
-                                       Margin="6" />
-
-                            <TextBlock Grid.Column="1"
-                                       FontSize="18"
-                                       FontWeight="Thin"
-                                       VerticalAlignment="Center"
-                                       Text="{Binding BookTitle}"
-                                       TextTrimming="CharacterEllipsis" />
-
-                        </Grid>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-
-            <Grid Grid.Column="1"
-                  BorderThickness="1"
-                  BorderBrush="Black">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock VerticalAlignment="Center"
-                               FontFamily="Segoe MDL2 Assets"
-                               Text="&#xE8B7;"
-                               Margin="12"
-                               FontSize="48"
-                               Grid.RowSpan="2" />
-                    <TextBlock                            Text="{Binding BookTitle}"
-                                                          Grid.Column="1"
-                                                          FontWeight="Bold"
-                                                          Margin="4"
-                                                          VerticalAlignment="Center" />
-                </Grid>
-                <StackPanel Grid.Row="1"
-                            Margin="0,8,0,0">
-                    <Button Name="addBtn"
-                            Content="New"
-                            Margin="6"
-                            HorizontalAlignment="Stretch"
-                            Click="addBtn_Click" />
-                    <Button Name="modifyBtn"
-                            Content="Modify"
-                            Margin="6"
-                            HorizontalAlignment="Stretch"
-                            Grid.Column="1" />
-                    <Button Name="deleteBtn"
-                            Content="Delete"
-                            Margin="6"
-                            HorizontalAlignment="Stretch"
-                            Grid.Column="2"
-                            Click="deleteBtn_Click" />
-                    <Button Name="readBtn"
-                            Content="Read"
-                            Margin="6"
-                            HorizontalAlignment="Stretch"
-                            Grid.Column="3" />
-                    <Button Name="testBtn"
-                            Content="Test"
-                            Margin="6"
-                            HorizontalAlignment="Stretch"
-                            Grid.Column="4"
-                            Click="testBtn_Click" />
-
-                </StackPanel>
-            </Grid>
-
-
-
+            <Grid Background="Black"
+                  Opacity="0.2" />
+            <CommandBar Background="Transparent">
+                <AppBarButton Icon="Add" Name="addBtn" Label="Add"/>
+                <AppBarButton Icon="Edit" Name="editBtn" Label="Edit"/>
+                <AppBarButton Icon="Delete" Name="deleteBtn" Label="Delete"/>
+                <AppBarButton Icon="OpenFile" Name="readBtn" Label="Read"/>
+                <AppBarButton Icon="Accept" Name="testBtn" Label="Test" />
+                <AppBarButton Icon="ReShare" Name="shareBtn" Label="Share Online"/>
+            </CommandBar>
         </Grid>
+        <GridView Name="booksGV"
+                  SelectionMode="Single"
+                  Margin="24,12"
+                  ItemsSource="{Binding Books}"
+                  Grid.Row="1"
+                  SelectionChanged="booksGV_SelectionChanged">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="250">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock VerticalAlignment="Center"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE8B7;"
+                                   Margin="6" />
+
+                        <TextBlock Grid.Column="1"
+                                   FontSize="18"
+                                   FontWeight="Thin"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding BookTitle}"
+                                   TextTrimming="CharacterEllipsis" />
+
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>

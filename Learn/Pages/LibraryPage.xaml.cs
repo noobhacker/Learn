@@ -52,8 +52,7 @@ namespace Learn
 
         private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var index = booksGV.SelectedIndex;
-            vm.BookTitle = vm.Books[index].BookTitle;
+
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
