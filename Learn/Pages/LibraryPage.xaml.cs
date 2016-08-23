@@ -24,10 +24,10 @@ namespace Learn
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LibraryFrame : Page
+    public sealed partial class LibraryPage : Page
     {
         LibraryViewModel vm = new LibraryViewModel();
-        public LibraryFrame()
+        public LibraryPage()
         {
             this.InitializeComponent();
         }
@@ -47,7 +47,7 @@ namespace Learn
 
         private void testBtn_Click(object sender, RoutedEventArgs e)
         {
-          this.Frame.Navigate(typeof(TestFrame),vm.Books[booksGV.SelectedIndex].BookId);
+          this.Frame.Navigate(typeof(TestPage),vm.Books[booksGV.SelectedIndex].BookId);
         }
 
         private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,7 +58,7 @@ namespace Learn
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddBookFrame));
+            this.Frame.Navigate(typeof(AddBookPage));
         }
 
         private async void deleteBtn_Click(object sender, RoutedEventArgs e)

@@ -14,11 +14,11 @@ namespace Learn
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class ResultFrame : Page
+    public sealed partial class ResultPage : Page
     {
         DispatcherTimer animationDT = new DispatcherTimer();
 
-        public ResultFrame()
+        public ResultPage()
         {
             this.InitializeComponent();
 
@@ -160,7 +160,7 @@ namespace Learn
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(LibraryFrame));
+            this.Frame.Navigate(typeof(LibraryPage));
         }
     }
 }

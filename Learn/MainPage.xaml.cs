@@ -32,7 +32,7 @@ namespace Learn
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            SplitViewFrame.Navigate(typeof(LibraryFrame));
+            SplitViewFrame.Navigate(typeof(LibraryPage));
         }
 
         private void hamburgerBtn_Click(object sender, RoutedEventArgs e)
@@ -74,28 +74,28 @@ namespace Learn
                         break;
                     case 1:
                         titleTB.Text = "Library";
-                        SplitViewFrame.Navigate(typeof(LibraryFrame));
+                        SplitViewFrame.Navigate(typeof(LibraryPage));
                         break;
 
                     case 2:
                         titleTB.Text = "Tasks";
-                        SplitViewFrame.Navigate(typeof(HomeworkFrame));
+                        SplitViewFrame.Navigate(typeof(HomeworkPage));
                         break;
                     case 3:
                         titleTB.Text = "Equipment";
-                        SplitViewFrame.Navigate(typeof(EquipmentFrame));
+                        SplitViewFrame.Navigate(typeof(EquipmentPage));
                         break;
                     case 4:
                         titleTB.Text = "Upgrades";
-                        SplitViewFrame.Navigate(typeof(UpgradeFrame));
+                        SplitViewFrame.Navigate(typeof(UpgradePage));
                         break;
                     case 5:
                         titleTB.Text = "Profile";
-                        SplitViewFrame.Navigate(typeof(ProfileFrame));
+                        SplitViewFrame.Navigate(typeof(ProfilePage));
                         break;
                     case 6:                       
                         titleTB.Text = "Activity";
-                        SplitViewFrame.Navigate(typeof(ActivityFrame));
+                        SplitViewFrame.Navigate(typeof(ActivityPage));
                         break;
                 }
             }

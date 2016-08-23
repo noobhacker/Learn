@@ -15,10 +15,10 @@ namespace Learn
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AddBookFrame : Page
+    public sealed partial class AddBookPage : Page
     {
         AddBookViewModel vm = new AddBookViewModel();
-        public AddBookFrame()
+        public AddBookPage()
         {
             this.InitializeComponent();
         }
@@ -84,14 +84,14 @@ namespace Learn
                     BookId = result.Entity.Id,
                     QuestionString = item.QuestionString,
                     AnswerString = item.AnswerString,
-                    QuestionImageId = item.QuestionImageID,
+                    QuestionImageId = item.QuestionImageId,
                 });
             }
 
             await db.SaveChangesAsync();
 
             ClearEverything();
-            this.Frame.Navigate(typeof(LibraryFrame));
+            this.Frame.Navigate(typeof(LibraryPage));
         }
 
         private void ClearEverything()
@@ -165,7 +165,7 @@ namespace Learn
                 vm.QuestionsList.Add(new QuestionItem()
                 {
                     QuestionImagePath = ApplicationData.Current.LocalFolder.Path + "\\Images\\" + currentimageid,
-                    QuestionImageID = currentimageid,
+                    QuestionImageId = currentimageid,
                     QuestionImageVisibility = Visibility.Visible,
                     AnswerString = vm.ImageAnswer
 

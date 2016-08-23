@@ -21,12 +21,12 @@ namespace Learn
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class TestFrame : Page
+    public sealed partial class TestPage : Page
     {
         TestViewModel vm = new TestViewModel();
         DispatcherTimer answerspeedDT = new DispatcherTimer();
 
-        public TestFrame()
+        public TestPage()
         {
             this.InitializeComponent();
 
@@ -54,7 +54,7 @@ namespace Learn
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.SourcePageType == typeof(LibraryFrame))
+            if (e.SourcePageType == typeof(LibraryPage))
             {
                 var db = new DatabaseContext();
                 var id = Convert.ToInt32(e.Parameter);
@@ -63,7 +63,7 @@ namespace Learn
                     vm.QuestionList.Add(new QuestionItem()
                     {
                         AnswerString = question.AnswerString,
-                        QuestionImageID = question.QuestionImageId,
+                        QuestionImageId = question.QuestionImageId,
                         QuestionString = question.QuestionString
                     });
                 }
@@ -84,7 +84,7 @@ namespace Learn
                 var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("Images");
 
                 vm.QuestionList[i].QuestionImagePath = folder.Path + "\\" +
-                    vm.QuestionList[i].QuestionImageID;
+                    vm.QuestionList[i].QuestionImageId;
 
                 AnsweredResult.ResultList.Add(new ResultItem()
                 {
@@ -123,7 +123,7 @@ namespace Learn
                         vm.QuestionList[0].QuestionImagePath &&
 
                         vm.QuestionList[0].QuestionImagePath != null) &&
-                        vm.QuestionList[0].QuestionImageID != 0
+                        vm.QuestionList[0].QuestionImageId != 0
                         //&&
                         //AnsweredResult.ResultList[i].AnswerSpeed == null //to prevent re-insert speed to answered question
                         )
@@ -157,7 +157,7 @@ namespace Learn
                             {
                                 answerspeedDT.Stop();
                                 AnsweredResult.MaxCombo = vm.ComboCount;
-                                this.Frame.Navigate(typeof(ResultFrame), AnsweredResult);
+                                this.Frame.Navigate(typeof(ResultPage), AnsweredResult);
                             }
 
                         }
