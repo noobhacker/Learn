@@ -12,6 +12,8 @@ namespace Learn.ViewModels
 {
     public class ResultViewModel : INotifyPropertyChanged
     {
+        // these are not needed since objects are passed through FullResult
+
         //public ObservableCollection<ResultItem> ResultList = new ObservableCollection<ResultItem>();
         
         //private int maxCombo;
