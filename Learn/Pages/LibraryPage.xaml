@@ -11,18 +11,26 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid Background="Black"
-                  Opacity="0.2" />
-            <CommandBar Background="Transparent">
-                <AppBarButton Icon="Add" Name="addBtn" Label="Add"/>
-                <AppBarButton Icon="Edit" Name="editBtn" Label="Edit"/>
-                <AppBarButton Icon="Delete" Name="deleteBtn" Label="Delete"/>
-                <AppBarButton Icon="OpenFile" Name="readBtn" Label="Read"/>
-                <AppBarButton Icon="Accept" Name="testBtn" Label="Test" />
-                <AppBarButton Icon="ReShare" Name="shareBtn" Label="Share Online"/>
-            </CommandBar>
-        </Grid>
+        <CommandBar Background="Transparent">
+            <AppBarButton Icon="Add"
+                          Name="addBtn"
+                          Label="Add" />
+            <AppBarButton Icon="Edit"
+                          Name="editBtn"
+                          Label="Edit" />
+            <AppBarButton Icon="Delete"
+                          Name="deleteBtn"
+                          Label="Delete" />
+            <AppBarButton Icon="OpenFile"
+                          Name="readBtn"
+                          Label="Read" />
+            <AppBarButton Icon="Accept"
+                          Name="testBtn"
+                          Label="Test" />
+            <AppBarButton Icon="ReShare"
+                          Name="shareBtn"
+                          Label="Share Online" />
+        </CommandBar>
         <GridView Name="booksGV"
                   SelectionMode="Single"
                   Margin="24,12"

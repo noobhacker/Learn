@@ -62,12 +62,6 @@ namespace Learn
 
         private async void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            //    if(booksGV.SelectedItems.Count != 0)
-            //    {
-            //        GlobalViewModel.Books.RemoveAt(booksGV.SelectedIndex);
-            //        await IOClass.SaveBooks();
-            //    }
-
             var db = new DatabaseContext();
 
             await db.SaveChangesAsync();

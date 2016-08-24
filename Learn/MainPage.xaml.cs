@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -32,9 +33,12 @@ namespace Learn
             this.DataContext = vm;   
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            //listBox.SelectedIndex = 0;
+            while (listBox.Items.Count == 0)
+                await Task.Delay(100);
+
+            listBox.SelectedIndex = 0;
         }
 
         private void hambugerBtn_Click(object sender, RoutedEventArgs e)

@@ -60,25 +60,27 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <StackPanel Grid.Row="2" Background="Transparent">
+                    <StackPanel Grid.Row="2"
+                                Background="Transparent">
                         <Grid Margin="0,8">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            
+
                             <TextBlock Text=""
                                        Margin="16,0,8,0"
                                        FontSize="16"
-                                       FontFamily="Segoe MDL2 Assets" 
+                                       FontFamily="Segoe MDL2 Assets"
                                        VerticalAlignment="Center" />
-                            
-                            <Grid Grid.Column="1" Margin="8,0">
+
+                            <Grid Grid.Column="1"
+                                  Margin="8,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                             
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
@@ -106,17 +108,24 @@
                             </Grid>
                         </Grid>
                     </StackPanel>
-                </Grid>             
+                </Grid>
             </SplitView.Pane>
             <SplitView.Content>
-                <Frame Name="frame" />
+                <Grid Background="{Binding Skin, Converter={StaticResource HexToColorConverter}}">
+                    <Grid Background="{ThemeResource ToolTipBackground}"
+                          Opacity="0.5" />
+                    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}"
+                          Opacity="0.5"
+                          Margin="0,48,0,0" />
+                    <Frame Name="frame" />
+                </Grid>
             </SplitView.Content>
         </SplitView>
 
         <Grid Height="48"
               VerticalAlignment="Top"
-              Background="{Binding Skin, Converter={StaticResource HexToColorConverter}}"
-              Margin="48,0,0,0">
+              Margin="48,0,0,0"
+              HorizontalAlignment="Left">
             <TextBlock Text="{Binding Title, Converter={StaticResource StringToTitleConverter}}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
