@@ -14,7 +14,8 @@
         <CommandBar Background="Transparent">
             <AppBarButton Icon="Add"
                           Name="addBtn"
-                          Label="Add" />
+                          Label="Add"
+                          Click="addBtn_Click"/>
             <AppBarButton Icon="Edit"
                           Name="editBtn"
                           Label="Edit" />

@@ -9,7 +9,7 @@ namespace Learn.Models
     public class Homework
     {
         public int Id { get; set; }
-        public string HomeworkName { get; set; }
+        public string Name { get; set; }
         public DateTime DueDate { get; set; }
         public int Points { get; set; }
     }

@@ -12,7 +12,7 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
@@ -98,6 +98,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Learn_StoreKey.pfx" />
     <None Include="project.json" />
@@ -112,6 +113,15 @@
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
     <Compile Include="Items\HamburgerMenuItem.cs" />
+    <Compile Include="Migrations\20160824112323_v1.cs" />
+    <Compile Include="Migrations\20160824112323_v1.designer.cs">
+      <DependentUpon>20160824112323_v1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20160824115855_v2.cs" />
+    <Compile Include="Migrations\20160824115855_v2.designer.cs">
+      <DependentUpon>20160824115855_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Skin.cs" />
     <Compile Include="Pages\OnlinePage.xaml.cs">
@@ -132,6 +142,7 @@
     </Compile>
     <Compile Include="Items\HomeworkItem.cs" />
     <Compile Include="ViewModels\ActivityViewModel.cs" />
+    <Compile Include="ViewModels\HomeworkViewModel.cs" />
     <Compile Include="ViewModels\LibraryViewModel.cs" />
     <Compile Include="Items\QuestionItem.cs" />
     <Compile Include="Items\BookItem.cs" />

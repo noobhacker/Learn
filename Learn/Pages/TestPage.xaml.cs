@@ -151,7 +151,7 @@ namespace Learn
 
 
                             // remove here , if remove in Book class will exception
-                            vm.QuestionList.RemoveFirstQuestion();
+                            vm.QuestionList.RemoveFirst();
 
                             // end of game
                             if (vm.QuestionList.Count == 0)

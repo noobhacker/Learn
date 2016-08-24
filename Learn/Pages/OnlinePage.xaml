@@ -11,13 +11,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <Grid HorizontalAlignment="Right">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <CommandBar Background="Transparent">
+        <CommandBar Background="Transparent">
                 <AppBarButton Icon="OpenFile"
                               Name="readBtn"
                               Label="Read" />
@@ -28,12 +22,5 @@
                               Name="downloadBtn"
                               Label="Download" />
             </CommandBar>
-            <AutoSuggestBox Grid.Column="1"
-                            PlaceholderText="Search"
-                            VerticalAlignment="Center"
-                            Width="300"
-                            MinWidth="100"
-                            Margin="8" />
         </Grid>
-    </Grid>
 </Page>

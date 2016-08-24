@@ -1,15 +1,22 @@
-﻿using System;
+﻿using Learn.Items;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Learn.Items
+namespace Learn.ViewModels
 {
-    public class HomeworkItem : INotifyPropertyChanged
+    public class HomeworkViewModel : INotifyPropertyChanged
     {
         private string name;
-        private DateTime dueDate;
+        private DateTimeOffset dueDate;
         private int points;
-        private int id;
+
+        public ObservableCollection<HomeworkItem> Homeworks { get; set; }
 
         public string Name
         {
@@ -25,7 +32,7 @@ namespace Learn.Items
             }
         }
 
-        public DateTime DueDate
+        public DateTimeOffset DueDate
         {
             get
             {
@@ -53,18 +60,10 @@ namespace Learn.Items
             }
         }
 
-        public int Id
+        public HomeworkViewModel()
         {
-            get
-            {
-                return id;
-            }
-
-            set
-            {
-                id = value;
-                OnPropertyChanged();
-            }
+            Homeworks = new ObservableCollection<HomeworkItem>();
+            DueDate = DateTime.Now.AddDays(1);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

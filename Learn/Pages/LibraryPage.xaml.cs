@@ -30,7 +30,9 @@ namespace Learn
         public LibraryPage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var db = new DatabaseContext();

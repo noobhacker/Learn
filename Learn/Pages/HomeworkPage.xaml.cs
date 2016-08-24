@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Learn.Items;
+using Learn.Models;
+using Learn.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,35 +25,47 @@ namespace Learn
     /// </summary>
     public sealed partial class HomeworkPage : Page
     {
+        HomeworkViewModel vm = new HomeworkViewModel();
         public HomeworkPage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //        base.OnNavigatedTo(e);
-            //        //var listviewitems = new List<HomeworkListviewItem>();
-            //        //listviewitems.Add(new HomeworkListviewItem { HomeworkName = "Final Year Project", DueDate = "12 May 2016", Points = 13500 });
-            //        //listviewitems.Add(new HomeworkListviewItem { HomeworkName = "Calculus 5 questions", DueDate = "12 May 2017", Points = 200 });
-            //        //listviewitems.Add(new HomeworkListviewItem { HomeworkName = "Computer Architecture tutorial 5", DueDate = "12 May 2018", Points = 500 });
-
-            //        await IOClass.LoadHomework();
-
-            //        homeworksLV.ItemsSource = GlobalViewModel.UserHomework;
-
+            var db = new DatabaseContext();
+            foreach (var homework in db.Homeworks)
+            {
+                vm.Homeworks.Add(new HomeworkItem()
+                {
+                    Name = homework.Name,
+                    Points = homework.Points,
+                    DueDate = homework.DueDate,
+                    Id = homework.Id // bring id to do operations
+                });
+            }
         }
 
         private async void addBtn_Click(object sender, RoutedEventArgs e)
         {
+            var db = new DatabaseContext();
+            var result = db.Homeworks.Add(new Homework()
+            {
+                Name = vm.Name,
+                DueDate = vm.DueDate.Date,
+                Points = vm.Points
+            });
+            await db.SaveChangesAsync();
 
-            //        GlobalViewModel.UserHomework.Add(new Backend.Homework()
-            //        {
-            //            DueDate = duedateDP.Date.DateTime,
-            //            HomeworkName = homeworknameTB.Text,
-            //            Points = Convert.ToInt32(pointsTB.Text)
-            //        });
-            //        await IOClass.SaveHomework();
+            // update ui but don't want refresh whole
+            vm.Homeworks.Insert(0, new HomeworkItem()
+            {
+                Name = vm.Name,
+                DueDate = vm.DueDate.Date,
+                Points = vm.Points,
+                Id = result.Entity.Id
+            });
         }
 
         private async void forfeitBtn_Click(object sender, RoutedEventArgs e)
@@ -108,11 +123,14 @@ namespace Learn
             //    }
         }
 
-        public class HomeworkListviewItem
+        private void showAddBarBtn_Click(object sender, RoutedEventArgs e)
         {
-            public string HomeworkName { get; set; }
-            public string DueDate { get; set; }  //use string so cleaner inside xaml binding
-            public int Points { get; set; }
+            ShowAddBar.Begin();
+        }
+
+        private void homeworksLV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            HideAddBar.Begin();
         }
     }
 }

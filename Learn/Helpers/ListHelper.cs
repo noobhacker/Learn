@@ -22,7 +22,7 @@ namespace Learn.Helpers
             }
         }
 
-        public static void RemoveFirstQuestion<T>(this IList<T> list)
+        public static void RemoveFirst<T>(this IList<T> list)
         {
             list.RemoveAt(0);
         }

@@ -14,7 +14,7 @@ namespace Learn.Models
         public DbSet<Book> Books { get; set; }
         public DbSet<Question> Questions { get; set; }
 
-
+        public DbSet<Homework> Homeworks { get; set; }
         public DbSet<Activity> Activities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
