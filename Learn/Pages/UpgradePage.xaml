@@ -50,7 +50,7 @@
                                 <ColumnDefinition Width="0.75*" />
                             </Grid.ColumnDefinitions>
 
-                            <Grid>
+                            <Grid Margin="8,4">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -59,23 +59,27 @@
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Text="Warning"
-                                           FontSize="24"
-                                           Margin="3,3,0,0" />
-                                <TextBlock Grid.Row="1"
-                                           Text="Lv. 2 -> Lv. 3"
-                                           FontSize="15"
-                                           Margin="3,0,0,0" />
+                                           FontSize="24" />
+                                
+                                <TextBlock FontSize="15"
+                                           Grid.Row="1">
+                                    <Run Text="Lv. " />
+                                    <Run Text="2" />
+                                    <Run Text=" -> Lv. " />
+                                    <Run Text="3" />
+                                </TextBlock>
+                                
                                 <TextBlock Grid.Row="2"
                                            Text="Next Level"
-                                           FontWeight="Thin"
-                                           Margin="3,6,0,0" />
+                                           Margin="0,4,0,0"
+                                           FontWeight="Thin"/>
+                                
                                 <TextBlock Grid.Row="3"
                                            FontWeight="Thin"
-                                           Margin="3,0,0,3"
-                                           TextWrapping="Wrap"
-                                           Text="3 times warning before considered as wrong." />
-
-
+                                           TextWrapping="Wrap">
+                                    <Run Text="" />
+                                    <Run Text=" times warning before considered as wrong." />
+                                </TextBlock>
                             </Grid>
 
                             <Grid Grid.Column="1"
@@ -86,17 +90,18 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Text="25000 gold"
-                                           Margin="3"
-                                           HorizontalAlignment="Center" />
+                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" 
+                                            Margin="4">
+                                    <TextBlock Text="25000"/>
+                                    <TextBlock Text="gold"
+                                               Margin="4,0,0,0" />
+                                </StackPanel>
                                 <Button Content="Upgrade"
                                         Grid.Row="1"
                                         Height="60"
-                                        Background="LightGreen"
+                                        Background="{ThemeResource InkToolbarAccentColorThemeBrush}"
                                         HorizontalAlignment="Stretch" />
-
                             </Grid>
-
                         </Grid>
 
                         <Grid Width="320"
@@ -226,7 +231,8 @@
                     <GridView Name="skinsGV"
                               Grid.Row="2"
                               Margin="8"
-                              ItemsSource="{Binding Skins}">
+                              ItemsSource="{Binding Skins}"
+                              SelectionChanged="skinsGV_SelectionChanged">
                         <GridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid HorizontalAlignment="Left"

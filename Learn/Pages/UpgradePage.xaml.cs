@@ -51,5 +51,11 @@ namespace Learn
                 });
             }
         }
+
+        private void skinsGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = (sender as GridView).SelectedIndex;
+
+        }
     }
 }
