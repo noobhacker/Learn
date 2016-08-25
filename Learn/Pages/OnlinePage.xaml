@@ -18,9 +18,37 @@
                 <AppBarButton Icon="Accept"
                               Name="testBtn"
                               Label="Test" />
-                <AppBarButton Icon="Download"
-                              Name="downloadBtn"
-                              Label="Download" />
             </CommandBar>
+        <GridView Name="booksGV"
+                  SelectionMode="Single"
+                  Margin="24,12"
+                  ItemsSource="{Binding Books}"
+                  Grid.Row="1"
+                  SelectionChanged="booksGV_SelectionChanged">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="250">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock VerticalAlignment="Center"
+                                   FontFamily="Segoe MDL2 Assets"
+                                   Text="&#xE8B7;"
+                                   Margin="6" />
+
+                        <TextBlock Grid.Column="1"
+                                   FontSize="18"
+                                   FontWeight="Thin"
+                                   VerticalAlignment="Center"
+                                   Text="{Binding BookTitle}"
+                                   TextTrimming="CharacterEllipsis" />
+
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
         </Grid>
 </Page>

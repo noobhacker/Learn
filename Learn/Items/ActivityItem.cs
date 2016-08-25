@@ -10,12 +10,12 @@ namespace Learn.Items
 {
     public class ActivityItem : INotifyPropertyChanged
     {
-        private DateTime date;
+        private DateTimeOffset date;
         private string name;
         private string description;
         private int points;
 
-        public DateTime Date
+        public DateTimeOffset Date
         {
             get
             {

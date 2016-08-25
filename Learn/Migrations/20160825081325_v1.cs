@@ -14,7 +14,7 @@ namespace Learn.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
-                    Date = table.Column<DateTime>(nullable: false),
+                    Date = table.Column<DateTimeOffset>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Points = table.Column<int>(nullable: false)
@@ -35,6 +35,21 @@ namespace Learn.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Book", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Homework",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Autoincrement", true),
+                    DueDate = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Points = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Homework", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -85,6 +100,9 @@ namespace Learn.Migrations
 
             migrationBuilder.DropTable(
                 name: "Book");
+
+            migrationBuilder.DropTable(
+                name: "Homework");
 
             migrationBuilder.DropTable(
                 name: "Question");

@@ -18,9 +18,9 @@ namespace LearnWebAPI.Controllers
         private LearnWebAPIContext db = new LearnWebAPIContext();
 
         // GET: api/Questions
-        public IQueryable<Question> GetQuestions()
+        public IQueryable<Question> GetQuestions(int bookId)
         {
-            return db.Questions;
+            return db.Questions.Where(x=>x.BookId == bookId);
         }
 
         // GET: api/Questions/5
@@ -36,40 +36,40 @@ namespace LearnWebAPI.Controllers
             return Ok(question);
         }
 
-        // PUT: api/Questions/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutQuestion(int id, Question question)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Questions/5
+        //[ResponseType(typeof(void))]
+        //public async Task<IHttpActionResult> PutQuestion(int id, Question question)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != question.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != question.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(question).State = EntityState.Modified;
+        //    db.Entry(question).State = EntityState.Modified;
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!QuestionExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!QuestionExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
         // POST: api/Questions
         [ResponseType(typeof(Question))]
@@ -86,21 +86,21 @@ namespace LearnWebAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = question.Id }, question);
         }
 
-        // DELETE: api/Questions/5
-        [ResponseType(typeof(Question))]
-        public async Task<IHttpActionResult> DeleteQuestion(int id)
-        {
-            Question question = await db.Questions.FindAsync(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Questions/5
+        //[ResponseType(typeof(Question))]
+        //public async Task<IHttpActionResult> DeleteQuestion(int id)
+        //{
+        //    Question question = await db.Questions.FindAsync(id);
+        //    if (question == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Questions.Remove(question);
-            await db.SaveChangesAsync();
+        //    db.Questions.Remove(question);
+        //    await db.SaveChangesAsync();
 
-            return Ok(question);
-        }
+        //    return Ok(question);
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -111,9 +111,9 @@ namespace LearnWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool QuestionExists(int id)
-        {
-            return db.Questions.Count(e => e.Id == id) > 0;
-        }
+        //private bool QuestionExists(int id)
+        //{
+        //    return db.Questions.Count(e => e.Id == id) > 0;
+        //}
     }
 }

@@ -20,7 +20,7 @@ namespace Learn.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTimeOffset>("Date");
 
                     b.Property<string>("Description");
 

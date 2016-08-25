@@ -36,40 +36,40 @@ namespace LearnWebAPI.Controllers
             return Ok(book);
         }
 
-        // PUT: api/Books/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutBook(int id, Book book)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Books/5
+        //[ResponseType(typeof(void))]
+        //public async Task<IHttpActionResult> PutBook(int id, Book book)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != book.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != book.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(book).State = EntityState.Modified;
+        //    db.Entry(book).State = EntityState.Modified;
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!BookExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
         // POST: api/Books
         [ResponseType(typeof(Book))]
@@ -86,21 +86,21 @@ namespace LearnWebAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = book.Id }, book);
         }
 
-        // DELETE: api/Books/5
-        [ResponseType(typeof(Book))]
-        public async Task<IHttpActionResult> DeleteBook(int id)
-        {
-            Book book = await db.Books.FindAsync(id);
-            if (book == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/Books/5
+        //[ResponseType(typeof(Book))]
+        //public async Task<IHttpActionResult> DeleteBook(int id)
+        //{
+        //    Book book = await db.Books.FindAsync(id);
+        //    if (book == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Books.Remove(book);
-            await db.SaveChangesAsync();
+        //    db.Books.Remove(book);
+        //    await db.SaveChangesAsync();
 
-            return Ok(book);
-        }
+        //    return Ok(book);
+        //}
 
         protected override void Dispose(bool disposing)
         {
@@ -111,9 +111,9 @@ namespace LearnWebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool BookExists(int id)
-        {
-            return db.Books.Count(e => e.Id == id) > 0;
-        }
+        //private bool BookExists(int id)
+        //{
+        //    return db.Books.Count(e => e.Id == id) > 0;
+        //}
     }
 }

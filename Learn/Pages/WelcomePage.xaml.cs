@@ -1,5 +1,4 @@
-﻿using Learn.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,18 +20,11 @@ namespace Learn.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class OnlinePage : Page
+    public sealed partial class WelcomePage : Page
     {
-        OnlineViewModel vm = new OnlineViewModel();
-        public OnlinePage()
+        public WelcomePage()
         {
             this.InitializeComponent();
-            this.DataContext = vm;
-        }
-
-        private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

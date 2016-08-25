@@ -7,63 +7,214 @@
       mc:Ignorable="d">
 
     <Grid Background="Transparent">
-
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="48" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Grid Margin="24">
-
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock Name="profilenameTB"
-                               FontSize="32"
-                               Text="ProfileName" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock  FontSize="24"
-                                    Text="Level "
-                                    FontWeight="Thin" />
-                        <TextBlock Name="levelTB"
-                                   FontSize="24"
-                                   Text="0 "
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Margin="24">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Name="profilenameTB"
+                                   FontSize="32"
+                                   Text="ProfileName" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  FontSize="24"
+                                        Text="Level "
+                                        FontWeight="Thin" />
+                            <TextBlock Name="levelTB"
+                                       FontSize="24"
+                                       Text="0 "
+                                       FontWeight="Thin"
+                                       Margin="12,0" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock  FontSize="28"
+                                        Text="EXP"
+                                        Margin="0,0,24,0"
+                                        FontWeight="Thin" />
+                            <TextBlock Name="currentexpTB"
+                                       FontSize="28"
+                                       Text="32768"
+                                       FontWeight="Thin" />
+                            <TextBlock  FontSize="28"
+                                        Text="/"
+                                        Margin="12,0"
+                                        FontWeight="Thin" />
+                            <TextBlock Name="maxexpTB"
+                                       FontSize="28"
+                                       Text="65536"
+                                       FontWeight="Thin" />
+                        </StackPanel>
+
+                        <ProgressBar Name="expPB"
+                                     Margin="0,12,24,0"
+                                     Value="50" />
+
+                    </StackPanel>
+
+
+
+                </Grid>
+
+                <Grid Name="statisticsTriangle"
+                      Grid.Column="1"
+                      Grid.RowSpan="2"
+                      Margin="0,0,6,0">
+
+                    <Grid VerticalAlignment="Center">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Reading"
                                    FontWeight="Thin"
-                                   Margin="12,0" />
-                    </StackPanel>
+                                   HorizontalAlignment="Center" />
 
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock  FontSize="28"
-                                    Text="EXP"
-                                    Margin="0,0,24,0"
-                                    FontWeight="Thin" />
-                        <TextBlock Name="currentexpTB"
-                                   FontSize="28"
-                                   Text="32768"
-                                   FontWeight="Thin" />
-                        <TextBlock  FontSize="28"
-                                    Text="/"
-                                    Margin="12,0"
-                                    FontWeight="Thin" />
-                        <TextBlock Name="maxexpTB"
-                                   FontSize="28"
-                                   Text="65536"
-                                   FontWeight="Thin" />
-                    </StackPanel>
+                        <Polygon Grid.Row="1"
+                                 Margin="72,6"
+                                 Points="100,0 0,150, 200,150"
+                                 Stroke="Black"
+                                 StrokeThickness="1" />
 
-                    <ProgressBar Name="expPB"
-                                 Margin="0,12,24,0"
-                                 Value="50" />
+                        <Polygon Grid.Row="1"
+                                 Margin="72,6"
+                                 Points="100,60.3 67,109.8, 133,109.8"
+                                 Stroke="#FFEEEEEE"
+                                 StrokeThickness="1" />
+
+                        <Polygon Grid.Row="1"
+                                 Margin="72,6"
+                                 Points="100,30.6 34,129.6, 166,129.6"
+                                 Stroke="#FFEEEEEE"
+                                 StrokeThickness="1" />
+
+                        <Line Grid.Row="1"
+                              Margin="72,6"
+                              X1="100"
+                              X2="100"
+                              Y1="0"
+                              Y2="90"
+                              Stroke="LightGray"
+                              StrokeThickness="1" />
+
+                        <Line Grid.Row="1"
+                              Margin="72,6"
+                              X1="0"
+                              X2="100"
+                              Y1="150"
+                              Y2="90"
+                              Stroke="LightGray"
+                              StrokeThickness="1" />
+
+                        <Line Grid.Row="1"
+                              Margin="72,6"
+                              X1="200"
+                              X2="100"
+                              Y1="150"
+                              Y2="90"
+                              Stroke="LightGray"
+                              StrokeThickness="1" />
+
+                        <Polygon Name="statisticstriangle"
+                                 Grid.Row="1"
+                                 Margin="72,6"
+                                 Points="100,50 35,130 190,145"
+                                 Stroke="Green"
+                                 StrokeThickness="0.5" />
+
+                        <Grid Grid.Row="2">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Text="Test"
+                                       FontWeight="Thin"
+                                       HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="2"
+                                       Text="Homework"
+                                       FontWeight="Thin"
+                                       HorizontalAlignment="Center" />
+
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+                <StackPanel Grid.Row="1">
+
+                    <Grid Margin="24">
+                        <StackPanel>
+                            <Grid Width="500"
+                                  HorizontalAlignment="Left">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="G"
+                                           Margin="24,6"
+                                           FontSize="32"
+                                           Grid.RowSpan="2"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center" />
+
+                                <TextBlock Grid.Column="1"
+                                           Text="Gold"
+                                           FontSize="24" />
+
+                                <TextBlock Grid.Column="1"
+                                           Grid.Row="1"
+                                           Text="Used to purchase upgrades"
+                                           FontSize="20"
+                                           FontWeight="Thin" />
+
+                                <TextBlock Name="goldTB"
+                                           Grid.Column="2"
+                                           Grid.RowSpan="2"
+                                           Text="5535"
+                                           FontSize="24"
+                                           FontWeight="Thin"
+                                           VerticalAlignment="Center"
+                                           Margin="24,12" />
+
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
 
                 </StackPanel>
 
@@ -71,198 +222,6 @@
 
             </Grid>
 
-            <Grid Name="statisticsTriangle"
-                  Grid.Column="1"
-                  Grid.RowSpan="2"
-                  Margin="0,0,6,0">
-
-                <Grid VerticalAlignment="Center">
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Text="Reading"
-                               FontWeight="Thin"
-                               HorizontalAlignment="Center" />
-
-                    <Polygon Grid.Row="1"
-                             Margin="72,6"
-                             Points="100,0 0,150, 200,150"
-                             Stroke="Black"
-                             StrokeThickness="1" />
-
-                    <Polygon Grid.Row="1"
-                             Margin="72,6"
-                             Points="100,60.3 67,109.8, 133,109.8"
-                             Stroke="#FFEEEEEE"
-                             StrokeThickness="1" />
-
-                    <Polygon Grid.Row="1"
-                             Margin="72,6"
-                             Points="100,30.6 34,129.6, 166,129.6"
-                             Stroke="#FFEEEEEE"
-                             StrokeThickness="1" />
-
-                    <Line Grid.Row="1"
-                          Margin="72,6"
-                          X1="100"
-                          X2="100"
-                          Y1="0"
-                          Y2="90"
-                          Stroke="LightGray"
-                          StrokeThickness="1" />
-
-                    <Line Grid.Row="1"
-                          Margin="72,6"
-                          X1="0"
-                          X2="100"
-                          Y1="150"
-                          Y2="90"
-                          Stroke="LightGray"
-                          StrokeThickness="1" />
-
-                    <Line Grid.Row="1"
-                          Margin="72,6"
-                          X1="200"
-                          X2="100"
-                          Y1="150"
-                          Y2="90"
-                          Stroke="LightGray"
-                          StrokeThickness="1" />
-
-                    <Polygon Name="statisticstriangle"
-                             Grid.Row="1"
-                             Margin="72,6"
-                             Points="100,50 35,130 190,145"
-                             Stroke="Green"
-                             StrokeThickness="0.5" />
-
-                    <Grid Grid.Row="2">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <TextBlock Text="Test"
-                                   FontWeight="Thin"
-                                   HorizontalAlignment="Center" />
-                        <TextBlock Grid.Column="2"
-                                   Text="Homework"
-                                   FontWeight="Thin"
-                                   HorizontalAlignment="Center" />
-
-                    </Grid>
-
-                </Grid>
-
-            </Grid>
-
-            <StackPanel Grid.Row="1">
-
-                <Grid Margin="24">
-                    <StackPanel>
-                        <Grid Width="500"
-                              HorizontalAlignment="Left">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="$"
-                                       Margin="24,6"
-                                       FontSize="32"
-                                       Grid.RowSpan="2"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center" />
-
-                            <TextBlock Grid.Column="1"
-                                       Text="Cash"
-                                       FontSize="24" />
-
-                            <TextBlock Grid.Column="1"
-                                       Grid.Row="1"
-                                       Text="Used to purchase real life item"
-                                       FontSize="20"
-                                       FontWeight="Thin" />
-
-                            <TextBlock Name="cashTB"
-                                       Grid.Column="2"
-                                       Grid.RowSpan="2"
-                                       Text="32.17"
-                                       FontSize="24"
-                                       FontWeight="Thin"
-                                       VerticalAlignment="Center"
-                                       Margin="24,12" />
-
-                        </Grid>
-                    </StackPanel>
-                </Grid>
-
-                <Grid Margin="24">
-                    <StackPanel>
-                        <Grid Width="500"
-                              HorizontalAlignment="Left">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="70" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="G"
-                                       Margin="24,6"
-                                       FontSize="32"
-                                       Grid.RowSpan="2"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center" />
-
-                            <TextBlock Grid.Column="1"
-                                       Text="Gold"
-                                       FontSize="24" />
-
-                            <TextBlock Grid.Column="1"
-                                       Grid.Row="1"
-                                       Text="Used to purchase upgrades"
-                                       FontSize="20"
-                                       FontWeight="Thin" />
-
-                            <TextBlock Name="goldTB"
-                                       Grid.Column="2"
-                                       Grid.RowSpan="2"
-                                       Text="5535"
-                                       FontSize="24"
-                                       FontWeight="Thin"
-                                       VerticalAlignment="Center"
-                                       Margin="24,12" />
-
-                        </Grid>
-                    </StackPanel>
-                </Grid>
-
-            </StackPanel>
-
-
-
         </Grid>
-
     </Grid>
 </Page>

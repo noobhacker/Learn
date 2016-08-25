@@ -6,133 +6,141 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="165" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Grid BorderBrush="Black"
-              BorderThickness="1">
-
-            <!-- this is for gradient coloring at second column -->
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".2*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <GridView Name="QuestionsGV"
-                      Margin="6"
-                      Grid.ColumnSpan="2">
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <TextBlock Text="{Binding QuestionString, Mode=OneWay }"
-                                       FontSize="52"
-                                       Margin="18,6"
-                                       FontWeight="Thin" />
-                            <Image Source="{Binding QuestionImagePath,Mode=OneWay}"
-                                   Height="90" />
-                        </Grid>
-                    </DataTemplate>
-                </GridView.ItemTemplate>
-
-            </GridView>
-        </Grid>
-
-        <TextBox Margin="6"
-                 Grid.Row="1"
-                 FontSize="56"
-                 Name="answerTextBox"
-                 PlaceholderText="Answer here"
-                 BorderThickness="0"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 TextWrapping="Wrap"
-                 FontWeight="Thin"
-                 KeyUp="answerTextBox_KeyUp"
-                 TabIndex="0" />
-
-        <Grid Name="errorGrid"
-              Grid.Row="1"
-              Background="Red"
-              Visibility="Collapsed">
-            <Grid>
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center">
-                    <Image Name="errorImage"
-                           Height="180" />
-                    <TextBlock Name="errorTB"
-                               Text="Test"
-                               FontSize="144"
-                               HorizontalAlignment="Stretch"
-                               VerticalAlignment="Center"
-                               TextAlignment="Center" />
-                </StackPanel>
-            </Grid>
-
-        </Grid>
-
-        <Grid Grid.Row="2">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
+    <Grid Background="Transparent">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="48" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.RowSpan="2"
-                        Orientation="Horizontal">
-                <TextBlock Name="combocountTB"
-                           Text="{Binding ComboCount, Mode=OneWay }"
-                           FontSize="72"
-                           Margin="48,24,12,24" />
-                <TextBlock Text="combo! "
-                           FontSize="72"
-                           Margin="12,24,48,24" />
-            </StackPanel>
+            <Grid Grid.Row="1">
 
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <TextBlock Name="answerspeedTB"
-                           Text="{Binding AnswerSpeed, Mode=OneWay }"
-                           FontSize="52"
-                           FontWeight="Thin" />
-                <TextBlock Text=" seconds"
-                           FontSize="52"
-                           FontWeight="Thin" />
-            </StackPanel>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="165" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="1"
-                        Grid.Row="1"
-                        HorizontalAlignment="Center"
-                        Orientation="Horizontal">
-                <TextBlock Name="answeredQuestionsTB"
-                           Text="{Binding AnsweredQuestions, Mode=OneWay}"
-                           FontSize="52"
-                           FontWeight="Thin" />
+                <Grid BorderBrush="Black"
+                      BorderThickness="1">
 
-                <TextBlock Text="/"
-                           FontSize="52"
-                           FontWeight="Thin"
-                           Margin="12,0" />
-                <TextBlock Name="totalQuestionsTB"
-                           Text="{Binding TotalQuestions, Mode=OneWay }"
-                           FontSize="52"
-                           FontWeight="Thin" />
-                <TextBlock Text=" questions"
-                           FontSize="52"
-                           FontWeight="Thin" />
-            </StackPanel>
+                    <!-- this is for gradient coloring at second column -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
+                    <GridView Name="QuestionsGV"
+                              Margin="6"
+                              Grid.ColumnSpan="2">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding QuestionString, Mode=OneWay }"
+                                               FontSize="52"
+                                               Margin="18,6"
+                                               FontWeight="Thin" />
+                                    <Image Source="{Binding QuestionImagePath,Mode=OneWay}"
+                                           Height="90" />
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+
+                    </GridView>
+                </Grid>
+
+                <TextBox Margin="6"
+                         Grid.Row="1"
+                         FontSize="56"
+                         Name="answerTextBox"
+                         PlaceholderText="Answer here"
+                         BorderThickness="0"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         TextWrapping="Wrap"
+                         FontWeight="Thin"
+                         KeyUp="answerTextBox_KeyUp"
+                         TabIndex="0" />
+
+                <Grid Name="errorGrid"
+                      Grid.Row="1"
+                      Background="Red"
+                      Visibility="Collapsed">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <Image Name="errorImage"
+                                   Height="180" />
+                            <TextBlock Name="errorTB"
+                                       Text="Test"
+                                       FontSize="144"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Center"
+                                       TextAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+
+                </Grid>
+
+                <Grid Grid.Row="2">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.RowSpan="2"
+                                Orientation="Horizontal">
+                        <TextBlock Name="combocountTB"
+                                   Text="{Binding ComboCount, Mode=OneWay }"
+                                   FontSize="72"
+                                   Margin="48,24,12,24" />
+                        <TextBlock Text="combo! "
+                                   FontSize="72"
+                                   Margin="12,24,48,24" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <TextBlock Name="answerspeedTB"
+                                   Text="{Binding AnswerSpeed, Mode=OneWay }"
+                                   FontSize="52"
+                                   FontWeight="Thin" />
+                        <TextBlock Text=" seconds"
+                                   FontSize="52"
+                                   FontWeight="Thin" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                Orientation="Horizontal">
+                        <TextBlock Name="answeredQuestionsTB"
+                                   Text="{Binding AnsweredQuestions, Mode=OneWay}"
+                                   FontSize="52"
+                                   FontWeight="Thin" />
+
+                        <TextBlock Text="/"
+                                   FontSize="52"
+                                   FontWeight="Thin"
+                                   Margin="12,0" />
+                        <TextBlock Name="totalQuestionsTB"
+                                   Text="{Binding TotalQuestions, Mode=OneWay }"
+                                   FontSize="52"
+                                   FontWeight="Thin" />
+                        <TextBlock Text=" questions"
+                                   FontSize="52"
+                                   FontWeight="Thin" />
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
         </Grid>
-
     </Grid>
 </Page>

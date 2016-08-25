@@ -10,24 +10,13 @@ using System.Threading.Tasks;
 
 namespace Learn.ViewModels
 {
-    public class ResultViewModel : INotifyPropertyChanged
+    public class OnlineViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<ResultItem> ResultList = new ObservableCollection<ResultItem>();
+        public ObservableCollection<BookItem> Books { get; set; }
 
-        private int maxCombo;
-
-        public int MaxCombo
+        public OnlineViewModel()
         {
-            get
-            {
-                return maxCombo;
-            }
-
-            set
-            {
-                maxCombo = value;
-                OnPropertyChanged();
-            }
+            Books = new ObservableCollection<BookItem>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -6,294 +6,300 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="Transparent">
         <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
 
-        <ScrollViewer>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-                </Grid.RowDefinitions>
+            <ScrollViewer>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
 
-                <TextBlock Margin="10,6"
-                           FontSize="24"
-                           Text="Skins"
-                           Grid.Row="1" />
+                    </Grid.RowDefinitions>
 
-                <GridView Margin="6">
-                    <Grid Width="320"
-                          Height="140"
-                          Margin="6"
-                          Padding="3"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          Background="#FFDCEFFA">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="0.75*" />
-                        </Grid.ColumnDefinitions>
+                    <TextBlock Margin="10,6"
+                               FontSize="24"
+                               Text="Skins"
+                               Grid.Row="1" />
 
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="Warning"
-                                       FontSize="24"
-                                       Margin="3,3,0,0" />
-                            <TextBlock Grid.Row="1"
-                                       Text="Lv. 2 -> Lv. 3"
-                                       FontSize="15"
-                                       Margin="3,0,0,0" />
-                            <TextBlock Grid.Row="2"
-                                       Text="Next Level"
-                                       FontWeight="Thin"
-                                       Margin="3,6,0,0" />
-                            <TextBlock Grid.Row="3"
-                                       FontWeight="Thin"
-                                       Margin="3,0,0,3"
-                                       TextWrapping="Wrap"
-                                       Text="3 times warning before considered as wrong." />
-
-
-                        </Grid>
-
-                        <Grid Grid.Column="1"
-                              VerticalAlignment="Center"
-                              Margin="3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="25000 gold"
-                                       Margin="3"
-                                       HorizontalAlignment="Center" />
-                            <Button Content="Upgrade"
-                                    Grid.Row="1"
-                                    Height="60"
-                                    Background="LightGreen"
-                                    HorizontalAlignment="Stretch" />
-
-                        </Grid>
-
-                    </Grid>
-
-                    <Grid Width="320"
-                          Height="140"
-                          Margin="6"
-                          Padding="3"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          Background="#FFDCEFFA">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="0.75*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="Combo Multiplier"
-                                       FontSize="22"
-                                       Margin="3,3,0,0" />
-                            <TextBlock Grid.Row="1"
-                                       Text="Lv. 0 -> Lv. 1"
-                                       FontSize="15"
-                                       Margin="3,0,0,0" />
-                            <TextBlock Grid.Row="2"
-                                       Text="Next Level"
-                                       FontWeight="Thin"
-                                       Margin="3,6,0,0" />
-                            <TextBlock Grid.Row="3"
-                                       FontWeight="Thin"
-                                       Margin="3,0,0,3"
-                                       TextWrapping="Wrap"
-                                       Text="Adds 3000 points when full combo." />
-
-
-                        </Grid>
-
-                        <Grid Grid.Column="1"
-                              VerticalAlignment="Center"
-                              Margin="3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="5000 gold"
-                                       Margin="3"
-                                       HorizontalAlignment="Center" />
-                            <Button Content="Upgrade"
-                                    Grid.Row="1"
-                                    Height="60"
-                                    Background="LightGreen"
-                                    HorizontalAlignment="Stretch" />
-
-                        </Grid>
-
-                    </Grid>
-
-                    <Grid Width="320"
-                          Height="140"
-                          Margin="6"
-                          Padding="3"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Top"
-                          Background="#FFDCEFFA">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="0.75*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="Gold Multiplier"
-                                       FontSize="22"
-                                       Margin="3,3,0,0" />
-                            <TextBlock Grid.Row="1"
-                                       Text="Lv. 0 -> Lv. 1"
-                                       FontSize="15"
-                                       Margin="3,0,0,0" />
-                            <TextBlock Grid.Row="2"
-                                       Text="Next Level"
-                                       FontWeight="Thin"
-                                       Margin="3,6,0,0" />
-                            <TextBlock Grid.Row="3"
-                                       FontWeight="Thin"
-                                       Margin="3,0,0,3"
-                                       TextWrapping="Wrap"
-                                       Text="Multiplies the gold by 102%." />
-
-
-                        </Grid>
-
-                        <Grid Grid.Column="1"
-                              VerticalAlignment="Center"
-                              Margin="3">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-
-                            <TextBlock Text="15000 gold"
-                                       Margin="3"
-                                       HorizontalAlignment="Center" />
-                            <Button Content="Upgrade"
-                                    Grid.Row="1"
-                                    Height="60"
-                                    Background="LightGreen"
-                                    HorizontalAlignment="Stretch" />
-
-                        </Grid>
-
-                    </Grid>
-
-                </GridView>
-
-                <GridView Name="skinsGV"
-                          Grid.Row="2">
-                    <Grid HorizontalAlignment="Left"
-                          Width="200"
-                          Height="130"
-                          Padding="2"
-                          Margin="12,6"
-                          Background="#FFDCEFFA">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-
-                        <Grid Margin="6,3,6,3">
+                    <GridView Margin="6">
+                        <Grid Width="320"
+                              Height="140"
+                              Margin="6"
+                              Padding="3"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Background="#FFDCEFFA">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="0.75*" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Dark" />
-                            <TextBlock Text="20000 gold"
-                                       Grid.Column="1"
-                                       FontWeight="Thin" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Warning"
+                                           FontSize="24"
+                                           Margin="3,3,0,0" />
+                                <TextBlock Grid.Row="1"
+                                           Text="Lv. 2 -> Lv. 3"
+                                           FontSize="15"
+                                           Margin="3,0,0,0" />
+                                <TextBlock Grid.Row="2"
+                                           Text="Next Level"
+                                           FontWeight="Thin"
+                                           Margin="3,6,0,0" />
+                                <TextBlock Grid.Row="3"
+                                           FontWeight="Thin"
+                                           Margin="3,0,0,3"
+                                           TextWrapping="Wrap"
+                                           Text="3 times warning before considered as wrong." />
+
+
+                            </Grid>
+
+                            <Grid Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  Margin="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="25000 gold"
+                                           Margin="3"
+                                           HorizontalAlignment="Center" />
+                                <Button Content="Upgrade"
+                                        Grid.Row="1"
+                                        Height="60"
+                                        Background="LightGreen"
+                                        HorizontalAlignment="Stretch" />
+
+                            </Grid>
 
                         </Grid>
 
-                        <Grid Grid.Row="1"
-                              Margin="3"
-                              BorderBrush="Gray">
+                        <Grid Width="320"
+                              Height="140"
+                              Margin="6"
+                              Padding="3"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Background="#FFDCEFFA">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.75*" />
                             </Grid.ColumnDefinitions>
 
-                            <Rectangle Margin="6"
-                                       Fill="#FF4E4E4E" />
-                            <Rectangle Margin="6"
-                                       Fill="#FF8C8C8C"
-                                       Grid.Column="1" />
-                            <Rectangle Margin="6"
-                                       Fill="#FF313131"
-                                       Grid.Column="2" />
-                            <Rectangle Margin="6"
-                                       Fill="#FFB0B0B0"
-                                       Grid.Column="3" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="Combo Multiplier"
+                                           FontSize="22"
+                                           Margin="3,3,0,0" />
+                                <TextBlock Grid.Row="1"
+                                           Text="Lv. 0 -> Lv. 1"
+                                           FontSize="15"
+                                           Margin="3,0,0,0" />
+                                <TextBlock Grid.Row="2"
+                                           Text="Next Level"
+                                           FontWeight="Thin"
+                                           Margin="3,6,0,0" />
+                                <TextBlock Grid.Row="3"
+                                           FontWeight="Thin"
+                                           Margin="3,0,0,3"
+                                           TextWrapping="Wrap"
+                                           Text="Adds 3000 points when full combo." />
+
+
+                            </Grid>
+
+                            <Grid Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  Margin="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="5000 gold"
+                                           Margin="3"
+                                           HorizontalAlignment="Center" />
+                                <Button Content="Upgrade"
+                                        Grid.Row="1"
+                                        Height="60"
+                                        Background="LightGreen"
+                                        HorizontalAlignment="Stretch" />
+
+                            </Grid>
 
                         </Grid>
-                        <Grid Grid.Row="2">
 
+                        <Grid Width="320"
+                              Height="140"
+                              Margin="6"
+                              Padding="3"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Background="#FFDCEFFA">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="0.75*" />
                             </Grid.ColumnDefinitions>
 
-                            <Button Content="Try"
-                                    Margin="6"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
-                            <Button Grid.Column="1 "
-                                    Content="Purchase"
-                                    Margin="6"
-                                    HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch" />
+                                <TextBlock Text="Gold Multiplier"
+                                           FontSize="22"
+                                           Margin="3,3,0,0" />
+                                <TextBlock Grid.Row="1"
+                                           Text="Lv. 0 -> Lv. 1"
+                                           FontSize="15"
+                                           Margin="3,0,0,0" />
+                                <TextBlock Grid.Row="2"
+                                           Text="Next Level"
+                                           FontWeight="Thin"
+                                           Margin="3,6,0,0" />
+                                <TextBlock Grid.Row="3"
+                                           FontWeight="Thin"
+                                           Margin="3,0,0,3"
+                                           TextWrapping="Wrap"
+                                           Text="Multiplies the gold by 102%." />
+
+
+                            </Grid>
+
+                            <Grid Grid.Column="1"
+                                  VerticalAlignment="Center"
+                                  Margin="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="15000 gold"
+                                           Margin="3"
+                                           HorizontalAlignment="Center" />
+                                <Button Content="Upgrade"
+                                        Grid.Row="1"
+                                        Height="60"
+                                        Background="LightGreen"
+                                        HorizontalAlignment="Stretch" />
+
+                            </Grid>
 
                         </Grid>
-                    </Grid>
-                </GridView>
 
-                <GridView Name="voicesGV"
-                          Grid.Row="4" />
+                    </GridView>
+
+                    <GridView Name="skinsGV"
+                              Grid.Row="2">
+                        <Grid HorizontalAlignment="Left"
+                              Width="200"
+                              Height="130"
+                              Padding="2"
+                              Margin="12,6"
+                              Background="#FFDCEFFA">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Margin="6,3,6,3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Dark" />
+                                <TextBlock Text="20000 gold"
+                                           Grid.Column="1"
+                                           FontWeight="Thin" />
+
+                            </Grid>
+
+                            <Grid Grid.Row="1"
+                                  Margin="3"
+                                  BorderBrush="Gray">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Rectangle Margin="6"
+                                           Fill="#FF4E4E4E" />
+                                <Rectangle Margin="6"
+                                           Fill="#FF8C8C8C"
+                                           Grid.Column="1" />
+                                <Rectangle Margin="6"
+                                           Fill="#FF313131"
+                                           Grid.Column="2" />
+                                <Rectangle Margin="6"
+                                           Fill="#FFB0B0B0"
+                                           Grid.Column="3" />
+
+                            </Grid>
+                            <Grid Grid.Row="2">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Button Content="Try"
+                                        Margin="6"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch" />
+
+                                <Button Grid.Column="1 "
+                                        Content="Purchase"
+                                        Margin="6"
+                                        HorizontalAlignment="Stretch"
+                                        VerticalAlignment="Stretch" />
+
+                            </Grid>
+                        </Grid>
+                    </GridView>
+
+                    <GridView Name="voicesGV"
+                              Grid.Row="4" />
 
 
 
-            </Grid>
-        </ScrollViewer>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>
 

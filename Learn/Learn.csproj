@@ -113,19 +113,18 @@
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
     <Compile Include="Items\HamburgerMenuItem.cs" />
-    <Compile Include="Migrations\20160824112323_v1.cs" />
-    <Compile Include="Migrations\20160824112323_v1.designer.cs">
-      <DependentUpon>20160824112323_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20160824115855_v2.cs" />
-    <Compile Include="Migrations\20160824115855_v2.designer.cs">
-      <DependentUpon>20160824115855_v2.cs</DependentUpon>
+    <Compile Include="Migrations\20160825081325_v1.cs" />
+    <Compile Include="Migrations\20160825081325_v1.designer.cs">
+      <DependentUpon>20160825081325_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\Skin.cs" />
     <Compile Include="Pages\OnlinePage.xaml.cs">
       <DependentUpon>OnlinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WelcomePage.xaml.cs">
+      <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AddBookViewModel.cs" />
     <Compile Include="Models\Book.cs" />
@@ -157,7 +156,10 @@
     <Compile Include="Pages\ResultPage.xaml.cs">
       <DependentUpon>ResultPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\OnlineViewModel.cs" />
     <Compile Include="ViewModels\UpgradeViewModel.cs" />
+    <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="WebAPI.cs" />
     <None Include="IOClass.cs_" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -235,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\UpgradePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

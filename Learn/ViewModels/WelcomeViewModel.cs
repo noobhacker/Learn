@@ -1,7 +1,5 @@
-﻿using Learn.Items;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,22 +8,20 @@ using System.Threading.Tasks;
 
 namespace Learn.ViewModels
 {
-    public class ResultViewModel : INotifyPropertyChanged
+    public class WelcomeViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<ResultItem> ResultList = new ObservableCollection<ResultItem>();
+        private string name;
 
-        private int maxCombo;
-
-        public int MaxCombo
+        public string Name
         {
             get
             {
-                return maxCombo;
+                return name;
             }
 
             set
             {
-                maxCombo = value;
+                name = value;
                 OnPropertyChanged();
             }
         }

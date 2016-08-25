@@ -8,7 +8,7 @@ using Learn.Models;
 namespace Learn.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20160824112323_v1")]
+    [Migration("20160825081325_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,7 +21,7 @@ namespace Learn.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("Date");
+                    b.Property<DateTimeOffset>("Date");
 
                     b.Property<string>("Description");
 
@@ -44,6 +44,22 @@ namespace Learn.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Book");
+                });
+
+            modelBuilder.Entity("Learn.Models.Homework", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DueDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Points");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Homework");
                 });
 
             modelBuilder.Entity("Learn.Models.Question", b =>
