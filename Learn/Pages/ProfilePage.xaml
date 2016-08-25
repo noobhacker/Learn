@@ -64,7 +64,8 @@
 
                         <ProgressBar Name="expPB"
                                      Margin="0,12,24,0"
-                                     Value="50" />
+                                     Value="{Binding Exp}"
+                                     Maximum="{Binding LevelUpExp}" />
 
                     </StackPanel>
 

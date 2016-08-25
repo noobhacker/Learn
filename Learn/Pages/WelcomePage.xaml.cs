@@ -40,7 +40,9 @@ namespace Learn.Pages
             db.Users.Add(new User()
             {
                 Name = name,
-                Level = 1
+                Level = 1,
+                LevelUpExp=100,
+                Gold=50000
             });
             await db.SaveChangesAsync();
             Frame.Navigate(typeof(MainPage));

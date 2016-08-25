@@ -41,17 +41,6 @@ namespace Learn
             vm.Exp = user.CurrentExp;
             vm.LevelUpExp = user.LevelUpExp;
             vm.Gold = user.Gold;
-            //    profilenameTB.Text = GlobalViewModel.UserProfile.ProfileName;
-            //    levelTB.Text = Convert.ToString(GlobalViewModel.UserProfile.Level);
-            //    currentexpTB.Text = Convert.ToString(GlobalViewModel.UserProfile.CurrentExp);
-            //    maxexpTB.Text = Convert.ToString(GlobalViewModel.UserProfile.NextLevelExp);
-
-            //    expPB.Maximum = GlobalViewModel.UserProfile.NextLevelExp;
-            //    expPB.Value  = GlobalViewModel.UserProfile.CurrentExp;
-
-            //    cashTB.Text = Convert.ToString(Math.Round(GlobalViewModel.UserProfile.Cash,2));
-            //    goldTB.Text = Convert.ToString(Math.Round(GlobalViewModel.UserProfile.Gold,2));
-
             drawTriangle();
         }
 

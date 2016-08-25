@@ -46,7 +46,8 @@ namespace Learn
                 {
                     Color = skin.Color,
                     Name = skin.Name,
-                    Price = skin.Owned ? "" : skin.Price + " gold"
+                    Price = skin.Owned ? "" : skin.Price + " gold",
+                    Id=skin.Id
                 });
             }
         }

@@ -8,15 +8,15 @@
 
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        
+        <!--
         <CommandBar  Background="Transparent">
             <AppBarButton Icon="Back"
                           Label="Back" />
         </CommandBar>
-        
+        -->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />

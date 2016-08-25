@@ -13,6 +13,10 @@ namespace Learn.ViewModels
 {
     public class UpgradeViewModel : INotifyPropertyChanged
     {
+        private int warningLevel;
+        private int comboLevel;
+        private int goldLevel;
+
         public ObservableCollection<SkinItem> Skins { get; set; }
         public List<Skin> SkinList = new List<Skin>();
 

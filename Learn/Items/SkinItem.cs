@@ -5,9 +5,23 @@ namespace Learn.Items
 {
     public class SkinItem : INotifyPropertyChanged
     {
+        private int id;
         private string name;
         private string price;
         private string color;
+        public int Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Name
         {

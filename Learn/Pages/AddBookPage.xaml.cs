@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
@@ -22,12 +23,17 @@ namespace Learn
         public AddBookPage()
         {
             this.InitializeComponent();
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            currentView.BackRequested += (sender, e) =>
+            {
+                currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+                Frame.Navigate(typeof(LibraryPage));
+            };
         }
 
-     
         private void easyModeAddBtn_Click(object sender, RoutedEventArgs e)
         {
-
             string str = vm.TextQuestions;
             vm.TextQuestions = "";
 
