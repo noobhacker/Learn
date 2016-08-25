@@ -14,10 +14,9 @@
         <CommandBar Background="Transparent">
                 <AppBarButton Icon="OpenFile"
                               Name="readBtn"
-                              Label="Read" />
-                <AppBarButton Icon="Accept"
-                              Name="testBtn"
-                              Label="Test" />
+                              Label="Read" 
+                              Visibility="Collapsed"
+                              Click="readBtn_Click"/>
             </CommandBar>
         <GridView Name="booksGV"
                   SelectionMode="Single"

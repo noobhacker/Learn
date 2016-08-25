@@ -1,4 +1,5 @@
-﻿using Learn.ViewModels;
+﻿using Learn.Models;
+using Learn.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,7 +54,21 @@ namespace Learn.Pages
 
         private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if((sender as GridView).SelectedIndex != -1)        
+                readBtn.Visibility = Visibility.Visible;       
+            else         
+                readBtn.Visibility = Visibility.Collapsed;      
         }
+
+        private async void readBtn_Click(object sender, RoutedEventArgs e)
+        {
+            loading.IsActive = true;
+
+            var index = booksGV.SelectedIndex;
+            var id = await WebAPI.DownloadBookByIdAsync(vm.Books[index].BookId);
+
+            Frame.Navigate(typeof(ReadPage));
+        }
+
     }
 }

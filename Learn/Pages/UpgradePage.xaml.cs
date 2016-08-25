@@ -95,16 +95,68 @@ namespace Learn
 
         }
 
-        private void skinsGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void skinsGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var index = (sender as GridView).SelectedIndex;
+            var selectedSkin = vm.Skins[index];
 
+            var db = new DatabaseContext();
+            if (selectedSkin.Price != "")
+            {
+                if (await DialogHelper.ShowYesNoDialogAsync("Do you want to purchase this skin?") == 0)
+                {
+                    var price = db.Skins.First(x => x.Name == selectedSkin.Name).Price;
+                    if (db.Users.First().Gold > price)
+                    {
+                        db.Users.First().Gold -= price;
+                        db.Skins.First(x => x.Name == selectedSkin.Name).Owned = true;
+                        vm.Skins[index].Price = "";
+                    }
+                    else
+                    {
+                        await DialogHelper.ShowDialogAsync("You don't have enough gold to purchase this skin");
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+        
+            MainPage.vm.Skin = selectedSkin.Color;
+            db.Users.First().SkinColor = selectedSkin.Color;
+
+            await db.SaveChangesAsync();
         }
 
-        private void upgradesGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void upgradesGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var index = (sender as GridView).SelectedIndex;
+                var db = new DatabaseContext();
+                if (db.Users.First().Gold > vm.Upgrades[index].Cost)
+                {
+                    switch (index)
+                    {
+                        case 0:
+                            db.Users.First().WarningLevel += 1;
+                            break;
+                        case 1:
+                            db.Users.First().ComboMultiplierLevel += 1;
+                            break;
+                        case 2:
+                            db.Users.First().GoldMultiplierLevel += 1;
+                            break;
+                    }
+                    db.Users.First().Gold -= vm.Upgrades[index].Cost;
 
+                    await db.SaveChangesAsync();
+
+                Frame.Navigate(typeof(UpgradePage));
+                }
+                else
+                {
+                    await DialogHelper.ShowDialogAsync("You don't have enough gold to purchase this upgrade");
+                }           
         }
     }
 }

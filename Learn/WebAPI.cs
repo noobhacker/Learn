@@ -19,7 +19,7 @@ namespace Learn
         {
             var db = new DatabaseContext();
             var book = await getFromServerAsync<Book>("Books/" + idOnServer);
-            var questions = await getFromServerAsync<List<Question>>("GetQuestions/" + idOnServer);
+            var questions = await getFromServerAsync<List<Question>>("Questions/" + idOnServer);
 
             var result = db.Books.Add(book);
             foreach (var question in questions)

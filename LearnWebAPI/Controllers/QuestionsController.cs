@@ -18,9 +18,9 @@ namespace LearnWebAPI.Controllers
         private LearnWebAPIContext db = new LearnWebAPIContext();
 
         // GET: api/Questions
-        public List<Question> GetQuestions(int bookId)
+        public List<Question> GetQuestions(int id)
         {
-            return db.Questions.Where(x=>x.BookId == bookId).ToList();
+            return db.Questions.Where(x=>x.BookId == id).ToList();
         }
 
         // GET: api/Questions/5
