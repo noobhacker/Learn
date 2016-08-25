@@ -12,6 +12,6 @@ namespace Learn.Models
         public DateTimeOffset Date { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Points { get; set; }
+        public string Points { get; set; }
     }
 }

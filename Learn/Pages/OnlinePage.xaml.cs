@@ -34,7 +34,7 @@ namespace Learn.Pages
         {
             try
             {
-                var response = await WebAPI.GetBooks();
+                var response = await WebAPI.GetBooksAsync();
                 foreach(var book in response)
                 {
                     vm.Books.Add(new Items.BookItem()

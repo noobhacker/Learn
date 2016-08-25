@@ -1,0 +1,65 @@
+﻿<Page
+    x:Class="Learn.Pages.ReadPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Learn.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ListView Name="questionListLV"
+                  ItemsSource="{Binding QuestionsList}"
+                  Grid.Row="1">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid Name="listviewheaders"
+                          Margin="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".5*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="Question"
+                                   Margin="6" />
+                        <TextBlock Text="Answer"
+                                   Grid.Column="1"
+                                   Margin="6" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".3*" />
+                            <ColumnDefinition Width=".5*" />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding QuestionImagePath}"
+                               Margin="6,0"
+                               Height="90"
+                               Visibility="{Binding QuestionImageVisibility}" />
+                        <TextBlock Text="{Binding QuestionString}"
+                                   VerticalAlignment="Center"
+                                   Margin="6,0" />
+                        <TextBlock Text="{Binding AnswerString}"
+                                   Grid.Column="1"
+                                   Margin="6,0"
+                                   VerticalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

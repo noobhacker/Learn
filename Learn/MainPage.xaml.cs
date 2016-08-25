@@ -43,8 +43,9 @@ namespace Learn
 
             var db = new DatabaseContext();
             var user = db.Users.First();
-            vm.Exp = user.CurrentExp;
+
             vm.LevelUpExp = user.LevelUpExp;
+            vm.Exp = user.CurrentExp;           
             vm.ProfileName = user.Name;
             vm.Skin = user.SkinColor;
             vm.Level = user.Level;

@@ -59,22 +59,22 @@
                             <ColumnDefinition Width=".3*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding ActionDate}"
+                        <TextBlock Text="{Binding Date}"
                                    Margin="6"
                                    TextTrimming="CharacterEllipsis"
                                    FontWeight="Light" />
 
-                        <TextBlock Text="{Binding ActionName}"
+                        <TextBlock Text="{Binding Name}"
                                    Grid.Column="1"
                                    Margin="6"
                                    FontWeight="Light" />
 
-                        <TextBlock Text="{Binding ActionDescription}"
+                        <TextBlock Text="{Binding Description}"
                                    Grid.Column="2"
                                    Margin="6"
                                    FontWeight="Light" />
 
-                        <TextBlock Text="{Binding ActionPoints}"
+                        <TextBlock Text="{Binding Points}"
                                    Grid.Column="3"
                                    Margin="6"
                                    FontWeight="Light" />

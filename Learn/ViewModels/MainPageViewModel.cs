@@ -82,7 +82,6 @@ namespace Learn.ViewModels
             set
             {
                 exp = value;
-                CheckIfLevelUp();
                 OnPropertyChanged();
             }
         }
@@ -125,12 +124,12 @@ namespace Learn.ViewModels
                 // minus first before nextlevelexp got adjustment
 
                 if (Level <= 23)
-                    LevelUpExp = Convert.ToInt16(LevelUpExp * (1.3 - Convert.ToDouble(Level) / 100));
+                    LevelUpExp = Convert.ToInt32(LevelUpExp * (1.3 - Convert.ToDouble(Level) / 100));
                 else
-                    LevelUpExp = Convert.ToInt16(LevelUpExp * 1.07);
+                    LevelUpExp = Convert.ToInt32(LevelUpExp * 1.07);
 
                 //level up after multiplications
-                Level++;
+                Level += 1;
                 gotLevelUp = true;
             }
 

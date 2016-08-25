@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using static Learn.Helpers.BonusHelper;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -75,7 +76,7 @@ namespace Learn
             if(tempanswerspeed >= Math.Round(animatedanswerspeed,3) && 
                 tempcombo == animatedcombo &&
                 temperror == animatederror &&
-                temppoints == animatedpoints)
+                temppoints <= animatedpoints)
             {
                 // display gained exp gold etc. here
                 goldgainedTB.Text = Convert.ToString(Math.Round(Convert.ToDouble(temppoints) / 100));
@@ -104,7 +105,7 @@ namespace Learn
         {
             report = (FullResult)e.Parameter;
             foreach (var item in report.ResultList)
-                vm.ResultList.Add(item);
+                vm.Results.Add(item);
             vm.MaxCombo = report.MaxCombo;
             tempcombo = report.MaxCombo;
 
@@ -133,19 +134,27 @@ namespace Learn
         
             points = points + (tempcombo * 100) - (interror * 1000);
             temppoints = points;
-
-            // end of calculating points
-            // update database
-
+            
+            // bonus
             var db = new DatabaseContext();
             var user = db.Users.First();
-
+            if(vm.MaxCombo == vm.Results.Count())
+            {
+                var comboBonus = GetComboBonusByLevel(user.ComboMultiplierLevel);
+                temppoints += comboBonus;
+                vm.ComboBonus = comboBonus;
+            }
+            // end of calculating points
+            // update database
+            
             user.Gold += temppoints / 100;
+            user.Gold *= 1 + GetGoldBonusByLevel(user.GoldMultiplierLevel) / 100;
 
             var expAmount = Convert.ToInt32(((temppoints / 100) * (1 +
                 Convert.ToDouble(MainPage.vm.Level) / 100)));
             user.CurrentExp += expAmount;
             MainPage.vm.Exp += expAmount;
+            MainPage.vm.CheckIfLevelUp();
             // 1 level + 0.01%, higher level earns more exp makes sense
 
             //// dont forget this!!!
@@ -156,7 +165,7 @@ namespace Learn
                 Date = DateTime.Now,
                 Description = "Test (" + report.ResultList.Count + " questions)",
                 Name = "Test",
-                Points = temppoints
+                Points = Convert.ToString(temppoints)
             });
            
             await db.SaveChangesAsync();

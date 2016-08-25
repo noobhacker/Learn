@@ -11,11 +11,11 @@ namespace Learn
 {
     public static class WebAPI
     {
-        public static async Task<List<Book>> GetBooks()      
+        public static async Task<List<Book>> GetBooksAsync()      
            => await getFromServerAsync<List<Book>>("Books");
                 
         /// <returns>Returns idOnClient</returns>
-        public static async Task<int> DownloadBookById(int idOnServer)
+        public static async Task<int> DownloadBookByIdAsync(int idOnServer)
         {
             var db = new DatabaseContext();
             var book = await getFromServerAsync<Book>("Books/" + idOnServer);
@@ -29,7 +29,7 @@ namespace Learn
             return result.Entity.Id;
         }
 
-        public static async Task UploadBook(int bookId)
+        public static async Task UploadBookAsync(int bookId)
         {
             var db = new DatabaseContext();
             var book = db.Books.First(x => x.Id == bookId);

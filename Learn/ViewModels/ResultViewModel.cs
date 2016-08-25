@@ -12,9 +12,11 @@ namespace Learn.ViewModels
 {
     public class ResultViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<ResultItem> ResultList = new ObservableCollection<ResultItem>();
+        public ObservableCollection<ResultItem> Results { get; set; }
 
         private int maxCombo;
+        private int comboBonus;
+        private int goldBonus;
 
         public int MaxCombo
         {
@@ -28,6 +30,39 @@ namespace Learn.ViewModels
                 maxCombo = value;
                 OnPropertyChanged();
             }
+        }
+
+        public int ComboBonus
+        {
+            get
+            {
+                return comboBonus;
+            }
+
+            set
+            {
+                comboBonus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int GoldBonus
+        {
+            get
+            {
+                return goldBonus;
+            }
+
+            set
+            {
+                goldBonus = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ResultViewModel()
+        {
+            Results = new ObservableCollection<ResultItem>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

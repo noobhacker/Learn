@@ -1,5 +1,7 @@
-﻿using Learn.Items;
+﻿using Learn.Helpers;
+using Learn.Items;
 using Learn.Models;
+using Learn.Pages;
 using Learn.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -49,17 +51,32 @@ namespace Learn
 
         private void testBtn_Click(object sender, RoutedEventArgs e)
         {
-          this.Frame.Navigate(typeof(TestPage),vm.Books[booksGV.SelectedIndex].BookId);
+             Frame.Navigate(typeof(TestPage),vm.Books[booksGV.SelectedIndex].BookId);
         }
 
         private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if((sender as GridView).SelectedIndex == -1)
+            {
+                editBtn.Visibility = Visibility.Collapsed;
+                deleteBtn.Visibility = Visibility.Collapsed;
+                readBtn.Visibility = Visibility.Collapsed;
+                testBtn.Visibility = Visibility.Collapsed;
+                shareBtn.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                editBtn.Visibility = Visibility.Visible;
+                deleteBtn.Visibility = Visibility.Visible;
+                readBtn.Visibility = Visibility.Visible;
+                testBtn.Visibility = Visibility.Visible;
+                shareBtn.Visibility = Visibility.Visible;
+            }
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddBookPage));
+            Frame.Navigate(typeof(AddBookPage));
         }
 
         private async void deleteBtn_Click(object sender, RoutedEventArgs e)
@@ -68,6 +85,40 @@ namespace Learn
 
             await db.SaveChangesAsync();
         }
-    }
 
+        private async void shareBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var index = booksGV.SelectedIndex;
+            var db = new DatabaseContext();
+            if(db.Questions.FirstOrDefault(x=>x.BookId == vm.Books[index].BookId).QuestionString == "")
+            {
+                await DialogHelper.ShowDialogAsync("Books with image questions can't be shared online");
+            }
+            else
+            {
+                try
+                {
+                    await WebAPI.UploadBookAsync(vm.Books[index].BookId);
+                    await DialogHelper.ShowDialogAsync("Book shared online!");
+                    Frame.Navigate(typeof(OnlinePage));
+                }
+                catch
+                {
+                    await DialogHelper.ShowDialogAsync("Something went wrong");
+                }
+            }
+        }
+
+        private void readBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var index = booksGV.SelectedIndex;
+            Frame.Navigate(typeof(ReadPage), vm.Books[index].BookId);
+        }
+
+        private void editBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+    }
 }

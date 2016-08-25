@@ -18,5 +18,8 @@ namespace Learn.Helpers
             var res = await dialog.ShowAsync();
             return (int)res.Id;
         }
+
+        public static async Task ShowDialogAsync(string message)
+            => await new MessageDialog(message).ShowAsync();
     }
 }

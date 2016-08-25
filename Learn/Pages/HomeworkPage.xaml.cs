@@ -70,57 +70,60 @@ namespace Learn
 
         private async void forfeitBtn_Click(object sender, RoutedEventArgs e)
         {
-            //        if(homeworksLV.SelectedItems.Count != 0)
-            //        {
-            //            GlobalViewModel.UserHomework.RemoveAt(homeworksLV.SelectedIndex);
-            //            await IOClass.SaveHomework();
-            //        }
+            var index = (sender as ListView).SelectedIndex;
+            if (homeworksLV.SelectedItems.Count != 0)
+            {
+                var db = new DatabaseContext();
+                db.Homeworks.Remove(db.Homeworks.First(x => x.Id == vm.Homeworks[index].Id));
+                await db.SaveChangesAsync();
+
+                vm.Homeworks.RemoveAt(index);
+            }
         }
 
         private async void doneBtn_Click(object sender, RoutedEventArgs e)
         {
-            //        if(homeworksLV.SelectedItems.Count != 0)
-            //        {
+            if (homeworksLV.SelectedItems.Count != 0)
+            {
+                var db = new DatabaseContext();
+                var index = homeworksLV.SelectedIndex;
+                // cant do this will miss track which property modified
+                //var user = db.Users.First();
+                double multiplier = 1;
+                TimeSpan extra;
 
-            //            // calculate bonus for finish earlier
+                try
+                {
+                    extra = vm.Homeworks[index].DueDate.Subtract(DateTime.Now);
+                    for (int i = 0; i < extra.Days; i++)
+                        multiplier += 0.01;
+                }
+                catch { }
 
-            //            double multiplier = 1;
-            //            TimeSpan extra;
+                int points = Convert.ToInt32(vm.Homeworks[index].Points * multiplier);
 
-            //            try
-            //            {
-            //                extra = GlobalViewModel.UserHomework[homeworksLV.SelectedIndex].DueDate.Subtract(DateTime.Now);
-            //                for (int i = 0; i < extra.Days; i++)
-            //                    multiplier += 0.01;
-            //            }
-            //            catch { }
+                db.Users.First().HomeworkEXP += points;
+                // seperate homeworkexp with currentexp because homeworkexp just used to draw graph
+                db.Users.First().CurrentExp += points;
 
-            //            int points = Convert.ToInt32(GlobalViewModel.UserHomework[homeworksLV.SelectedIndex].Points * multiplier);
+                db.Users.First().Gold += points;
 
-            //            GlobalViewModel.UserProfile.HomeworkEXP += points;
-            //            // seperate homeworkexp with currentexp because homeworkexp just used to draw graph
-            //            GlobalViewModel.UserProfile.CurrentExp += points;
-            //            GlobalViewModel.UserProfile.CheckIfLevelUp();
+                db.Activities.Add(new Activity()
+                {
+                    Date = DateTime.Now,
+                    Description = vm.Homeworks[index].Name,
+                    Name = "Done Homework",
+                    Points = points + " (+" + extra.Days + "%)"
+                });
 
-            //            GlobalViewModel.UserProfile.Gold += points;
-            //            GlobalViewModel.UserProfile.Cash += points / 100;
+                db.Homeworks.Remove(db.Homeworks.First(x => x.Id == vm.Homeworks[index].Id));
+                vm.Homeworks.RemoveAt(index);
 
-            //            GlobalViewModel.UserActivity.Add(new Backend.Activity()
-            //            {
-            //                ActionDate = DateTime.Now,
-            //                ActionDescription = GlobalViewModel.UserHomework[homeworksLV.SelectedIndex].HomeworkName,
-            //                ActionName = "Done Homework",
-            //                ActionPoints = points + " (+" + extra.Days + "%)"
+                MainPage.vm.Exp += points;
+                MainPage.vm.CheckIfLevelUp();
 
-            //            });
-
-            //            GlobalViewModel.UserHomework.RemoveAt(homeworksLV.SelectedIndex);
-
-            //            await IOClass.SaveProfile();
-            //            await IOClass.SaveHomework();
-            //            await IOClass.SaveActivity();
-            //        }
-            //    }
+                await db.SaveChangesAsync();
+            }
         }
 
         private void showAddBarBtn_Click(object sender, RoutedEventArgs e)
@@ -130,7 +133,8 @@ namespace Learn
 
         private void homeworksLV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            HideAddBar.Begin();
+            if(addBar.Height != 0)
+                HideAddBar.Begin();
         }
     }
 }

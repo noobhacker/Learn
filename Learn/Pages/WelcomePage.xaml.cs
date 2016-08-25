@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,6 +46,16 @@ namespace Learn.Pages
                 Gold=50000
             });
             await db.SaveChangesAsync();
+
+            try
+            {
+                await ApplicationData.Current.LocalFolder.GetFolderAsync("Images");
+            }
+            catch
+            {
+                await ApplicationData.Current.LocalFolder.CreateFolderAsync("Images");
+            }
+
             Frame.Navigate(typeof(MainPage));
         }
 

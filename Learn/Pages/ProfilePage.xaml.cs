@@ -36,10 +36,10 @@ namespace Learn
             var db = new DatabaseContext();
             var user = db.Users.First();
 
-            vm.Name = user.Name;
-            vm.Level = user.Level;
-            vm.Exp = user.CurrentExp;
-            vm.LevelUpExp = user.LevelUpExp;
+            vm.Name = MainPage.vm.ProfileName;
+            vm.Level = MainPage.vm.Level;
+            vm.LevelUpExp = MainPage.vm.LevelUpExp;
+            vm.Exp = MainPage.vm.Exp;            
             vm.Gold = user.Gold;
             drawTriangle();
         }

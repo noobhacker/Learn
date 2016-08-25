@@ -13,7 +13,7 @@ namespace Learn.Items
         private DateTimeOffset date;
         private string name;
         private string description;
-        private int points;
+        private string points;
 
         public DateTimeOffset Date
         {
@@ -57,7 +57,7 @@ namespace Learn.Items
             }
         }
 
-        public int Points
+        public string Points
         {
             get
             {

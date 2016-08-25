@@ -42,7 +42,7 @@ namespace Learn
                     Date = activity.Date,
                     Description = activity.Description,
                     Name = activity.Name,
-                    Points = activity.Points
+                    Points = Convert.ToString(activity.Points)
                 });
             }          
         }

@@ -111,6 +111,7 @@
     <Compile Include="Converters\HexToColorConverter.cs" />
     <Compile Include="Converters\NextLevelConverter.cs" />
     <Compile Include="Converters\StringToTitleConverter.cs" />
+    <Compile Include="Helpers\BonusHelper.cs" />
     <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
@@ -125,6 +126,9 @@
     <Compile Include="Models\Skin.cs" />
     <Compile Include="Pages\OnlinePage.xaml.cs">
       <DependentUpon>OnlinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ReadPage.xaml.cs">
+      <DependentUpon>ReadPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -161,6 +165,7 @@
     </Compile>
     <Compile Include="ViewModels\OnlineViewModel.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\ReadViewModel.cs" />
     <Compile Include="ViewModels\UpgradeViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="WebAPI.cs" />
@@ -221,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OnlinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ReadPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -100,6 +100,7 @@ namespace Learn
             }
 
             vm.QuestionList.Randomize();
+            vm.TotalQuestions = vm.QuestionList.Count();
             answerspeedDT.Start();
             answerTextBox.Focus(FocusState.Keyboard);
         }

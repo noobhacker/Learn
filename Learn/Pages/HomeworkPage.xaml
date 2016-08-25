@@ -121,24 +121,25 @@
                              Margin="4"
                              PlaceholderText="Homework Name"
                              VerticalAlignment="Center"
-                             Text="{Binding Name}"/>
+                             Text="{Binding Name, Mode=TwoWay}"/>
                     <DatePicker Name="duedateDP" 
                                 Margin="4"
                                 Grid.Column="1"
                                 HorizontalAlignment="Stretch" 
                                 VerticalAlignment="Center"
-                                Date="{Binding DueDate}"/>
+                                Date="{Binding DueDate,Mode=TwoWay}"/>
                     <TextBox Name="pointsTB"
                              Margin="4"
                              Grid.Column="2"
                              PlaceholderText="Points gain upon completion"
                              VerticalAlignment="Center"
-                             Text="{Binding Points}"/>
+                             Text="{Binding Points,Mode=TwoWay}"/>
                     <Button Margin="4"
                             Content="Add"
                             Grid.Column="3"
                             HorizontalAlignment="Stretch"
-                            VerticalAlignment="Center" />
+                            VerticalAlignment="Center" 
+                            Click="addBtn_Click"/>
                 </Grid>
             </Grid>
         </Grid>
