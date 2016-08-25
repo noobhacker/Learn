@@ -4,8 +4,12 @@
       xmlns:local="using:Learn"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converters="using:Learn.Converters"
       mc:Ignorable="d">
 
+    <Page.Resources>
+        <converters:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter" />
+    </Page.Resources>
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -59,7 +63,7 @@
                             <ColumnDefinition Width=".3*" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding Date}"
+                        <TextBlock Text="{Binding Date, Converter={StaticResource DateTimeOffsetToStringConverter}}"
                                    Margin="6"
                                    TextTrimming="CharacterEllipsis"
                                    FontWeight="Light" />

@@ -4,6 +4,7 @@
       xmlns:local="using:Learn"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converters="using:Learn.Converters"
       mc:Ignorable="d">
     <Page.Resources>
         <Storyboard x:Name="ShowAddBar">
@@ -17,6 +18,7 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <converters:DateTimeOffsetToStringConverter x:Key="DateTimeOffsetToStringConverter" />
     </Page.Resources>
 
     <Grid Background="Transparent">
@@ -90,7 +92,7 @@
                                        TextTrimming="CharacterEllipsis"
                                        FontWeight="Light" />
 
-                            <TextBlock Text="{Binding DueDate}"
+                            <TextBlock Text="{Binding DueDate, Converter={StaticResource DateTimeOffsetToStringConverter}}"
                                        Grid.Column="1"
                                        Margin="6"
                                        FontWeight="Light" />

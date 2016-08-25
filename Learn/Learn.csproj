@@ -108,6 +108,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateTimeOffsetToStringConverter.cs" />
     <Compile Include="Converters\HexToColorConverter.cs" />
     <Compile Include="Converters\NextLevelConverter.cs" />
     <Compile Include="Converters\StringToTitleConverter.cs" />
