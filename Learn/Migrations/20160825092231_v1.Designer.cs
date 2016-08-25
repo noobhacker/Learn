@@ -8,7 +8,7 @@ using Learn.Models;
 namespace Learn.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20160825081325_v1")]
+    [Migration("20160825092231_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,6 +78,24 @@ namespace Learn.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Question");
+                });
+
+            modelBuilder.Entity("Learn.Models.Skin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Color");
+
+                    b.Property<string>("Name");
+
+                    b.Property<bool>("Owned");
+
+                    b.Property<int>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skin");
                 });
 
             modelBuilder.Entity("Learn.Models.User", b =>

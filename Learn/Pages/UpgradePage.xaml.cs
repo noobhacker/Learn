@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Learn.Items;
+using Learn.Models;
+using Learn.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +25,30 @@ namespace Learn
     /// </summary>
     public sealed partial class UpgradePage : Page
     {
+        UpgradeViewModel vm = new UpgradeViewModel();
         public UpgradePage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var db = new DatabaseContext();
+            foreach(var skin in vm.SkinList.Where(x=>!db.Skins.Any(y=>x.Name == y.Name)))
+                db.Skins.Add(skin);
+
+            await db.SaveChangesAsync();
+
+            foreach(var skin in db.Skins)
+            {
+                vm.Skins.Add(new SkinItem()
+                {
+                    Color = skin.Color,
+                    Name = skin.Name,
+                    Price = skin.Owned ? "" : skin.Price + " gold"
+                });
+            }
         }
     }
 }

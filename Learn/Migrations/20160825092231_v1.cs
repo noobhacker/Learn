@@ -69,6 +69,22 @@ namespace Learn.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Skin",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Autoincrement", true),
+                    Color = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Owned = table.Column<bool>(nullable: false),
+                    Price = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skin", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -106,6 +122,9 @@ namespace Learn.Migrations
 
             migrationBuilder.DropTable(
                 name: "Question");
+
+            migrationBuilder.DropTable(
+                name: "Skin");
 
             migrationBuilder.DropTable(
                 name: "User");

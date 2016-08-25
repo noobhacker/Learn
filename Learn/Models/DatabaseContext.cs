@@ -13,13 +13,13 @@ namespace Learn.Models
         public DbSet<User> Users { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Question> Questions { get; set; }
-
+        public DbSet<Skin> Skins { get; set; }
         public DbSet<Homework> Homeworks { get; set; }
         public DbSet<Activity> Activities { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=Database.db");
+            optionsBuilder.UseSqlite("Filename=Db2.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,4 +1,5 @@
-﻿using Learn.ViewModels;
+﻿using Learn.Models;
+using Learn.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,6 +40,15 @@ namespace Learn
                 await Task.Delay(100);
 
             listBox.SelectedIndex = 0;
+
+            var db = new DatabaseContext();
+            var user = db.Users.First();
+            vm.Exp = user.CurrentExp;
+            vm.LevelUpExp = user.NextLevelExp;
+            vm.ProfileName = user.Name;
+            vm.Skin = user.SkinColor;
+            vm.Level = user.Level;
+
         }
 
         private void hambugerBtn_Click(object sender, RoutedEventArgs e)

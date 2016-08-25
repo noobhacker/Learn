@@ -79,6 +79,24 @@ namespace Learn.Migrations
                     b.ToTable("Question");
                 });
 
+            modelBuilder.Entity("Learn.Models.Skin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Color");
+
+                    b.Property<string>("Name");
+
+                    b.Property<bool>("Owned");
+
+                    b.Property<int>("Price");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Skin");
+                });
+
             modelBuilder.Entity("Learn.Models.User", b =>
                 {
                     b.Property<int>("Id")

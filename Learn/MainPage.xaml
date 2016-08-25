@@ -81,7 +81,7 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <Grid>
+                                <Grid Margin="4,0,-4,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
@@ -113,7 +113,7 @@
             <SplitView.Content>
                 <Grid Background="{Binding Skin, Converter={StaticResource HexToColorConverter}}">
                     <Grid Background="{ThemeResource ToolTipBackground}"
-                          Opacity="0.5" />
+                          Opacity="0.7" />
                     <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}"
                           Opacity="0.5"
                           Margin="0,48,0,0" />

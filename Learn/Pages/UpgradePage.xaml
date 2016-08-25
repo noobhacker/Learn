@@ -4,8 +4,11 @@
       xmlns:local="using:Learn"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converters="using:Learn.Converters"
       mc:Ignorable="d">
-
+    <Page.Resources>
+        <converters:HexToColorConverter x:Key="HexToColorConverter" />
+    </Page.Resources>
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
@@ -221,82 +224,56 @@
                     </GridView>
 
                     <GridView Name="skinsGV"
-                              Grid.Row="2">
-                        <Grid HorizontalAlignment="Left"
-                              Width="200"
-                              Height="130"
-                              Padding="2"
-                              Margin="12,6"
-                              Background="#FFDCEFFA">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                              Grid.Row="2"
+                              ItemsSource="{Binding Skins}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Left"
+                                      Width="200"
+                                      Height="130"
+                                      Padding="2"
+                                      Margin="4"
+                                      Background="#FFDCEFFA">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                            <Grid Margin="6,3,6,3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                                    <Grid Margin="6,3,6,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Name}" />
+                                        <TextBlock Text="{Binding Price}"
+                                                   Grid.Column="1"
+                                                   FontWeight="Thin" />
+                                    </Grid>
 
-                                <TextBlock Text="Dark" />
-                                <TextBlock Text="20000 gold"
-                                           Grid.Column="1"
-                                           FontWeight="Thin" />
-
-                            </Grid>
-
-                            <Grid Grid.Row="1"
-                                  Margin="3"
-                                  BorderBrush="Gray">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Rectangle Margin="6"
-                                           Fill="#FF4E4E4E" />
-                                <Rectangle Margin="6"
-                                           Fill="#FF8C8C8C"
-                                           Grid.Column="1" />
-                                <Rectangle Margin="6"
-                                           Fill="#FF313131"
-                                           Grid.Column="2" />
-                                <Rectangle Margin="6"
-                                           Fill="#FFB0B0B0"
-                                           Grid.Column="3" />
-
-                            </Grid>
-                            <Grid Grid.Row="2">
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Button Content="Try"
-                                        Margin="6"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch" />
-
-                                <Button Grid.Column="1 "
-                                        Content="Purchase"
-                                        Margin="6"
-                                        HorizontalAlignment="Stretch"
-                                        VerticalAlignment="Stretch" />
-
-                            </Grid>
-                        </Grid>
+                                    <Grid Grid.Row="1"
+                                          Margin="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Rectangle Margin="6"
+                                                   Fill="{Binding Color}" />
+                                        <Rectangle Margin="6"
+                                                   Fill="{Binding Color}"
+                                                   Grid.Column="1" />
+                                        <Grid Background="{ThemeResource ToolTipBackground}"
+                                              Opacity="0.7"
+                                              Margin="6" />
+                                        <Grid Grid.Column="1"
+                                              Background="{ThemeResource AppBarBackgroundThemeBrush}"
+                                              Opacity="0.5"
+                                              Margin="6" />
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
                     </GridView>
-
-                    <GridView Name="voicesGV"
-                              Grid.Row="4" />
-
-
-
                 </Grid>
             </ScrollViewer>
         </Grid>

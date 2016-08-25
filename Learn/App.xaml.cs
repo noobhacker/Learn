@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.EntityFrameworkCore;
 using Learn.Models;
+using Learn.Pages;
 
 namespace Learn
 {
@@ -82,7 +83,11 @@ namespace Learn
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                var db = new DatabaseContext();
+                if (db.Users.Count() == 0)
+                    rootFrame.Navigate(typeof(WelcomePage), e.Arguments);
+                else
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
             // Ensure the current window is active
             Window.Current.Activate();

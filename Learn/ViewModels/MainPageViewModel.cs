@@ -68,11 +68,6 @@ namespace Learn.ViewModels
             set
             {
                 level = value;
-
-                var db = new DatabaseContext();
-                db.Users.First().Level = Level;
-                db.SaveChangesAsync();
-
                 OnPropertyChanged();
             }
         }
@@ -88,11 +83,6 @@ namespace Learn.ViewModels
             {
                 exp = value;
                 CheckIfLevelUp();
-
-                var db = new DatabaseContext();
-                db.Users.First().CurrentExp = Exp;
-                db.SaveChangesAsync();
-
                 OnPropertyChanged();
             }
         }
@@ -107,11 +97,6 @@ namespace Learn.ViewModels
             set
             {
                 levelUpExp = value;
-
-                var db = new DatabaseContext();
-                db.Users.First().NextLevelExp = LevelUpExp;
-                db.SaveChangesAsync();
-
                 OnPropertyChanged();
             }
         }
@@ -126,17 +111,13 @@ namespace Learn.ViewModels
             set
             {
                 skin = value;
-
-                var db = new DatabaseContext();
-                db.Users.First().SkinColor = Skin;
-                db.SaveChangesAsync();
-
                 OnPropertyChanged();
             }
         }     
 
-        public void CheckIfLevelUp()
+        public async void CheckIfLevelUp()
         {
+            var gotLevelUp = false;
             while (Exp > LevelUpExp) // so up multilevels at once will work
             {
                 Exp -= LevelUpExp;
@@ -150,6 +131,16 @@ namespace Learn.ViewModels
 
                 //level up after multiplications
                 Level++;
+                gotLevelUp = true;
+            }
+
+            if(gotLevelUp)
+            {
+                var db = new DatabaseContext();
+                db.Users.First().Level = Level;
+                db.Users.First().CurrentExp = Exp;
+                db.Users.First().NextLevelExp = LevelUpExp;
+                await db.SaveChangesAsync();
             }
         }
 

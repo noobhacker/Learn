@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Learn.Models;
+using Learn.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,47 @@ namespace Learn.Pages
     /// </summary>
     public sealed partial class WelcomePage : Page
     {
+        WelcomeViewModel vm = new WelcomeViewModel();
         public WelcomePage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
+        }
+
+        private async void initialize(string name)
+        {
+            doneBtn.IsEnabled = false;
+            doneBtn.Content = "Initializing";
+
+            var db = new DatabaseContext();
+            db.Users.Add(new User()
+            {
+                Name = name,
+                Level = 1
+            });
+            await db.SaveChangesAsync();
+            Frame.Navigate(typeof(MainPage));
+        }
+
+        private void nameTB_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (vm.Name == "")
+            {
+                doneBtn.IsEnabled = false;
+                return;
+            }
+            else
+            {
+                doneBtn.IsEnabled = true;
+            }
+
+            if (e.Key == Windows.System.VirtualKey.Enter)
+                initialize(vm.Name);
+        }
+
+        private void doneBtn_Click(object sender, RoutedEventArgs e)
+        {
+            initialize(vm.Name);
         }
     }
 }
