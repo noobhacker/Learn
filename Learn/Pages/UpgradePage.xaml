@@ -8,6 +8,7 @@
       mc:Ignorable="d">
     <Page.Resources>
         <converters:HexToColorConverter x:Key="HexToColorConverter" />
+        <converters:NextLevelConverter x:Key="NextLevelConverter" />
     </Page.Resources>
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
@@ -37,195 +38,75 @@
                                Text="Skins"
                                Grid.Row="1" />
 
-                    <GridView Margin="6">
-                        <Grid Width="320"
-                              Height="140"
-                              Margin="6"
-                              Padding="3"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Top"
-                              Background="{ThemeResource AppBarButtonBackgroundPressed}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="0.75*" />
-                            </Grid.ColumnDefinitions>
+                    <GridView Margin="8">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="320"
+                                      Height="140"
+                                      Margin="8"
+                                      Padding="4"
+                                      HorizontalAlignment="Left"
+                                      VerticalAlignment="Top"
+                                      Background="{ThemeResource AppBarButtonBackgroundPressed}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="0.75*" />
+                                    </Grid.ColumnDefinitions>
 
-                            <Grid Margin="8,4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                                    <Grid Margin="8,4">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
 
-                                <TextBlock Text="Warning"
-                                           FontSize="24" />
-                                
-                                <TextBlock FontSize="15"
-                                           Grid.Row="1">
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontSize="24" />
+
+                                        <TextBlock FontSize="15"
+                                                   Grid.Row="1">
                                     <Run Text="Lv. " />
-                                    <Run Text="2" />
+                                    <Run Text="{Binding Level}" />
                                     <Run Text=" -> Lv. " />
-                                    <Run Text="3" />
-                                </TextBlock>
-                                
-                                <TextBlock Grid.Row="2"
-                                           Text="Next Level"
-                                           Margin="0,4,0,0"
-                                           FontWeight="Thin"/>
-                                
-                                <TextBlock Grid.Row="3"
-                                           FontWeight="Thin"
-                                           TextWrapping="Wrap">
-                                    <Run Text="" />
-                                    <Run Text=" times warning before considered as wrong." />
-                                </TextBlock>
-                            </Grid>
+                                    <Run Text="{Binding Level, Converter={StaticResource NextLevelConverter}}" />
+                                        </TextBlock>
 
-                            <Grid Grid.Column="1"
-                                  VerticalAlignment="Center"
-                                  Margin="3">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="2"
+                                                   Text="Next Level"
+                                                   Margin="0,4,0,0"
+                                                   FontWeight="Thin" />
 
-                                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" 
-                                            Margin="4">
-                                    <TextBlock Text="25000"/>
-                                    <TextBlock Text="gold"
-                                               Margin="4,0,0,0" />
-                                </StackPanel>
-                                <Button Content="Upgrade"
-                                        Grid.Row="1"
-                                        Height="60"
-                                        Background="{ThemeResource InkToolbarAccentColorThemeBrush}"
-                                        HorizontalAlignment="Stretch" />
-                            </Grid>
-                        </Grid>
+                                        <TextBlock Grid.Row="3"
+                                                   FontWeight="Thin"
+                                                   TextWrapping="Wrap"
+                                                   Text="{Binding Description}" />
+                                    </Grid>
 
-                        <Grid Width="320"
-                              Height="140"
-                              Margin="6"
-                              Padding="3"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Top"
-                              Background="{ThemeResource AppBarButtonBackgroundPressed}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="0.75*" />
-                            </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="1"
+                                          VerticalAlignment="Center"
+                                          Margin="3">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
 
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Text="Combo Multiplier"
-                                           FontSize="22"
-                                           Margin="3,3,0,0" />
-                                <TextBlock Grid.Row="1"
-                                           Text="Lv. 0 -> Lv. 1"
-                                           FontSize="15"
-                                           Margin="3,0,0,0" />
-                                <TextBlock Grid.Row="2"
-                                           Text="Next Level"
-                                           FontWeight="Thin"
-                                           Margin="3,6,0,0" />
-                                <TextBlock Grid.Row="3"
-                                           FontWeight="Thin"
-                                           Margin="3,0,0,3"
-                                           TextWrapping="Wrap"
-                                           Text="Adds 3000 points when full combo." />
-
-
-                            </Grid>
-
-                            <Grid Grid.Column="1"
-                                  VerticalAlignment="Center"
-                                  Margin="3">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Text="5000 gold"
-                                           Margin="3"
-                                           HorizontalAlignment="Center" />
-                                <Button Content="Upgrade"
-                                        Grid.Row="1"
-                                        Height="60"
-                                        Background="LightGreen"
-                                        HorizontalAlignment="Stretch" />
-
-                            </Grid>
-
-                        </Grid>
-
-                        <Grid Width="320"
-                              Height="140"
-                              Margin="6"
-                              Padding="3"
-                              HorizontalAlignment="Left"
-                              VerticalAlignment="Top"
-                              Background="{ThemeResource AppBarButtonBackgroundPressed}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="0.75*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Text="Gold Multiplier"
-                                           FontSize="22"
-                                           Margin="3,3,0,0" />
-                                <TextBlock Grid.Row="1"
-                                           Text="Lv. 0 -> Lv. 1"
-                                           FontSize="15"
-                                           Margin="3,0,0,0" />
-                                <TextBlock Grid.Row="2"
-                                           Text="Next Level"
-                                           FontWeight="Thin"
-                                           Margin="3,6,0,0" />
-                                <TextBlock Grid.Row="3"
-                                           FontWeight="Thin"
-                                           Margin="3,0,0,3"
-                                           TextWrapping="Wrap"
-                                           Text="Multiplies the gold by 102%." />
-
-
-                            </Grid>
-
-                            <Grid Grid.Column="1"
-                                  VerticalAlignment="Center"
-                                  Margin="3">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
-                                </Grid.RowDefinitions>
-
-                                <TextBlock Text="15000 gold"
-                                           Margin="3"
-                                           HorizontalAlignment="Center" />
-                                <Button Content="Upgrade"
-                                        Grid.Row="1"
-                                        Height="60"
-                                        Background="LightGreen"
-                                        HorizontalAlignment="Stretch" />
-
-                            </Grid>
-
-                        </Grid>
-
+                                        <StackPanel HorizontalAlignment="Center"
+                                                    Orientation="Horizontal"
+                                                    Margin="4">
+                                            <TextBlock Text="{Binding Cost}" />
+                                            <TextBlock Text="gold"
+                                                       Margin="4,0,0,0" />
+                                        </StackPanel>
+                                        <Button Content="Upgrade"
+                                                Grid.Row="1"
+                                                Height="60"
+                                                Background="{ThemeResource InkToolbarAccentColorThemeBrush}"
+                                                HorizontalAlignment="Stretch" />
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
                     </GridView>
 
                     <GridView Name="skinsGV"

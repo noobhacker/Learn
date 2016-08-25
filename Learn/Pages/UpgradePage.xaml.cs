@@ -32,24 +32,37 @@ namespace Learn
             this.DataContext = vm;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        private async void loadSkins()
         {
             var db = new DatabaseContext();
-            foreach(var skin in vm.SkinList.Where(x=>!db.Skins.Any(y=>x.Name == y.Name)))
+            foreach (var skin in vm.SkinList.Where(x => !db.Skins.Any(y => x.Name == y.Name)))
                 db.Skins.Add(skin);
 
             await db.SaveChangesAsync();
 
-            foreach(var skin in db.Skins)
+            foreach (var skin in db.Skins)
             {
                 vm.Skins.Add(new SkinItem()
                 {
                     Color = skin.Color,
                     Name = skin.Name,
                     Price = skin.Owned ? "" : skin.Price + " gold",
-                    Id=skin.Id
+                    Id = skin.Id
                 });
             }
+        }
+
+        private void loadUpgrades()
+        {
+            var db = new DatabaseContext();
+            var user = db.Users.First();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            loadSkins();
+            loadUpgrades();
+
         }
 
         private void skinsGV_SelectionChanged(object sender, SelectionChangedEventArgs e)

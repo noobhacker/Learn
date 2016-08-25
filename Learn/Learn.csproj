@@ -114,6 +114,7 @@
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
     <Compile Include="Items\HamburgerMenuItem.cs" />
+    <Compile Include="Items\UpgradeItem.cs" />
     <Compile Include="Migrations\20160825111037_v1.cs" />
     <Compile Include="Migrations\20160825111037_v1.designer.cs">
       <DependentUpon>20160825111037_v1.cs</DependentUpon>
