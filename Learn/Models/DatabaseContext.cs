@@ -19,7 +19,7 @@ namespace Learn.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Filename=Db2.db");
+            optionsBuilder.UseSqlite("Filename=Db3.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

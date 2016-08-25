@@ -8,7 +8,7 @@ using Learn.Models;
 namespace Learn.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20160825092231_v1")]
+    [Migration("20160825111037_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,7 +107,7 @@ namespace Learn.Migrations
 
                     b.Property<int>("CurrentExp");
 
-                    b.Property<double>("Gold");
+                    b.Property<int>("Gold");
 
                     b.Property<int>("GoldMultiplierLevel");
 
@@ -115,9 +115,9 @@ namespace Learn.Migrations
 
                     b.Property<int>("Level");
 
-                    b.Property<string>("Name");
+                    b.Property<int>("LevelUpExp");
 
-                    b.Property<int>("NextLevelExp");
+                    b.Property<string>("Name");
 
                     b.Property<int>("ReadingEXP");
 

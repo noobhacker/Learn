@@ -139,7 +139,7 @@ namespace Learn.ViewModels
                 var db = new DatabaseContext();
                 db.Users.First().Level = Level;
                 db.Users.First().CurrentExp = Exp;
-                db.Users.First().NextLevelExp = LevelUpExp;
+                db.Users.First().LevelUpExp = LevelUpExp;
                 await db.SaveChangesAsync();
             }
         }

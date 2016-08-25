@@ -33,16 +33,14 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Name="profilenameTB"
-                                   FontSize="32"
-                                   Text="ProfileName" />
+                        <TextBlock FontSize="32"
+                                   Text="{Binding Name}" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock  FontSize="24"
                                         Text="Level "
                                         FontWeight="Thin" />
-                            <TextBlock Name="levelTB"
+                            <TextBlock Text="{Binding Level}"
                                        FontSize="24"
-                                       Text="0 "
                                        FontWeight="Thin"
                                        Margin="12,0" />
                         </StackPanel>
@@ -52,17 +50,15 @@
                                         Text="EXP"
                                         Margin="0,0,24,0"
                                         FontWeight="Thin" />
-                            <TextBlock Name="currentexpTB"
+                            <TextBlock Text="{Binding Exp}"
                                        FontSize="28"
-                                       Text="32768"
                                        FontWeight="Thin" />
                             <TextBlock  FontSize="28"
                                         Text="/"
                                         Margin="12,0"
                                         FontWeight="Thin" />
-                            <TextBlock Name="maxexpTB"
-                                       FontSize="28"
-                                       Text="65536"
+                            <TextBlock FontSize="28"
+                                       Text="{Binding LevelUpExp}"
                                        FontWeight="Thin" />
                         </StackPanel>
 
@@ -138,10 +134,9 @@
                               Stroke="LightGray"
                               StrokeThickness="1" />
 
-                        <Polygon Name="statisticstriangle"
-                                 Grid.Row="1"
+                        <Polygon Grid.Row="1"
                                  Margin="72,6"
-                                 Points="100,50 35,130 190,145"
+                                 Points="{Binding TrianglePoints}"
                                  Stroke="Green"
                                  StrokeThickness="0.5" />
 
@@ -203,10 +198,9 @@
                                            FontSize="20"
                                            FontWeight="Thin" />
 
-                                <TextBlock Name="goldTB"
-                                           Grid.Column="2"
+                                <TextBlock Grid.Column="2"
                                            Grid.RowSpan="2"
-                                           Text="5535"
+                                           Text="{Binding Gold}"
                                            FontSize="24"
                                            FontWeight="Thin"
                                            VerticalAlignment="Center"
@@ -215,13 +209,8 @@
                             </Grid>
                         </StackPanel>
                     </Grid>
-
                 </StackPanel>
-
-
-
             </Grid>
-
         </Grid>
     </Grid>
 </Page>

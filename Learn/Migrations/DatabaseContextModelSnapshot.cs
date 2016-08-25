@@ -106,7 +106,7 @@ namespace Learn.Migrations
 
                     b.Property<int>("CurrentExp");
 
-                    b.Property<double>("Gold");
+                    b.Property<int>("Gold");
 
                     b.Property<int>("GoldMultiplierLevel");
 
@@ -114,9 +114,9 @@ namespace Learn.Migrations
 
                     b.Property<int>("Level");
 
-                    b.Property<string>("Name");
+                    b.Property<int>("LevelUpExp");
 
-                    b.Property<int>("NextLevelExp");
+                    b.Property<string>("Name");
 
                     b.Property<int>("ReadingEXP");
 

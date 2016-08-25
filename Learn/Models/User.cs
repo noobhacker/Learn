@@ -10,7 +10,7 @@ namespace Learn.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }       
-        public double Gold { get; set; }
+        public int Gold { get; set; }
 
         public int Level { get; set; }
 
@@ -18,7 +18,7 @@ namespace Learn.Models
         public int TestEXP { get; set; }
         public int HomeworkEXP { get; set; }
         public int CurrentExp { get; set; }
-        public int NextLevelExp { get; set; }
+        public int LevelUpExp { get; set; }
 
         public int WarningLevel { get; set; }
         public int ComboMultiplierLevel { get; set; }

@@ -44,7 +44,7 @@
                               Padding="3"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
-                              Background="#FFDCEFFA">
+                              Background="{ThemeResource AppBarButtonBackgroundPressed}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="0.75*" />
@@ -105,7 +105,7 @@
                               Padding="3"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
-                              Background="#FFDCEFFA">
+                              Background="{ThemeResource AppBarButtonBackgroundPressed}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="0.75*" />
@@ -166,7 +166,7 @@
                               Padding="3"
                               HorizontalAlignment="Left"
                               VerticalAlignment="Top"
-                              Background="#FFDCEFFA">
+                              Background="{ThemeResource AppBarButtonBackgroundPressed}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="0.75*" />
@@ -225,6 +225,7 @@
 
                     <GridView Name="skinsGV"
                               Grid.Row="2"
+                              Margin="8"
                               ItemsSource="{Binding Skins}">
                         <GridView.ItemTemplate>
                             <DataTemplate>
@@ -233,7 +234,7 @@
                                       Height="130"
                                       Padding="2"
                                       Margin="4"
-                                      Background="#FFDCEFFA">
+                                      Background="{ThemeResource AppBarButtonBackgroundPressed}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="*" />
