@@ -44,7 +44,7 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
-                                <TextBox Text="{Binding TextQuestions}"
+                                <TextBox Text="{Binding TextQuestions, Mode=TwoWay}"
                                          PlaceholderText="Question; Answer"
                                          TextWrapping="Wrap"
                                          AcceptsReturn="True" />
@@ -113,21 +113,16 @@
                 </Grid.RowDefinitions>
 
                 <ListView Name="questionListLV"
-                          ItemsSource="{Binding QuestionList}">
-
-                    <!-- this is very important for horizontalalignment stretch the items -->
+                          ItemsSource="{Binding QuestionsList}">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment"
                                     Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
-
                     <ListView.HeaderTemplate>
-
                         <DataTemplate>
-
-                            <Grid  Name="listviewheaders"
+                            <Grid Name="listviewheaders"
                                    Margin="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width=".3*" />
@@ -139,9 +134,7 @@
                                 <TextBlock Text="Answer"
                                            Grid.Column="1"
                                            Margin="6" />
-
                             </Grid>
-
                         </DataTemplate>
                     </ListView.HeaderTemplate>
 
@@ -152,7 +145,6 @@
                                     <ColumnDefinition Width=".3*" />
                                     <ColumnDefinition Width=".5*" />
                                 </Grid.ColumnDefinitions>
-
                                 <Image Source="{Binding QuestionImagePath}"
                                        Margin="6,0"
                                        Height="90"
@@ -160,7 +152,7 @@
                                 <TextBlock Text="{Binding QuestionString}"
                                            VerticalAlignment="Center"
                                            Margin="6,0" />
-                                <TextBlock Text="{Binding AnswerString[0]}"
+                                <TextBlock Text="{Binding AnswerString}"
                                            Grid.Column="1"
                                            Margin="6,0"
                                            VerticalAlignment="Center" />

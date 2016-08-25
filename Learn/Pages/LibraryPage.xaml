@@ -27,7 +27,8 @@
                           Label="Read" />
             <AppBarButton Icon="Accept"
                           Name="testBtn"
-                          Label="Test" />
+                          Label="Test" 
+                          Click="testBtn_Click"/>
             <AppBarButton Icon="ReShare"
                           Name="shareBtn"
                           Label="Share Online" />

@@ -30,6 +30,7 @@ namespace Learn
         public TestPage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
 
             answerspeedDT.Interval = new TimeSpan(0, 0, 0, 0, 1);
             answerspeedDT.Tick += answerspeedDT_Tick;
@@ -55,21 +56,25 @@ namespace Learn
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.SourcePageType == typeof(LibraryPage))
+            int delay = 700;
+            await Task.Delay(delay);
+            welcomeTB.Text = "2";
+            await Task.Delay(delay);
+            welcomeTB.Text = "1";
+            await Task.Delay(delay);
+            welcomeGrid.Visibility = Visibility.Collapsed;
+
+            var db = new DatabaseContext();
+            var id = Convert.ToInt32(e.Parameter);
+            foreach (var question in db.Questions.Where(x => x.BookId == id))
             {
-                var db = new DatabaseContext();
-                var id = Convert.ToInt32(e.Parameter);
-                foreach (var question in db.Questions.Where(x => x.BookId == id))
+                vm.QuestionList.Add(new QuestionItem()
                 {
-                    vm.QuestionList.Add(new QuestionItem()
-                    {
-                        AnswerString = question.AnswerString,
-                        QuestionImageId = question.QuestionImageId,
-                        QuestionString = question.QuestionString
-                    });
-                }
+                    AnswerString = question.AnswerString,
+                    QuestionImageId = question.QuestionImageId,
+                    QuestionString = question.QuestionString
+                });
             }
-            // else from internet
 
             //// add them in before randomize so it will maintain
             //// sequence in result screen

@@ -29,6 +29,7 @@ namespace Learn
         public ActivityPage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -12,7 +12,7 @@ namespace Learn.Items
     {
         private string name;
         private int level;
-        private int description;
+        private string description;
         private int cost;
 
         public string Name
@@ -43,7 +43,7 @@ namespace Learn.Items
             }
         }
 
-        public int Description
+        public string Description
         {
             get
             {

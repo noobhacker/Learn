@@ -111,6 +111,7 @@
     <Compile Include="Converters\HexToColorConverter.cs" />
     <Compile Include="Converters\NextLevelConverter.cs" />
     <Compile Include="Converters\StringToTitleConverter.cs" />
+    <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Items\ActivityItem.cs" />
     <Compile Include="Items\HamburgerMenuItem.cs" />

@@ -18,9 +18,9 @@ namespace LearnWebAPI.Controllers
         private LearnWebAPIContext db = new LearnWebAPIContext();
 
         // GET: api/Books
-        public IQueryable<Book> GetBooks()
+        public List<Book> GetBooks()
         {
-            return db.Books;
+            return db.Books.ToList();
         }
 
         // GET: api/Books/5

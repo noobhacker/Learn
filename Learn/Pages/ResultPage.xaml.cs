@@ -1,6 +1,7 @@
 ﻿using Learn.Items;
 using Learn.Models;
 using Learn.Objects;
+using Learn.ViewModels;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,11 +18,13 @@ namespace Learn
     /// </summary>
     public sealed partial class ResultPage : Page
     {
+        ResultViewModel vm = new ResultViewModel();
         DispatcherTimer animationDT = new DispatcherTimer();
 
         public ResultPage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
 
             animationDT.Interval = new TimeSpan(0, 0, 0, 0, 1);
             animationDT.Tick += animationDT_Tick;           
@@ -75,7 +78,6 @@ namespace Learn
                 temppoints == animatedpoints)
             {
                 // display gained exp gold etc. here
-                cashgainedTB.Text = Convert.ToString(Math.Round(Convert.ToDouble(temppoints) / 10000, 2));
                 goldgainedTB.Text = Convert.ToString(Math.Round(Convert.ToDouble(temppoints) / 100));
 
                 //calculate grade here
@@ -100,8 +102,10 @@ namespace Learn
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            report = (FullResult)e.Parameter;            
-            resultGV.ItemsSource = report.ResultList;
+            report = (FullResult)e.Parameter;
+            foreach (var item in report.ResultList)
+                vm.ResultList.Add(item);
+            vm.MaxCombo = report.MaxCombo;
             tempcombo = report.MaxCombo;
 
             double dblAverageSec = 0;
@@ -138,8 +142,10 @@ namespace Learn
 
             user.Gold += temppoints / 100;
 
-            MainPage.vm.Exp += Convert.ToInt32(((temppoints / 100)* (1+
-                Convert.ToDouble(MainPage.vm.Level)/100)));
+            var expAmount = Convert.ToInt32(((temppoints / 100) * (1 +
+                Convert.ToDouble(MainPage.vm.Level) / 100)));
+            user.CurrentExp += expAmount;
+            MainPage.vm.Exp += expAmount;
             // 1 level + 0.01%, higher level earns more exp makes sense
 
             //// dont forget this!!!

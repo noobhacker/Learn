@@ -14,7 +14,6 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="1">
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="165" />
                     <RowDefinition Height="*" />
@@ -32,7 +31,8 @@
 
                     <GridView Name="QuestionsGV"
                               Margin="6"
-                              Grid.ColumnSpan="2">
+                              Grid.ColumnSpan="2"
+                              ItemsSource="{Binding QuestionList}">
                         <GridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -45,7 +45,6 @@
                                 </Grid>
                             </DataTemplate>
                         </GridView.ItemTemplate>
-
                     </GridView>
                 </Grid>
 
@@ -59,6 +58,7 @@
                          VerticalAlignment="Center"
                          TextWrapping="Wrap"
                          FontWeight="Thin"
+                         Text="{Binding Answer,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          KeyUp="answerTextBox_KeyUp"
                          TabIndex="0" />
 
@@ -81,6 +81,18 @@
                     </Grid>
 
                 </Grid>
+                <Grid Name="welcomeGrid"
+                      Grid.Row="1"
+                      Background="Gray">
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="Answer as fast as possible!"
+                                   FontWeight="Light"
+                                   FontSize="48"
+                                   Name="welcomeTB" />
+                    </StackPanel>
+
+                </Grid>
 
                 <Grid Grid.Row="2">
 
@@ -97,7 +109,7 @@
                     <StackPanel Grid.RowSpan="2"
                                 Orientation="Horizontal">
                         <TextBlock Name="combocountTB"
-                                   Text="{Binding ComboCount, Mode=OneWay }"
+                                   Text="{Binding ComboCount}"
                                    FontSize="72"
                                    Margin="48,24,12,24" />
                         <TextBlock Text="combo! "
@@ -109,7 +121,7 @@
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center">
                         <TextBlock Name="answerspeedTB"
-                                   Text="{Binding AnswerSpeed, Mode=OneWay }"
+                                   Text="{Binding AnswerSpeed}"
                                    FontSize="52"
                                    FontWeight="Thin" />
                         <TextBlock Text=" seconds"

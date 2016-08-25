@@ -38,7 +38,10 @@
                                Text="Skins"
                                Grid.Row="1" />
 
-                    <GridView Margin="8">
+                    <GridView Margin="8"
+                              ItemsSource="{Binding Upgrades}"
+                              Name="upgradesGV"
+                              SelectionChanged="upgradesGV_SelectionChanged">
                         <GridView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Width="320"
@@ -62,7 +65,7 @@
                                         </Grid.RowDefinitions>
 
                                         <TextBlock Text="{Binding Name}"
-                                                   FontSize="24" />
+                                                   FontSize="20" />
 
                                         <TextBlock FontSize="15"
                                                    Grid.Row="1">
@@ -98,11 +101,13 @@
                                             <TextBlock Text="gold"
                                                        Margin="4,0,0,0" />
                                         </StackPanel>
-                                        <Button Content="Upgrade"
-                                                Grid.Row="1"
-                                                Height="60"
-                                                Background="{ThemeResource InkToolbarAccentColorThemeBrush}"
-                                                HorizontalAlignment="Stretch" />
+                                        <Grid Background="{ThemeResource InkToolbarAccentColorThemeBrush}"
+                                              Grid.Row="1"
+                                              Height="60">
+                                            <TextBlock Text="Upgrade"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </DataTemplate>
@@ -146,9 +151,9 @@
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
                                         <Rectangle Margin="6"
-                                                   Fill="{Binding Color}" />
+                                                   Fill="{Binding Color, Converter={StaticResource HexToColorConverter}}" />
                                         <Rectangle Margin="6"
-                                                   Fill="{Binding Color}"
+                                                   Fill="{Binding Color, Converter={StaticResource HexToColorConverter}}"
                                                    Grid.Column="1" />
                                         <Grid Background="{ThemeResource ToolTipBackground}"
                                               Opacity="0.7"

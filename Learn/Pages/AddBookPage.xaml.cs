@@ -23,44 +23,56 @@ namespace Learn
         public AddBookPage()
         {
             this.InitializeComponent();
+            this.DataContext = vm;
+
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             currentView.BackRequested += (sender, e) =>
             {
-                currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-                Frame.Navigate(typeof(LibraryPage));
+                goBack();
             };
+        }
+
+        private void goBack()
+        {
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            Frame.Navigate(typeof(LibraryPage));
         }
 
         private void easyModeAddBtn_Click(object sender, RoutedEventArgs e)
         {
-            string str = vm.TextQuestions;
-            vm.TextQuestions = "";
-
-            string[] lines = str.Split(new string[] { Environment.NewLine },StringSplitOptions.None);
            
-
-            //loop through each line
-            for(int i = 0;i<lines.Length;i++)
+            string str = vm.TextQuestions;
+            if (str != "")
             {
+                vm.TextQuestions = "";
 
-                //// HAVE TO FIX THIS STUPID PROBLEM SINCE FORM 2
-                //if (lines[i].Contains("\r")) lines[i].Replace("\r", "");
+                string[] lines = str.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
 
-                // to make sure isnt empty "enter" and shit value
-                if (lines[i] != "" && lines[i].Contains(";"))
+
+                //loop through each line
+                for (int i = 0; i < lines.Length; i++)
                 {
-                    //extract data from each ;
-                    string[] strs = lines[i].Split(';');
 
-                    //add to local binding which will save to local file later
+                    //// HAVE TO FIX THIS STUPID PROBLEM SINCE FORM 2
+                    //if (lines[i].Contains("\r")) lines[i].Replace("\r", "");
 
-                    vm.QuestionsList.Add(new QuestionItem()
+                    // to make sure isnt empty "enter" and shit value
+                    if (lines[i].Contains(";"))
                     {
-                        QuestionString = strs[0],
-                        QuestionImageVisibility = Visibility.Collapsed,
-                        AnswerString = strs[1]
-                    });
+                        //extract data from each ;
+                        string[] strs = lines[i].Split(';');
+
+                        //add to local binding which will save to local file later
+
+                        vm.QuestionsList.Add(new QuestionItem()
+                        {
+                            QuestionString = strs[0],
+                            QuestionImageVisibility = Visibility.Collapsed,
+                            AnswerString = strs[1]
+                        });
+                    }
                 }
             }
         }
@@ -76,6 +88,7 @@ namespace Learn
             //    QuestionList = QuestionsList
             //});
             //await IOClass.SaveBooks();
+
             var db = new DatabaseContext();
             var result = db.Books.Add(new Book()
             {
@@ -98,7 +111,7 @@ namespace Learn
             await db.SaveChangesAsync();
 
             ClearEverything();
-            this.Frame.Navigate(typeof(LibraryPage));
+            goBack();
         }
 
         private void ClearEverything()

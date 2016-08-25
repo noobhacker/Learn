@@ -12,10 +12,13 @@ namespace Learn.Converters
             if (value != null)
             {
                 var color = (string)value;
-                return new SolidColorBrush(Color.FromArgb(255,
-                                                          System.Convert.ToByte(color.Substring(1, 2), 16),
-                                                          System.Convert.ToByte(color.Substring(3, 2), 16),
-                                                          System.Convert.ToByte(color.Substring(5, 2), 16)));
+                if (color != "")
+                {
+                    return new SolidColorBrush(Color.FromArgb(255,
+                                                              System.Convert.ToByte(color.Substring(1, 2), 16),
+                                                              System.Convert.ToByte(color.Substring(3, 2), 16),
+                                                              System.Convert.ToByte(color.Substring(5, 2), 16)));
+                }
             }
             return null;
         }

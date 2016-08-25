@@ -30,6 +30,27 @@ namespace Learn.Pages
             this.DataContext = vm;
         }
 
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            try
+            {
+                var response = await WebAPI.GetBooks();
+                foreach(var book in response)
+                {
+                    vm.Books.Add(new Items.BookItem()
+                    {
+                        BookId = book.Id,
+                        BookTitle = book.Title
+                    });
+                }
+            }
+            catch
+            {
+                MainPage.vm.Title = "No Internet Connection";
+            }
+            loading.IsActive = false;
+        }
+
         private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

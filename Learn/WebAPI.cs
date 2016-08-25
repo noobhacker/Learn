@@ -11,15 +11,15 @@ namespace Learn
 {
     public static class WebAPI
     {
-        public static async Task<IQueryable<Book>> GetBooks()      
-           => await getFromServerAsync<IQueryable<Book>>("GetBooks");
+        public static async Task<List<Book>> GetBooks()      
+           => await getFromServerAsync<List<Book>>("Books");
                 
         /// <returns>Returns idOnClient</returns>
         public static async Task<int> DownloadBookById(int idOnServer)
         {
             var db = new DatabaseContext();
-            var book = await getFromServerAsync<Book>("GetBook/" + idOnServer);
-            var questions = await getFromServerAsync<IQueryable<Question>>("GetQuestions/" + idOnServer);
+            var book = await getFromServerAsync<Book>("Books/" + idOnServer);
+            var questions = await getFromServerAsync<List<Question>>("GetQuestions/" + idOnServer);
 
             var result = db.Books.Add(book);
             foreach (var question in questions)
@@ -35,9 +35,9 @@ namespace Learn
             var book = db.Books.First(x => x.Id == bookId);
             var questions = db.Questions.Where(x => x.BookId == bookId);
 
-            await postToServerAsync<Book>(book, "PostBook");
+            await postToServerAsync<Book>(book, "Books");
             foreach (var question in questions)
-                await postToServerAsync<Question>(question, "PostQuestion");
+                await postToServerAsync<Question>(question, "Questions");
         }
 
         private static string httpEndpoint = "http://thelearningapp.azurewebsites.net/api/";

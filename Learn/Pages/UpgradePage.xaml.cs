@@ -56,6 +56,30 @@ namespace Learn
         {
             var db = new DatabaseContext();
             var user = db.Users.First();
+
+            vm.Upgrades.Add(new UpgradeItem()
+            {
+                Name = "Warning",
+                Level = user.WarningLevel,
+                Cost = Convert.ToInt32(Math.Pow((user.WarningLevel + 1), 2) * 10000),
+                Description = $"{user.WarningLevel + 1} times warning before considered as wrong."
+            });
+
+            vm.Upgrades.Add(new UpgradeItem()
+            {
+                Name = "Combo Multiplier",
+                Level = user.ComboMultiplierLevel,
+                Cost = (user.ComboMultiplierLevel + 1) * 15000,
+                Description = $"Adds {(user.ComboMultiplierLevel + 1) * 1500} points when full combo."
+            });
+
+            vm.Upgrades.Add(new UpgradeItem()
+            {
+                Name = "Gold Multiplier",
+                Level = user.GoldMultiplierLevel,
+                Cost = (user.GoldMultiplierLevel + 1) * 25000,
+                Description = $"Increases gold gained by {(user.GoldMultiplierLevel + 1)*2}%"
+            });
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -66,6 +90,12 @@ namespace Learn
         }
 
         private void skinsGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = (sender as GridView).SelectedIndex;
+
+        }
+
+        private void upgradesGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var index = (sender as GridView).SelectedIndex;
 
