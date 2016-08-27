@@ -75,7 +75,7 @@ namespace Learn.Pages
                     AnswerString = question.AnswerString,
                     QuestionImageId = question.QuestionImageId,
                     QuestionImagePath = ApplicationData.Current.LocalFolder.Path + "\\Images\\" + question.QuestionImageId,
-                    QuestionImageVisibility = question.QuestionString == "" ? Visibility.Visible : Visibility.Collapsed
+                    QuestionImageVisibility = question.QuestionString == null ? Visibility.Visible : Visibility.Collapsed
                 });
             }
         }

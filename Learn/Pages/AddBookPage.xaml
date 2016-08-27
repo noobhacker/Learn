@@ -87,7 +87,7 @@
                                 <TextBox Text="{Binding ImageAnswer,Mode=TwoWay}"
                                          Header="Answer"
                                          Margin="0,6"
-                                         PlaceholderText="Use ; to split multiple answer" />
+                                         PlaceholderText="Answer for this image" />
                                 <Image Name="previewImage"
                                        Height="200"
                                        Margin="6" />

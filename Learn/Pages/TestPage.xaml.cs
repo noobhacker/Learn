@@ -78,7 +78,7 @@ namespace Learn
             welcomeGrid.Visibility = Visibility.Collapsed;
 
             var db = new DatabaseContext();
-            chances = db.Users.First().ComboMultiplierLevel;
+            chances = db.Users.First().WarningLevel;
 
 
             var id = Convert.ToInt32(e.Parameter);
@@ -194,7 +194,7 @@ namespace Learn
                                     new BitmapImage(new Uri(vm.QuestionList[0].QuestionImagePath));
                                 errorTB.Text =
                                     Convert.ToString(vm.QuestionList[0].QuestionString) + " " +
-                                    vm.QuestionList[0].AnswerString[0];
+                                    vm.QuestionList[0].AnswerString;
 
                                 // stop timer before wait async
                                 answerspeedDT.Stop();
@@ -214,7 +214,7 @@ namespace Learn
                             }
                             else
                             {
-                                chances--;
+                                chances -=1;
                                 vm.Answer = "";
                             }
                         }
