@@ -111,10 +111,16 @@ namespace Learn
             {
                 try
                 {
+                    loading.IsActive = true;
+                    shareBtn.IsEnabled = false;
+
                     await WebAPI.UploadBookAsync(vm.Books[index].BookId);
                     await DialogHelper.ShowDialogAsync("Book shared online!");
                     MainPage.vm.Title = "Online";
                     Frame.Navigate(typeof(OnlinePage));
+
+                    loading.IsActive = false;
+                    shareBtn.IsEnabled = true;
                 }
                 catch
                 {

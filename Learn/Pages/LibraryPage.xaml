@@ -73,5 +73,10 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
+        <ProgressRing Name="loading"
+                      IsActive="False"
+                      Grid.Row="1"
+                      Height="64"
+                      Width="64" />
     </Grid>
 </Page>

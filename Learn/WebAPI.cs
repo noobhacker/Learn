@@ -49,9 +49,13 @@ namespace Learn
             var book = db.Books.First(x => x.Id == bookId);
             var questions = db.Questions.Where(x => x.BookId == bookId);
 
-            await postToServerAsync<Book>(book, "Books");
+            var result = await postToServerAsync<Book>(book, "Books");
             foreach (var question in questions)
-                await postToServerAsync<Question>(question, "Questions");
+            {
+                // get book id from server then add questions
+                question.BookId = result.Id;
+                var questionResult = await postToServerAsync<Question>(question, "Questions");
+            }
         }
 
         private static string httpEndpoint = "http://thelearningapp.azurewebsites.net/api/";
