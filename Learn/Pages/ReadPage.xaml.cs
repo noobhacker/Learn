@@ -58,6 +58,7 @@ namespace Learn.Pages
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
+            dt.Stop();
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
