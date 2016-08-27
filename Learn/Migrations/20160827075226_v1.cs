@@ -17,7 +17,7 @@ namespace Learn.Migrations
                     Date = table.Column<DateTimeOffset>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    Points = table.Column<int>(nullable: false)
+                    Points = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace Learn.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Autoincrement", true),
-                    DueDate = table.Column<DateTime>(nullable: false),
+                    DueDate = table.Column<DateTimeOffset>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Points = table.Column<int>(nullable: false)
                 },

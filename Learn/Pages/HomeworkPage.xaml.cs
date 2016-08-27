@@ -53,7 +53,7 @@ namespace Learn
             var result = db.Homeworks.Add(new Homework()
             {
                 Name = vm.Name,
-                DueDate = vm.DueDate.Date,
+                DueDate = vm.DueDate,
                 Points = vm.Points
             });
             await db.SaveChangesAsync();
@@ -62,7 +62,7 @@ namespace Learn
             vm.Homeworks.Insert(0, new HomeworkItem()
             {
                 Name = vm.Name,
-                DueDate = vm.DueDate.Date,
+                DueDate = vm.DueDate,
                 Points = vm.Points,
                 Id = result.Entity.Id
             });

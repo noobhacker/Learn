@@ -1,4 +1,5 @@
 ﻿using Learn.Models;
+using Learn.Pages;
 using Learn.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace Learn
             vm.ProfileName = user.Name;
             vm.Skin = user.SkinColor;
             vm.Level = user.Level;
-
+            vm.CheckIfLevelUp();
         }
 
         private void hambugerBtn_Click(object sender, RoutedEventArgs e)
@@ -68,6 +69,9 @@ namespace Learn
             splitView.IsPaneOpen = false;
         }
 
-
+        private void frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            
+        }
     }
 }

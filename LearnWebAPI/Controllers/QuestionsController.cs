@@ -18,23 +18,24 @@ namespace LearnWebAPI.Controllers
         private LearnWebAPIContext db = new LearnWebAPIContext();
 
         // GET: api/Questions
-        public List<Question> GetQuestions(int id)
+        [ResponseType(typeof(List<Question>))]
+        public IHttpActionResult GetQuestions(int id)
         {
-            return db.Questions.Where(x=>x.BookId == id).ToList();
+            return Ok(db.Questions.Where(x=>x.BookId == id).ToList());
         }
 
-        // GET: api/Questions/5
-        [ResponseType(typeof(Question))]
-        public async Task<IHttpActionResult> GetQuestion(int id)
-        {
-            Question question = await db.Questions.FindAsync(id);
-            if (question == null)
-            {
-                return NotFound();
-            }
+        //// GET: api/Questions/5
+        //[ResponseType(typeof(Question))]
+        //public async Task<IHttpActionResult> GetQuestion(int id)
+        //{
+        //    Question question = await db.Questions.FindAsync(id);
+        //    if (question == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(question);
-        }
+        //    return Ok(question);
+        //}
 
         //// PUT: api/Questions/5
         //[ResponseType(typeof(void))]

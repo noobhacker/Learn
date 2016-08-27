@@ -67,7 +67,7 @@ namespace Learn.Pages
             var index = booksGV.SelectedIndex;
             var id = await WebAPI.DownloadBookByIdAsync(vm.Books[index].BookId);
 
-            Frame.Navigate(typeof(ReadPage));
+            Frame.Navigate(typeof(ReadPage),id);
         }
 
     }

@@ -26,7 +26,7 @@ namespace Learn.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Points");
+                    b.Property<string>("Points");
 
                     b.HasKey("Id");
 
@@ -50,7 +50,7 @@ namespace Learn.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DueDate");
+                    b.Property<DateTimeOffset>("DueDate");
 
                     b.Property<string>("Name");
 

@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -35,6 +36,17 @@ namespace Learn
             answerspeedDT.Interval = new TimeSpan(0, 0, 0, 0, 1);
             answerspeedDT.Tick += answerspeedDT_Tick;
 
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            currentView.BackRequested += (sender, e) =>
+            {
+                Frame.Navigate(typeof(LibraryPage));
+            };
+        }
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            var currentView = SystemNavigationManager.GetForCurrentView();
+            currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
         private bool checkAnswer(string answer)
@@ -54,6 +66,7 @@ namespace Learn
             vm.AnswerSpeed += 0.031;
         }
 
+        private int chances = 0;
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             int delay = 700;
@@ -65,6 +78,9 @@ namespace Learn
             welcomeGrid.Visibility = Visibility.Collapsed;
 
             var db = new DatabaseContext();
+            chances = db.Users.First().ComboMultiplierLevel;
+
+
             var id = Convert.ToInt32(e.Parameter);
             foreach (var question in db.Questions.Where(x => x.BookId == id))
             {
@@ -138,7 +154,7 @@ namespace Learn
                         // if correct answer will remove the first item
                         if (checkAnswer(vm.Answer))
                         {
-
+                            #region correct answer
                             // adds the combo count
                             vm.ComboCount++;
                             vm.AnsweredQuestions++;
@@ -166,33 +182,41 @@ namespace Learn
                                 AnsweredResult.MaxCombo = vm.ComboCount;
                                 this.Frame.Navigate(typeof(ResultPage), AnsweredResult);
                             }
-
+                            #endregion
                         }
                         // here goes if the answer is wrong
                         else
                         {
-                            errorGrid.Visibility = Visibility.Visible;
-                            errorImage.Source =
-                                new BitmapImage(new Uri(vm.QuestionList[0].QuestionImagePath));
-                            errorTB.Text =
-                                Convert.ToString(vm.QuestionList[0].QuestionString) + " " +
-                                vm.QuestionList[0].AnswerString[0];
+                            if (chances == 0)
+                            {
+                                errorGrid.Visibility = Visibility.Visible;
+                                errorImage.Source =
+                                    new BitmapImage(new Uri(vm.QuestionList[0].QuestionImagePath));
+                                errorTB.Text =
+                                    Convert.ToString(vm.QuestionList[0].QuestionString) + " " +
+                                    vm.QuestionList[0].AnswerString[0];
 
-                            // stop timer before wait async
-                            answerspeedDT.Stop();
+                                // stop timer before wait async
+                                answerspeedDT.Stop();
 
-                            // wait for 1 second async
-                            // async will cause questionlist randomize and timer keep running
-                            await Task.Delay(TimeSpan.FromSeconds(1));
+                                // wait for 1 second async
+                                // async will cause questionlist randomize and timer keep running
+                                await Task.Delay(TimeSpan.FromSeconds(1));
 
-                            // start after stopped the timer just now
-                            answerspeedDT.Start();
+                                // start after stopped the timer just now
+                                answerspeedDT.Start();
 
-                            errorGrid.Visibility = Visibility.Collapsed;
+                                errorGrid.Visibility = Visibility.Collapsed;
 
-                            AnsweredResult.ResultList[i].ErrorCount++;
-                            vm.ComboCount = 0;
-                            vm.QuestionList.Randomize();
+                                AnsweredResult.ResultList[i].ErrorCount++;
+                                vm.ComboCount = 0;
+                                vm.QuestionList.Randomize();
+                            }
+                            else
+                            {
+                                chances--;
+                                vm.Answer = "";
+                            }
                         }
 
                         // if no break will continue for loop even only enter answer once

@@ -11,9 +11,9 @@ namespace Learn
 {
     public static class WebAPI
     {
-        public static async Task<List<Book>> GetBooksAsync()      
+        public static async Task<List<Book>> GetBooksAsync()
            => await getFromServerAsync<List<Book>>("Books");
-                
+
         /// <returns>Returns idOnClient</returns>
         public static async Task<int> DownloadBookByIdAsync(int idOnServer)
         {
@@ -21,12 +21,26 @@ namespace Learn
             var book = await getFromServerAsync<Book>("Books/" + idOnServer);
             var questions = await getFromServerAsync<List<Question>>("Questions/" + idOnServer);
 
-            var result = db.Books.Add(book);
-            foreach (var question in questions)
-                db.Questions.Add(question);
+            var result = db.Books.Add(new Book()
+            {
+                Title = book.Title
+            });
 
             await db.SaveChangesAsync();
-            return result.Entity.Id;
+            var bookId = result.Entity.Id;
+            
+            foreach (var question in questions)
+            {
+                db.Questions.Add(new Question()
+                {
+                    AnswerString = question.AnswerString,
+                    QuestionString = question.QuestionString,
+                    BookId = bookId
+                });
+            }
+
+            await db.SaveChangesAsync();
+            return bookId;
         }
 
         public static async Task UploadBookAsync(int bookId)

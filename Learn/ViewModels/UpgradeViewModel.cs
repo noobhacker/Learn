@@ -13,10 +13,25 @@ namespace Learn.ViewModels
 {
     public class UpgradeViewModel : INotifyPropertyChanged
     {
+        private int gold;
+        public int Gold
+        {
+            get
+            {
+                return gold;
+            }
+
+            set
+            {
+                gold = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<UpgradeItem> Upgrades { get; set; }
 
         public ObservableCollection<SkinItem> Skins { get; set; }
-
+        
         public List<Skin> SkinList = new List<Skin>();
 
         public UpgradeViewModel()

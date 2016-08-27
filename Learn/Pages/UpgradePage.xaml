@@ -15,8 +15,13 @@
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Right"
+                   VerticalAlignment="Center" Margin="16,0" FontSize="20">
+            <Run Text="You have " />
+            <Run Text="{Binding Gold}" />
+            <Run Text=" gold" />
+        </TextBlock>
         <Grid Grid.Row="1">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />

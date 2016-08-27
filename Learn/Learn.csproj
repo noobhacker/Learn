@@ -18,7 +18,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Learn_StoreKey.pfx</PackageCertificateKeyFile>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <PackageCertificateThumbprint>7552AE198CD11008F0330E9E46FC346313B93D84</PackageCertificateThumbprint>
@@ -118,9 +118,9 @@
     <Compile Include="Items\ActivityItem.cs" />
     <Compile Include="Items\HamburgerMenuItem.cs" />
     <Compile Include="Items\UpgradeItem.cs" />
-    <Compile Include="Migrations\20160825111037_v1.cs" />
-    <Compile Include="Migrations\20160825111037_v1.designer.cs">
-      <DependentUpon>20160825111037_v1.cs</DependentUpon>
+    <Compile Include="Migrations\20160827075226_v1.cs" />
+    <Compile Include="Migrations\20160827075226_v1.designer.cs">
+      <DependentUpon>20160827075226_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\DatabaseContextModelSnapshot.cs" />
     <Compile Include="Models\Activity.cs" />

@@ -12,7 +12,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <CommandBar Background="Transparent">
-                <AppBarButton Icon="OpenFile"
+                <AppBarButton Icon="Download"
                               Name="readBtn"
                               Label="Read" 
                               Visibility="Collapsed"

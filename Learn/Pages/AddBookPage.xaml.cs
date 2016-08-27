@@ -9,6 +9,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -20,6 +21,7 @@ namespace Learn
     public sealed partial class AddBookPage : Page
     {
         AddBookViewModel vm = new AddBookViewModel();
+        private int bookId = -1;
         public AddBookPage()
         {
             this.InitializeComponent();
@@ -29,27 +31,47 @@ namespace Learn
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             currentView.BackRequested += (sender, e) =>
             {
-                goBack();
+                Frame.Navigate(typeof(LibraryPage));
             };
         }
-
-        private void goBack()
+        
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            Frame.Navigate(typeof(LibraryPage));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if(e.Parameter != null)
+            {
+                bookId = Convert.ToInt32(e.Parameter);
+                var db = new DatabaseContext();
+                vm.BookTitle = db.Books.FirstOrDefault(x => x.Id == bookId).Title;
+                foreach (var question in db.Questions.Where(x => x.BookId == bookId))
+                {
+                    vm.QuestionsList.Add(new QuestionItem()
+                    {
+                        AnswerString = question.AnswerString,
+                        QuestionImageId = question.QuestionImageId,
+                        QuestionString = question.QuestionString,
+                        QuestionImagePath = question.QuestionString == "" ?
+                             ApplicationData.Current.LocalFolder.Path + "\\Images\\" + question.QuestionImageId :
+                             "",
+                        QuestionImageVisibility = question.QuestionString == "" ? Visibility.Visible : Visibility.Collapsed
+                    });
+                }
+            }
         }
 
         private void easyModeAddBtn_Click(object sender, RoutedEventArgs e)
-        {
-           
+        {           
             string str = vm.TextQuestions;
             if (str != "")
             {
                 vm.TextQuestions = "";
 
                 string[] lines = str.Split(new char[] { '\r' }, StringSplitOptions.RemoveEmptyEntries);
-
 
                 //loop through each line
                 for (int i = 0; i < lines.Length; i++)
@@ -79,15 +101,6 @@ namespace Learn
         
         private async void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-            //GlobalViewModel.Books.Add( new Backend.Book()
-            //{
-            //    BookTitle = booktitleTB.Text,
-            //    Category = categoryTB.Text,
-            //    Description = descriptionTB.Text,
-            //    QuestionType  = Backend.Book.QuestionTypes.StringQuestion,
-            //    QuestionList = QuestionsList
-            //});
-            //await IOClass.SaveBooks();
 
             var db = new DatabaseContext();
             var result = db.Books.Add(new Book()
@@ -108,10 +121,18 @@ namespace Learn
                 });
             }
 
-            await db.SaveChangesAsync();
+            if (bookId != -1)
+            {
+                db.Remove(db.Books.FirstOrDefault(x => x.Id == bookId));
+                foreach (var question in db.Questions.Where(x => x.BookId == bookId))
+                    db.Remove(question);
+            }
+
+                await db.SaveChangesAsync();
 
             ClearEverything();
-            goBack();
+            
+            Frame.Navigate(typeof(LibraryPage));
         }
 
         private void ClearEverything()

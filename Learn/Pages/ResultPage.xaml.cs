@@ -148,7 +148,9 @@ namespace Learn
             // update database
             
             user.Gold += temppoints / 100;
-            user.Gold *= 1 + GetGoldBonusByLevel(user.GoldMultiplierLevel) / 100;
+            double goldMultiplier = 1 + GetGoldBonusByLevel(user.GoldMultiplierLevel) / 100;
+            user.Gold = Convert.ToInt32(user.Gold * goldMultiplier);
+            vm.GoldBonus = GetGoldBonusByLevel(user.GoldMultiplierLevel);
 
             var expAmount = Convert.ToInt32(((temppoints / 100) * (1 +
                 Convert.ToDouble(MainPage.vm.Level) / 100)));

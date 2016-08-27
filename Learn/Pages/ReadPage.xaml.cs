@@ -28,6 +28,8 @@ namespace Learn.Pages
     public sealed partial class ReadPage : Page
     {
         ReadViewModel vm = new ReadViewModel();
+        DispatcherTimer dt = new DispatcherTimer();
+
         public ReadPage()
         {
             this.InitializeComponent();
@@ -37,15 +39,27 @@ namespace Learn.Pages
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             currentView.BackRequested += (sender, e) =>
             {
-                goBack();
+                Frame.Navigate(typeof(LibraryPage));
             };
+
+            dt.Interval = new TimeSpan(0, 1, 0);
+            dt.Tick += Dt_Tick;
+            dt.Start();
         }
 
-        private void goBack()
+        private async void Dt_Tick(object sender, object e)
+        {
+            var db = new DatabaseContext();
+            db.Users.First().CurrentExp += 100;
+            db.Users.First().ReadingEXP += 100;
+
+            await db.SaveChangesAsync();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             var currentView = SystemNavigationManager.GetForCurrentView();
             currentView.AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
-            Frame.Navigate(typeof(LibraryPage));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

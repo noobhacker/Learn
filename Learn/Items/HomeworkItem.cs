@@ -7,7 +7,7 @@ namespace Learn.Items
     public class HomeworkItem : INotifyPropertyChanged
     {
         private string name;
-        private DateTime dueDate;
+        private DateTimeOffset dueDate;
         private int points;
         private int id;
 
@@ -25,7 +25,7 @@ namespace Learn.Items
             }
         }
 
-        public DateTime DueDate
+        public DateTimeOffset DueDate
         {
             get
             {

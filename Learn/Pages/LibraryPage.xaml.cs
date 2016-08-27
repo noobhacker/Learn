@@ -81,16 +81,29 @@ namespace Learn
 
         private async void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            var db = new DatabaseContext();
+            if (await DialogHelper.ShowYesNoDialogAsync("Are you sure?") == 0)
+            {
+                var index = booksGV.SelectedIndex;
+                var db = new DatabaseContext();
 
-            await db.SaveChangesAsync();
+                var bookId = vm.Books[index].BookId;
+                db.Remove(db.Books.FirstOrDefault(x => x.Id == bookId));
+                foreach(var question in db.Questions.Where(x => x.BookId == bookId))
+                {
+                    db.Remove(question);
+                }
+
+                await db.SaveChangesAsync();
+
+                vm.Books.RemoveAt(index);
+            }          
         }
 
         private async void shareBtn_Click(object sender, RoutedEventArgs e)
         {
             var index = booksGV.SelectedIndex;
             var db = new DatabaseContext();
-            if(db.Questions.FirstOrDefault(x=>x.BookId == vm.Books[index].BookId).QuestionString == "")
+            if(db.Questions.FirstOrDefault(x=>x.BookId == vm.Books[index].BookId).QuestionString == null)
             {
                 await DialogHelper.ShowDialogAsync("Books with image questions can't be shared online");
             }
@@ -100,6 +113,7 @@ namespace Learn
                 {
                     await WebAPI.UploadBookAsync(vm.Books[index].BookId);
                     await DialogHelper.ShowDialogAsync("Book shared online!");
+                    MainPage.vm.Title = "Online";
                     Frame.Navigate(typeof(OnlinePage));
                 }
                 catch
@@ -117,7 +131,8 @@ namespace Learn
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var index = booksGV.SelectedIndex;
+            Frame.Navigate(typeof(AddBookPage), vm.Books[index].BookId);
         }
 
     }
