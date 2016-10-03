@@ -1,4 +1,5 @@
-﻿using Learn.Items;
+﻿using Learn.Helpers;
+using Learn.Items;
 using Learn.Models;
 using Learn.ViewModels;
 using System;
@@ -101,6 +102,11 @@ namespace Learn
         
         private async void saveBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(vm.QuestionsList.Count == 0 && vm.BookTitle == null)
+            {
+                await DialogHelper.ShowDialogAsync("Please insert title and questions before adding book");
+                return;
+            }
 
             var db = new DatabaseContext();
             var result = db.Books.Add(new Book()

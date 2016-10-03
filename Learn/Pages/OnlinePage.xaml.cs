@@ -33,6 +33,7 @@ namespace Learn.Pages
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            var db = new DatabaseContext();
             try
             {
                 var response = await WebAPI.GetBooksAsync();
@@ -41,7 +42,8 @@ namespace Learn.Pages
                     vm.Books.Add(new Items.BookItem()
                     {
                         BookId = book.Id,
-                        BookTitle = book.Title
+                        BookTitle = book.Title,
+                        TextColor = db.Books.Any(x => x.Title == book.Title) ? "#888888" : ""
                     });
                 }
             }

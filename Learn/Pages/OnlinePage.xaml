@@ -43,6 +43,7 @@
                                    FontWeight="Thin"
                                    VerticalAlignment="Center"
                                    Text="{Binding BookTitle}"
+                                   Foreground="{Binding TextColor}"
                                    TextTrimming="CharacterEllipsis" />
 
                     </Grid>

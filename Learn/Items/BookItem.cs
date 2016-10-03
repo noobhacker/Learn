@@ -7,6 +7,7 @@ namespace Learn.Items
     {        
         private string bookTitle;
         private int bookId;
+        private string textColor;
 
         public string BookTitle
         {
@@ -31,6 +32,20 @@ namespace Learn.Items
             set
             {
                 bookId = value;
+            }
+        }
+
+        public string TextColor
+        {
+            get
+            {
+                return textColor;
+            }
+
+            set
+            {
+                textColor = value;
+                OnPropertyChanged();
             }
         }
 

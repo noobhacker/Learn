@@ -49,6 +49,12 @@ namespace Learn
 
         private async void addBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(vm.Name == null || vm.Name == "")
+            {
+                await Helpers.DialogHelper.ShowDialogAsync("Please insert homework name");
+                return;
+            }
+
             var db = new DatabaseContext();
             var result = db.Homeworks.Add(new Homework()
             {
@@ -66,6 +72,10 @@ namespace Learn
                 Points = vm.Points,
                 Id = result.Entity.Id
             });
+
+            vm.Name = "";
+            vm.Points = 0;
+            HideAddBar.Begin();
         }
 
         private async void forfeitBtn_Click(object sender, RoutedEventArgs e)
