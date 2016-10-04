@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="19017LeeSong.TheLearningApp" Publisher="CN=90F098DE-C1C5-4DA1-B32E-1F994A1A0573" Version="1.2.3.0" />
+  <Identity Name="19017LeeSong.TheLearningApp" Publisher="CN=90F098DE-C1C5-4DA1-B32E-1F994A1A0573" Version="1.2.7.0" />
   <mp:PhoneIdentity PhoneProductId="1893594f-5500-4929-b67c-9d75704e4530" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>The Learning App</DisplayName>

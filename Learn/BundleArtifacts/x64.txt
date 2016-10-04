@@ -1,2 +1,2 @@
-MainPackage=E:\Projects\Learn\Learn\bin\x64\Release\Learn_1.2.3.0_x64.appx
-SymbolPackage=E:\Projects\Learn\Learn\AppPackages\Learn_1.2.3.0_Test\Learn_1.2.3.0_x64.appxsym
+MainPackage=E:\Projects\Learn\Learn\bin\x64\Debug\Learn_1.2.7.0_x64_Debug.appx
+SymbolPackage=E:\Projects\Learn\Learn\AppPackages\Learn_1.2.7.0_Debug_Test\Learn_1.2.7.0_x64_Debug.appxsym
