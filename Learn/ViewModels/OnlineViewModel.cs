@@ -12,11 +12,28 @@ namespace Learn.ViewModels
 {
     public class OnlineViewModel : INotifyPropertyChanged
     {
+        private string searchBoxText;
         public ObservableCollection<BookItem> Books { get; set; }
+        public ObservableCollection<BookItem> FilteredBooks { get; set; }
+
+        public string SearchBoxText
+        {
+            get
+            {
+                return searchBoxText;
+            }
+
+            set
+            {
+                searchBoxText = value;
+                OnPropertyChanged();
+            }
+        }
 
         public OnlineViewModel()
         {
             Books = new ObservableCollection<BookItem>();
+            FilteredBooks = new ObservableCollection<BookItem>();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

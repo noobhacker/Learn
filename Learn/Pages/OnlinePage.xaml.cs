@@ -31,6 +31,18 @@ namespace Learn.Pages
             this.DataContext = vm;
         }
 
+        private void displayFilteredBooks()
+        {
+            vm.FilteredBooks.Clear();
+            foreach(var item in vm.Books.Where(x=>
+            vm.SearchBoxText == null || 
+            vm.SearchBoxText == "" || 
+            x.BookTitle.Contains(vm.SearchBoxText)))
+            {
+                vm.FilteredBooks.Add(item);
+            }
+        }
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             var db = new DatabaseContext();
@@ -52,6 +64,7 @@ namespace Learn.Pages
                 MainPage.vm.Title = "No Internet Connection";
             }
             loading.IsActive = false;
+            displayFilteredBooks();
         }
 
         private void booksGV_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,5 +85,9 @@ namespace Learn.Pages
             Frame.Navigate(typeof(ReadPage),id);
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            displayFilteredBooks();
+        }
     }
 }

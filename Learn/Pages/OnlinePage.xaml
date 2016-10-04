@@ -11,17 +11,26 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <CommandBar Background="Transparent">
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <CommandBar Background="Transparent">
                 <AppBarButton Icon="Download"
                               Name="readBtn"
-                              Label="Read" 
+                              Label="Read"
                               Visibility="Collapsed"
-                              Click="readBtn_Click"/>
+                              Click="readBtn_Click" />
             </CommandBar>
+            <TextBox PlaceholderText="Search"
+                     Text="{Binding SearchBoxText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="8"
+                     MinWidth="100"
+                     Width="250"
+                     TextChanged="TextBox_TextChanged" />
+        </StackPanel>
         <GridView Name="booksGV"
                   SelectionMode="Single"
                   Margin="24,12"
-                  ItemsSource="{Binding Books}"
+                  ItemsSource="{Binding FilteredBooks}"
                   Grid.Row="1"
                   SelectionChanged="booksGV_SelectionChanged">
             <GridView.ItemTemplate>
@@ -50,6 +59,10 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <ProgressRing Name="loading" IsActive="True" Grid.Row="1" Height="64" Width="64" />
+        <ProgressRing Name="loading"
+                      IsActive="True"
+                      Grid.Row="1"
+                      Height="64"
+                      Width="64" />
     </Grid>
 </Page>
