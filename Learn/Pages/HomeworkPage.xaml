@@ -109,7 +109,7 @@
             <Grid Grid.Row="1"
                   Height="0"
                   Name="addBar">
-                <Grid Background="Black"
+                <Grid Background="{ThemeResource ToolTipBackground}"
                       Opacity="0.5" />
                 <Grid Margin="4,0">
                     <Grid.ColumnDefinitions>
