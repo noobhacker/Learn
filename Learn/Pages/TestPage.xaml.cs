@@ -214,8 +214,11 @@ namespace Learn
                             }
                             else
                             {
-                                chances -=1;
+                                chanceTB.Text = $"Wrong answer, you have {chances} chances left";
+                                chances -= 1;
                                 vm.Answer = "";
+                                await Task.Delay(TimeSpan.FromSeconds(1));
+                                chanceTB.Text = "";                                
                             }
                         }
 

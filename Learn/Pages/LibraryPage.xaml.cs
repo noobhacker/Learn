@@ -101,30 +101,34 @@ namespace Learn
 
         private async void shareBtn_Click(object sender, RoutedEventArgs e)
         {
+
             var index = booksGV.SelectedIndex;
             var db = new DatabaseContext();
-            if(db.Questions.FirstOrDefault(x=>x.BookId == vm.Books[index].BookId).QuestionString == null)
+            if (db.Questions.FirstOrDefault(x => x.BookId == vm.Books[index].BookId).QuestionString == null)
             {
                 await DialogHelper.ShowDialogAsync("Books with image questions can't be shared online");
             }
             else
             {
-                try
+                if (await DialogHelper.ShowYesNoDialogAsync("Are you sure you want to share?") == 0)
                 {
-                    loading.IsActive = true;
-                    shareBtn.IsEnabled = false;
+                    try
+                    {
+                        loading.IsActive = true;
+                        shareBtn.IsEnabled = false;
 
-                    await WebAPI.UploadBookAsync(vm.Books[index].BookId);
-                    await DialogHelper.ShowDialogAsync("Book shared online!");
-                    MainPage.vm.Title = "Online";
-                    Frame.Navigate(typeof(OnlinePage));
+                        await WebAPI.UploadBookAsync(vm.Books[index].BookId);
+                        await DialogHelper.ShowDialogAsync("Book shared online!");
+                        MainPage.vm.Title = "Online";
+                        Frame.Navigate(typeof(OnlinePage));
 
-                    loading.IsActive = false;
-                    shareBtn.IsEnabled = true;
-                }
-                catch
-                {
-                    await DialogHelper.ShowDialogAsync("Something went wrong");
+                        loading.IsActive = false;
+                        shareBtn.IsEnabled = true;
+                    }
+                    catch
+                    {
+                        await DialogHelper.ShowDialogAsync("Something went wrong, please try again later");
+                    }
                 }
             }
         }

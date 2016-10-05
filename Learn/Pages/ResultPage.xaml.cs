@@ -133,6 +133,7 @@ namespace Learn
                 points = report.ResultList.Count * 50;
         
             points = points + (tempcombo * 100) - (interror * 1000);
+
             temppoints = points;
             
             // bonus
@@ -144,9 +145,19 @@ namespace Learn
                 temppoints += comboBonus;
                 vm.ComboBonus = comboBonus;
             }
+            else
+            {
+                maxComboGrid.Visibility = Visibility.Collapsed;
+            }
+
+
+            // prevent go negative
+            if (temppoints < 0)
+                temppoints = 0;
+
             // end of calculating points
             // update database
-            
+
             user.Gold += temppoints / 100;
             double goldMultiplier = 1 + GetGoldBonusByLevel(user.GoldMultiplierLevel) / 100;
             user.Gold = Convert.ToInt32(user.Gold * goldMultiplier);
