@@ -7,6 +7,26 @@
       mc:Ignorable="d">
 
     <Grid Background="Transparent">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="vsGroup">
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="480"
+                                         MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Mobile">
+                    <VisualState.Setters>
+                        <Setter Target="textBox.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0"
+                                         MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -20,7 +40,8 @@
                               Visibility="Collapsed"
                               Click="readBtn_Click" />
             </CommandBar>
-            <TextBox PlaceholderText="Search"
+            <TextBox x:Name="textBox"
+                     PlaceholderText="Search"
                      Text="{Binding SearchBoxText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      Margin="8"
                      MinWidth="100"

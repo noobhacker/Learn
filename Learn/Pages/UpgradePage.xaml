@@ -11,6 +11,29 @@
         <converters:NextLevelConverter x:Key="NextLevelConverter" />
     </Page.Resources>
     <Grid Background="Transparent">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="vsGroup">
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="480"
+                                         MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Mobile">
+                    <VisualState.Setters>
+                        <Setter Target="upgradesGV.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,8</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0"
+                                         MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="48" />
             <RowDefinition Height="*" />

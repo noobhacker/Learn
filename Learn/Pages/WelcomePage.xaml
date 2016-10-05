@@ -7,13 +7,45 @@
       mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="vsGroup">
+                <VisualState x:Name="Desktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="480"
+                                         MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="Mobile">
+                    <VisualState.Setters>
+                        <Setter Target="textBlock.(TextBlock.FontSize)"
+                                Value="16" />
+                        <Setter Target="nameTB.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,32,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Target="textBlock.(FrameworkElement.Margin)">
+                            <Setter.Value>
+                                <Thickness>0,18,0,0</Thickness>
+                            </Setter.Value>
+                        </Setter>
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0"
+                                         MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <StackPanel HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <TextBlock Text=""
                        FontFamily="Segoe MDL2 Assets"
                        FontSize="72"
                        HorizontalAlignment="Center" />
-            <TextBlock FontSize="60"
+            <TextBlock x:Name="textBlock"
+                       FontSize="60"
+                       TextWrapping="Wrap"
                        Text="Welcome to The Learning App"
                        FontWeight="Light"
                        Margin="0,72,0,0" />

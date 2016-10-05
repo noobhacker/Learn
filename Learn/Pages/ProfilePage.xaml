@@ -19,6 +19,12 @@
                     <VisualState.Setters>
                         <Setter Target="statisticsTriangle.(UIElement.Visibility)"
                                 Value="Collapsed" />
+                        <Setter Target="textBlock.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="textBlock1.(UIElement.Visibility)"
+                                Value="Collapsed" />
+                        <Setter Target="grid.(FrameworkElement.Width)"
+                                Value="250" />
                     </VisualState.Setters>
                     <VisualState.StateTriggers>
                         <AdaptiveTrigger MinWindowHeight="0"
@@ -187,7 +193,8 @@
 
                     <Grid Margin="24">
                         <StackPanel>
-                            <Grid Width="500"
+                            <Grid x:Name="grid"
+                                  Width="500"
                                   HorizontalAlignment="Left">
 
                                 <Grid.ColumnDefinitions>
@@ -209,11 +216,13 @@
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center" />
 
-                                <TextBlock Grid.Column="1"
+                                <TextBlock x:Name="textBlock"
+                                           Grid.Column="1"
                                            Text="Gold"
                                            FontSize="24" />
 
-                                <TextBlock Grid.Column="1"
+                                <TextBlock x:Name="textBlock1"
+                                           Grid.Column="1"
                                            Grid.Row="1"
                                            Text="Used to purchase upgrades"
                                            FontSize="20"
